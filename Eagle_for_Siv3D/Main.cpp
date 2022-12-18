@@ -1,53 +1,28 @@
 ﻿# include <Eagle.hpp> // OpenSiv3D v0.6.6
 
-class CircleComponent : public eagle::DrawableComponent2D
+// シーンの作成
+class TestScene : public eagle::DefaultWorld::BasicScene
 {
 public:
-
-	CircleComponent(){}
-
-	void draw()const override
+	TestScene(const InitData& _ini) : BasicScene(_ini)
 	{
-		Circle{ getTransform()->getWorldPos2D(),20 }.draw();
-	}
-};
-
-class Scene01 : public eagle::DefaultWorld::BasicScene
-{
-public:
-
-	Scene01(const InitData& _ini)
-		: BasicScene(_ini)
-	{
-		{
-			auto actor = createActor(U"Actor").lock();
-
-			auto tf = actor->getTransform();
-			tf->setPos(200, 200);
-
-			auto circle = actor->attachComponent<CircleComponent>().lock();
-		}
+		
 	}
 
 	void update()override
 	{
-
+		Print << U"TestScene";
 	}
-
-	void draw()const override
-	{
-
-	}
-
 };
 
 void Main()
 {
+	// シーンを管理するマネジメントクラスを生成
 	eagle::DefaultWorld world{};
-	world.add<Scene01>(U"Sc");
+	// TestSceneをMySceneという名前でworldに登録
+	world.add<TestScene>(U"MyScene");
 
-
-	while (System::Update())
+	while (s3d::System::Update())
 	{
 		ClearPrint();
 

@@ -350,6 +350,20 @@ namespace eagle
 		mIsChanged = true;
 	}
 
+	void Transform::translate2D(double _x, double _y)
+	{
+		mPosition.moveBy(_x, _y, 0);
+
+		mIsChanged = true;
+	}
+
+	void Transform::translate2D(Vec2 _translation)
+	{
+		mPosition.moveBy(_translation.xy0());
+
+		mIsChanged = true;
+	}
+
 	void Transform::rotate(double _roll, double _pitch, double _yaw)
 	{
 		mRotation *= Rotation_t::RollPitchYaw(_roll, _pitch, _yaw);
@@ -400,6 +414,20 @@ namespace eagle
 	void Transform::scaling(Vec3 _scale)
 	{
 		mScale *= _scale;
+
+		mIsChanged = true;
+	}
+
+	void Transform::scaling2D(double _sx, double _sy)
+	{
+		mScale *= Vec3{ _sx,_sy,1.0 };
+
+		mIsChanged = true;
+	}
+
+	void Transform::scaling2D(Vec2 _scale)
+	{
+		mScale *= _scale.xy0();
 
 		mIsChanged = true;
 	}

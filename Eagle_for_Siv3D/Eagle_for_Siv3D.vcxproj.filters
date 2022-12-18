@@ -176,12 +176,6 @@
     <Filter Include="Eagle\Components\Transform">
       <UniqueIdentifier>{453e827d-8638-4caf-bddc-f9fbf76a5f03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Eagle\Actors\CollisionSystem">
-      <UniqueIdentifier>{673737e4-6cb4-4116-948d-e6c896691053}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Components\Collider">
-      <UniqueIdentifier>{7bc6af16-1771-4c92-bbd5-10f571c43b6b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Siv3D">
       <UniqueIdentifier>{62e1e47c-7269-44d1-8447-aa30fc76fd67}</UniqueIdentifier>
     </Filter>
@@ -228,9 +222,6 @@
     </ClCompile>
     <ClCompile Include="Framework\ProjectSettings\ProjectSettings.cpp">
       <Filter>Eagle\ProjectSettings</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Components\Collider\Collider_detail.cpp">
-      <Filter>Eagle\Components\Collider</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Siv3D</Filter>
@@ -950,15 +941,6 @@
     </ClInclude>
     <ClInclude Include="Framework\Eagle.hpp">
       <Filter>Eagle</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Actors\CollisionSystem\CollisionSystem.hpp">
-      <Filter>Eagle\Actors\CollisionSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Components\Collider\Collider_detail.hpp">
-      <Filter>Eagle\Components\Collider</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Components\Collider\Collider_detail.ipp">
-      <Filter>Eagle\Components\Collider</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Siv3D</Filter>

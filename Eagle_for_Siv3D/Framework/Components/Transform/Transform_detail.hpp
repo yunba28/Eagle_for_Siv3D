@@ -100,6 +100,10 @@ namespace eagle
 
 		void translate(Vec3 _translation);
 
+		void translate2D(double _x, double _y);
+
+		void translate2D(Vec2 _translation);
+
 		void rotate(double _roll, double _pitch, double _yaw);
 
 		void rotate(Vec3 _rollPithcYaw);
@@ -115,6 +119,10 @@ namespace eagle
 		void scaling(double _sx, double _sy, double _sz);
 
 		void scaling(Vec3 _scale);
+
+		void scaling2D(double _sx, double _sy);
+
+		void scaling2D(Vec2 _scale);
 
 		/// @brief トランスフォームのforward(Z)軸を取得する
 		[[nodiscard]]
