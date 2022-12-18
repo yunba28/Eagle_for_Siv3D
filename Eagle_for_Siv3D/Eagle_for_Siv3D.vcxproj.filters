@@ -179,6 +179,12 @@
     <Filter Include="Siv3D">
       <UniqueIdentifier>{62e1e47c-7269-44d1-8447-aa30fc76fd67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Eagle\Actors\CollisionSystem">
+      <UniqueIdentifier>{dfb86f59-f5b0-432e-be0b-153575c428ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Eagle\Components\Collider">
+      <UniqueIdentifier>{1302a6fc-8dbe-4c35-9b0a-c55a90a53fa0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Utility\Name\Name.cpp">
@@ -228,6 +234,9 @@
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Siv3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Collider\Collider_detail.cpp">
+      <Filter>Eagle\Components\Collider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -944,6 +953,15 @@
     </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Actors\CollisionSystem\CollisionSystem.hpp">
+      <Filter>Eagle\Actors\CollisionSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Collider\Collider_detail.hpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Collider\Collider_detail.ipp">
+      <Filter>Eagle\Components\Collider</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
