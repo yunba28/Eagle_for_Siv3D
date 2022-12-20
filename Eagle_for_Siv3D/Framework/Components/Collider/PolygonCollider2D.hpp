@@ -16,6 +16,6 @@ namespace eagle
 
 		bool inRegion()const final override;
 
-		Polygon mPolygon;
+		Polygon mPolygon{};
 	};
 }

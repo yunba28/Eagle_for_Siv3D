@@ -18,7 +18,7 @@ namespace eagle
 
 	private:
 
-		Circle mCircle;
+		Circle mCircle{};
 
 	};
 }

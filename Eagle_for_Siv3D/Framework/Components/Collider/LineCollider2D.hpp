@@ -18,7 +18,7 @@ namespace eagle
 
 	private:
 
-		Line mLine;
+		Line mLine{};
 
 	};
 }

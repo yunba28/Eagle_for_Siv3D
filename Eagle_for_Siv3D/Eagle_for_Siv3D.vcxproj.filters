@@ -182,6 +182,12 @@
     <Filter Include="Eagle\Components\Collider">
       <UniqueIdentifier>{85d2e180-e4ec-42f5-9d84-11b15a03930f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Eagle\Components\Renderer">
+      <UniqueIdentifier>{12cb8784-fb7c-4e8d-9e37-db4620d2f9b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Eagle\Components\Animation">
+      <UniqueIdentifier>{fd472e55-44db-4eb3-9c2b-fa370b3a2da7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Utility\Name\Name.cpp">
@@ -252,6 +258,15 @@
     </ClCompile>
     <ClCompile Include="Framework\Components\Collider\RectCollider2D.cpp">
       <Filter>Eagle\Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Renderer\SpriteRenderer.cpp">
+      <Filter>Eagle\Components\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Animation\Animation2D.cpp">
+      <Filter>Eagle\Components\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Animation\AnimationController2D.cpp">
+      <Filter>Eagle\Components\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -995,6 +1010,18 @@
     </ClInclude>
     <ClInclude Include="Framework\Components\Collider\RectCollider2D.hpp">
       <Filter>Eagle\Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Renderer\SpriteRenderer.hpp">
+      <Filter>Eagle\Components\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Renderer.hpp">
+      <Filter>Eagle\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Animation\Animation2D.hpp">
+      <Filter>Eagle\Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Animation\AnimationController2D.hpp">
+      <Filter>Eagle\Components\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

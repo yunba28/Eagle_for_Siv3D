@@ -18,6 +18,6 @@ namespace eagle
 
 	private:
 
-		RectF mRect;
+		RectF mRect{};
 	};
 }
