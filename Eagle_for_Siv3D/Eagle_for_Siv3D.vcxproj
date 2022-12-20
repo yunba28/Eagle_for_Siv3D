@@ -138,6 +138,7 @@
     <ClCompile Include="Framework\ProjectSettings\InputAxis.cpp" />
     <ClCompile Include="Framework\ProjectSettings\ProjectSettings.cpp" />
     <ClCompile Include="Framework\Utility\Name\Name.cpp" />
+    <ClCompile Include="Framework\Utility\Resource\Resource.cpp" />
     <ClCompile Include="Framework\Utility\Tag\Tag.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -378,6 +379,7 @@
     <ClInclude Include="Framework\Utility\Companion.hpp" />
     <ClInclude Include="Framework\Utility\Concepts.hpp" />
     <ClInclude Include="Framework\Utility\Name\Name.hpp" />
+    <ClInclude Include="Framework\Utility\Resource\Resource.hpp" />
     <ClInclude Include="Framework\Utility\SmartObject.hpp" />
     <ClInclude Include="Framework\Utility\Tag\Tag.hpp" />
     <ClInclude Include="stdafx.h" />

@@ -37,3 +37,11 @@ namespace eagle::Internal
 		return input == _other.input;
 	}
 }
+
+namespace eagle
+{
+	Input InputSerializer::asInput() const
+	{
+		return Input{ static_cast<InputDeviceType>(mDeviceType),mCode,mPlayerIndex };
+	}
+}

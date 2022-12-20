@@ -147,7 +147,7 @@ public:
 			// Idle.R
 			{
 				auto& anim = animationController->addAnimation(U"Idle.R");
-				anim.setTexture(Texture{ U"Idle.png" });
+				anim.setTexture(TextureAsset(U"Player.Idle"));
 				anim.setParam({ Size{12,2},Size{0,11},true });
 				anim.setPivot(Vec2::AnchorBottomCenter());
 				anim.setOffset(Vec2{ 0,20 });
@@ -156,7 +156,7 @@ public:
 			// Idle.L
 			{
 				auto& anim = animationController->addAnimation(U"Idle.L");
-				anim.setTexture(Texture{ U"Idle.png" });
+				anim.setTexture(TextureAsset(U"Player.Idle"));
 				anim.setParam({ Size{12,2},Size{12,23},true });
 				anim.setPivot(Vec2::AnchorBottomCenter());
 				anim.setOffset(Vec2{ 0,20 });
@@ -165,7 +165,7 @@ public:
 			// Move.R
 			{
 				auto& anim = animationController->addAnimation(U"Move.R");
-				anim.setTexture(Texture{ U"Move.png" });
+				anim.setTexture(TextureAsset(U"Player.Move"));
 				anim.setParam({ Size{12,2},Size{0,11},true });
 				anim.setPivot(Vec2::AnchorBottomCenter());
 				anim.setOffset(Vec2{ 0,20 });
@@ -174,7 +174,7 @@ public:
 			// Move.L
 			{
 				auto& anim = animationController->addAnimation(U"Move.L");
-				anim.setTexture(Texture{ U"Move.png" });
+				anim.setTexture(TextureAsset(U"Player.Move"));
 				anim.setParam({ Size{12,2},Size{12,23},true });
 				anim.setPivot(Vec2::AnchorBottomCenter());
 				anim.setOffset(Vec2{ 0,20 });
@@ -261,7 +261,6 @@ public:
 			collider->setBodyType(P2BodyType::Static);
 		}
 
-
 	}
 
 	void update()override
@@ -279,6 +278,9 @@ public:
 
 void Main()
 {
+	// リソースの事前登録
+	eagle::Resource::LoadTextures(U"texture");
+
 	// シーンを管理するマネジメントクラスを生成
 	eagle::DefaultWorld world{};
 	// TestSceneをMySceneという名前でworldに登録

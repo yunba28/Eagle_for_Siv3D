@@ -188,6 +188,9 @@
     <Filter Include="Eagle\Components\Animation">
       <UniqueIdentifier>{fd472e55-44db-4eb3-9c2b-fa370b3a2da7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Eagle\Utility\Resource">
+      <UniqueIdentifier>{7645344c-e93b-4e8e-89fc-f785ac1c882d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Utility\Name\Name.cpp">
@@ -267,6 +270,9 @@
     </ClCompile>
     <ClCompile Include="Framework\Components\Animation\AnimationController2D.cpp">
       <Filter>Eagle\Components\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Utility\Resource\Resource.cpp">
+      <Filter>Eagle\Utility\Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1022,6 +1028,9 @@
     </ClInclude>
     <ClInclude Include="Framework\Components\Animation\AnimationController2D.hpp">
       <Filter>Eagle\Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Utility\Resource\Resource.hpp">
+      <Filter>Eagle\Utility\Resource</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
