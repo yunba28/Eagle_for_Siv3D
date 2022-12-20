@@ -13,8 +13,7 @@ namespace eagle
 	void Name::set(const s3d::String& _name)
 	{
 		mAssetPtr->release(*this);
-		Name tmp = mAssetPtr->secured(_name);
-		mHashCode = tmp.mHashCode;
+		mAssetPtr->secured(_name,*this);
 	}
 
 	const s3d::String& Name::get() const
@@ -68,7 +67,7 @@ namespace eagle
 	{
 	}
 
-	Name NameAsset::secured(const s3d::String& _name)
+	void NameAsset::secured(const s3d::String& _name, Name& _outName)
 	{
 		size_t hash = _name.hash();
 
@@ -79,7 +78,7 @@ namespace eagle
 		{
 			Info& info = mAssets[hash];
 
-			newInfo.name = info.name += U" #{}"_fmt(info.maxCount);
+			newInfo.name = info.name + U" #{}"_fmt(info.maxCount);
 			newInfo.base = info.base;
 			newInfo.count += 1;
 			newInfo.maxCount += 1;
@@ -99,9 +98,10 @@ namespace eagle
 		}
 
 		// 生成された名前を登録
-		mAssets[hash] = newInfo;
+		mAssets.emplace(hash, newInfo);
 
-		return Name(hash, this);
+		_outName.mHashCode = hash;
+		_outName.mAssetPtr = this;
 	}
 
 	void NameAsset::release(const Name& _name)

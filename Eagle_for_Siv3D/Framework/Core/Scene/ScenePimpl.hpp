@@ -20,6 +20,9 @@ namespace eagle::Internal
 		template<class T>
 		WeakObject<T> createActor(const String& _name)requires(std::derived_from<T, Actor>);
 
+		template<class T, class TransformT>
+		WeakObject<T> createActor(const String& _name)requires(std::derived_from<T, Actor> or std::derived_from<TransformT, Transform>);
+
 		template<class T>
 		WeakObject<T> getActor(const String& _name)const requires(std::derived_from<T, Actor>);
 
@@ -49,7 +52,7 @@ namespace eagle::Internal
 
 		ObjectHandle<RenderSystem> _getRenderSystem()const noexcept;
 
-		Name _makeName(const String& _name);
+		void _makeName(const String& _name, Name& _outName);
 
 		Tag _makeTag(const String& _tag);
 

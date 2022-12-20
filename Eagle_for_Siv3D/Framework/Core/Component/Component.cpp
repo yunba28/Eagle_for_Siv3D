@@ -6,6 +6,7 @@
 #include <Core/Scene/ScenePimpl.hpp>
 
 #include <Components/Transform.hpp>
+#include <Components/Collider/Collider2D.hpp>
 
 namespace eagle
 {
@@ -188,6 +189,15 @@ namespace eagle
 	void Component::joinFixedSystem()
 	{
 		auto system = getActor()->getScene()->_getFixedSystem();
+		system->add(mThis);
+		mEnabledFixedUpdate = true;
+		mJoinedFixedSystem = true;
+	}
+
+	void Component::joinFixedSystem(const WeakObject<class Collider2D>& _collider)
+	{
+		auto system = getActor()->getScene()->_getFixedSystem();
+		system->add(_collider);
 		system->add(mThis);
 		mEnabledFixedUpdate = true;
 		mJoinedFixedSystem = true;

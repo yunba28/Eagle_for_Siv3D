@@ -162,7 +162,10 @@ namespace eagle::Internal
 		{
 			mComponents[order].update();
 		}
+	}
 
+	void ComponentSystem::lateUpdate()
+	{
 		for (auto& order : mExecutionOrder)
 		{
 			mComponents[order].lateUpdate();

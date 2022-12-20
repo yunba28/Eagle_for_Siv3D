@@ -8,6 +8,12 @@ namespace eagle::Internal
 		return Actor::Create<T>(mThis, _name).weak();
 	}
 
+	template<class T, class TransformT>
+	WeakObject<T> ScenePimpl::createActor(const String& _name)requires(std::derived_from<T, Actor> or std::derived_from<TransformT, Transform>)
+	{
+		return Actor::Create<T, TransformT>(mThis, _name).weak();
+	}
+
 	template<class T>
 	WeakObject<T> ScenePimpl::getActor(const String& _name)const requires(std::derived_from<T, Actor>)
 	{

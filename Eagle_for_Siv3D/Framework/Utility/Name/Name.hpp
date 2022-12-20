@@ -62,7 +62,7 @@ namespace eagle
 
 		NameAsset() = default;
 
-		Name secured(const s3d::String& _name);
+		void secured(const s3d::String& _name, Name& _outName);
 
 		void release(const Name& _name);
 
@@ -74,10 +74,10 @@ namespace eagle
 
 		struct Info
 		{
-			s3d::String name;
-			s3d::uint64 base;
-			s3d::int32 count;
-			s3d::int32 maxCount;
+			s3d::String name{U""};
+			s3d::uint64 base{0};
+			s3d::int32 count{0};
+			s3d::int32 maxCount{0};
 		};
 
 		s3d::HashTable<size_t, Info> mAssets;

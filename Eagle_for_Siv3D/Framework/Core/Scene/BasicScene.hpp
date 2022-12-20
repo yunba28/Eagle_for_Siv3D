@@ -105,22 +105,25 @@ namespace eagle
 		void notifyError();
 
 		template<class T = Actor>
-		WeakObject<T> createActor(const String& _name)requires(std::derived_from<T, Actor>);
+		WeakObject<T> createActor(const String& _name);
+
+		template<class T, class TransformT>
+		WeakObject<T> createActor(const String& _name);
 
 		template<class T = Actor>
-		WeakObject<T> getActor(const String& _name)const requires(std::derived_from<T, Actor>);
+		WeakObject<T> getActor(const String& _name)const;
 
 		template<class T = Actor>
-		WeakObject<T> getActorByTag(const String& _tag)const requires(std::derived_from<T, Actor>);
+		WeakObject<T> getActorByTag(const String& _tag)const;
 
 		template<class T = Actor>
-		Array<WeakObject<T>> getActors()const requires(std::derived_from<T, Actor>);
+		Array<WeakObject<T>> getActors()const;
 
 		template<class T = Actor>
-		Array<WeakObject<T>> getActorsByTag(const String& _tag)const requires(std::derived_from<T, Actor>);
+		Array<WeakObject<T>> getActorsByTag(const String& _tag)const;
 
 		template<class T = Actor>
-		void destroyActor(const String& _name)requires(std::derived_from<T, Actor>);
+		void destroyActor(const String& _name);
 
 		void destroyActorsByTag(const String& _tag);
 

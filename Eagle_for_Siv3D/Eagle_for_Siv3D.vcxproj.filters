@@ -179,11 +179,8 @@
     <Filter Include="Siv3D">
       <UniqueIdentifier>{62e1e47c-7269-44d1-8447-aa30fc76fd67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Eagle\Actors\CollisionSystem">
-      <UniqueIdentifier>{dfb86f59-f5b0-432e-be0b-153575c428ab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Eagle\Components\Collider">
-      <UniqueIdentifier>{1302a6fc-8dbe-4c35-9b0a-c55a90a53fa0}</UniqueIdentifier>
+      <UniqueIdentifier>{85d2e180-e4ec-42f5-9d84-11b15a03930f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -235,7 +232,25 @@
     <ClCompile Include="Main.cpp">
       <Filter>Siv3D</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Components\Collider\Collider_detail.cpp">
+    <ClCompile Include="Framework\Components\Collider\Collider2D.cpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Collider\CircleCollider2D.cpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Collider\LineCollider2D.cpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Collider\PolygonCollider2D.cpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Collider\CircleTrigger2D.cpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Collider\MultiCollider2D.cpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Collider\RectCollider2D.cpp">
       <Filter>Eagle\Components\Collider</Filter>
     </ClCompile>
   </ItemGroup>
@@ -954,13 +969,31 @@
     <ClInclude Include="stdafx.h">
       <Filter>Siv3D</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Actors\CollisionSystem\CollisionSystem.hpp">
-      <Filter>Eagle\Actors\CollisionSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Components\Collider\Collider_detail.hpp">
+    <ClInclude Include="Framework\Components\Collider\Collider2D.hpp">
       <Filter>Eagle\Components\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Components\Collider\Collider_detail.ipp">
+    <ClInclude Include="Framework\Components\Collider\Collision.hpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Collider\CircleCollider2D.hpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Collider\LineCollider2D.hpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Collider\PolygonCollider2D.hpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Collider\CircleTrigger2D.hpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Collider\MultiCollider2D.hpp">
+      <Filter>Eagle\Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Colliders2D.hpp">
+      <Filter>Eagle\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Collider\RectCollider2D.hpp">
       <Filter>Eagle\Components\Collider</Filter>
     </ClInclude>
   </ItemGroup>

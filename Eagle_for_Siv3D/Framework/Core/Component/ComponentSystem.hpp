@@ -48,6 +48,8 @@ namespace eagle::Internal
 
 		void update();
 
+		void lateUpdate();
+
 		void add(const SharedObject<Component>& _component, const std::type_index& _type);
 
 		WeakObject<Component> getComponent(const WeakObject<Actor>& _actor, const std::type_index& _type)const;

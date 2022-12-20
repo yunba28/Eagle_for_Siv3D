@@ -142,6 +142,11 @@ namespace eagle
 		return mIsPendingKill;
 	}
 
+	const Array<Actor::Component_ref>& Actor::getAllComponents() const
+	{
+		return mComponents;
+	}
+
 	void Actor::_internalAwake()
 	{
 		awake();
@@ -184,14 +189,28 @@ namespace eagle
 		const Scene_ref& scene,
 		const SharedObject<Actor>& actor,
 		const std::type_index& type,
-			const String& name)
+		const String& name)
 	{
 		auto system = scene.lock()->_getActorSystem();
 		system->add(actor, type);
 		actor->mThis = actor.weak();
 		actor->mScene = scene;
 		actor->mTransform = actor->attachComponent<Transform>();
-		actor->mName = scene.lock()->_makeName(name);
+		scene.lock()->_makeName(name, actor->mName);
+		actor->_internalAwake();
+	}
+
+	void Actor::CreateEmpty_impl(
+		const Scene_ref& scene,
+		const SharedObject<Actor>& actor,
+		const std::type_index& type,
+		const String& name)
+	{
+		auto system = scene.lock()->_getActorSystem();
+		system->add(actor, type);
+		actor->mThis = actor.weak();
+		actor->mScene = scene;
+		scene.lock()->_makeName(name, actor->mName);
 		actor->_internalAwake();
 	}
 }

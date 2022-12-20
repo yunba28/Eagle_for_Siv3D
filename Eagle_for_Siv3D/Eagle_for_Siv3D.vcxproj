@@ -115,7 +115,13 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Framework\Components\Collider\Collider_detail.cpp" />
+    <ClCompile Include="Framework\Components\Collider\CircleCollider2D.cpp" />
+    <ClCompile Include="Framework\Components\Collider\CircleTrigger2D.cpp" />
+    <ClCompile Include="Framework\Components\Collider\Collider2D.cpp" />
+    <ClCompile Include="Framework\Components\Collider\LineCollider2D.cpp" />
+    <ClCompile Include="Framework\Components\Collider\MultiCollider2D.cpp" />
+    <ClCompile Include="Framework\Components\Collider\PolygonCollider2D.cpp" />
+    <ClCompile Include="Framework\Components\Collider\RectCollider2D.cpp" />
     <ClCompile Include="Framework\Components\Transform\Transform_detail.cpp" />
     <ClCompile Include="Framework\Core\Actor\Actor.cpp" />
     <ClCompile Include="Framework\Core\Actor\ActorSystem.cpp" />
@@ -330,9 +336,15 @@
     <Xml Include="App\example\xml\test.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Framework\Actors\CollisionSystem\CollisionSystem.hpp" />
-    <ClInclude Include="Framework\Components\Collider\Collider_detail.hpp" />
-    <ClInclude Include="Framework\Components\Collider\Collider_detail.ipp" />
+    <ClInclude Include="Framework\Components\Colliders2D.hpp" />
+    <ClInclude Include="Framework\Components\Collider\CircleCollider2D.hpp" />
+    <ClInclude Include="Framework\Components\Collider\CircleTrigger2D.hpp" />
+    <ClInclude Include="Framework\Components\Collider\Collider2D.hpp" />
+    <ClInclude Include="Framework\Components\Collider\Collision.hpp" />
+    <ClInclude Include="Framework\Components\Collider\LineCollider2D.hpp" />
+    <ClInclude Include="Framework\Components\Collider\MultiCollider2D.hpp" />
+    <ClInclude Include="Framework\Components\Collider\PolygonCollider2D.hpp" />
+    <ClInclude Include="Framework\Components\Collider\RectCollider2D.hpp" />
     <ClInclude Include="Framework\Components\Transform.hpp" />
     <ClInclude Include="Framework\Components\Transform\Transform_detail.hpp" />
     <ClInclude Include="Framework\Core\Actor\Actor.hpp" />

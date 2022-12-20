@@ -89,6 +89,12 @@ namespace eagle
 
 		virtual void onDisable() {}
 
+		virtual void onCollisionEnter(const Collision&) {}
+
+		virtual void onCollisionStay(const Collision&) {}
+
+		virtual void onCollisionExit(const Collision&) {}
+
 		virtual void _internalAwake();
 
 		virtual void _internalDispose();
@@ -111,6 +117,8 @@ namespace eagle
 		bool isEnableFixedUpdate()const noexcept;
 
 		void joinFixedSystem();
+
+		void joinFixedSystem(const WeakObject<class Collider2D>& _collider);
 
 	public:
 

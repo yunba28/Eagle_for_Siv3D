@@ -26,6 +26,10 @@ namespace eagle
 
 		SharedObject(std::nullptr_t)noexcept;
 
+		SharedObject(const std::shared_ptr<T>& _shared)noexcept;
+
+		SharedObject(std::shared_ptr<T>&& _shared)noexcept;
+
 		template<class U>
 		explicit SharedObject(U* _ptr);
 
@@ -93,10 +97,6 @@ namespace eagle
 		[[nodiscard]] T* operator->()const noexcept;
 
 		[[nodiscard]] explicit operator bool()const noexcept;
-
-	private:
-
-		SharedObject(std::shared_ptr<T>&& _shared)noexcept;
 
 	private:
 
@@ -266,6 +266,8 @@ namespace eagle
 
 		~ObjectHandle()noexcept = default;
 
+		[[nodiscard]] WeakObject<T> weak()const noexcept;
+
 		[[nodiscard]] T& operator*()noexcept;
 
 		[[nodiscard]] const T& operator*()const noexcept;
@@ -427,6 +429,20 @@ namespace eagle
 	}
 
 	template<class T>
+	inline SharedObject<T>::SharedObject(const std::shared_ptr<T>& _shared)noexcept
+		: mPtr(_shared)
+	{
+
+	}
+
+	template<class T>
+	inline SharedObject<T>::SharedObject(std::shared_ptr<T>&& _shared)noexcept
+		: mPtr(std::forward<std::shared_ptr<T>>(_shared))
+	{
+
+	}
+
+	template<class T>
 	template<class U>
 	inline SharedObject<T>::SharedObject(U* _ptr)
 		: mPtr(_ptr)
@@ -522,7 +538,7 @@ namespace eagle
 	template<class T>
 	inline void SharedObject<T>::reset()noexcept
 	{
-		mPtr.rest();
+		mPtr.reset();
 	}
 
 	template<class T>
@@ -581,13 +597,6 @@ namespace eagle
 	inline SharedObject<T>::operator bool()const noexcept
 	{
 		return mPtr.operator bool();
-	}
-
-	template<class T>
-	inline SharedObject<T>::SharedObject(std::shared_ptr<T>&& _shared)noexcept
-		: mPtr(std::forward<std::shared_ptr<T>>(_shared))
-	{
-
 	}
 
 	template<class T>
@@ -679,6 +688,12 @@ namespace eagle
 	inline WeakObject<T>::operator bool()const noexcept
 	{
 		return not mWeak.expired();
+	}
+
+	template<class T>
+	inline WeakObject<T> ObjectHandle<T>::weak() const noexcept
+	{
+		return WeakObject<T>(SharedObject<T>{mShared});
 	}
 
 	template<class T>

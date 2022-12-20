@@ -29,7 +29,7 @@ namespace eagle
 
 		Transform();
 
-		~Transform();
+		virtual ~Transform();
 
 		/*---------------------------------------- 設定関数 -----------------------------------------------*/
 
@@ -187,9 +187,9 @@ namespace eagle
 
 	public:
 
-		void dispose()override;
+		void _internalDispose()final override;
 
-		void update()override;
+		void _internalUpdate()final override;
 
 	private:
 

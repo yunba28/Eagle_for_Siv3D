@@ -28,6 +28,7 @@ namespace eagle::Internal
 		mActorSystem->update();
 		mComponentSystem->update();
 		mFixedSystem->update();
+		mComponentSystem->lateUpdate();
 		mRenderSystem->update();
 	}
 
@@ -77,9 +78,9 @@ namespace eagle::Internal
 		return mRenderSystem.weak().lock();
 	}
 
-	Name ScenePimpl::_makeName(const String& _name)
+	void ScenePimpl::_makeName(const String& _name, Name& _outName)
 	{
-		return mNameAsset.secured(_name);
+		mNameAsset.secured(_name, _outName);
 	}
 
 	Tag ScenePimpl::_makeTag(const String& _tag)

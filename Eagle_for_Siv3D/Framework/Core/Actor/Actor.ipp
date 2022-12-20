@@ -12,7 +12,7 @@ namespace eagle
 	}
 
 	template<class T>
-	WeakObject<T> Actor::getComponent()requires(std::derived_from<T, Component>)
+	WeakObject<T> Actor::getComponent()const requires(std::derived_from<T, Component>)
 	{
 		const std::type_index type{ typeid(T) };
 		auto compare = [&type](const Component_ref& ref)
@@ -46,6 +46,16 @@ namespace eagle
 	{
 		SharedObject<T> ptr{ MakeShared<T>() };
 		Create_impl(scene, Cast<Actor>(ptr), typeid(T), name);
+		return ptr;
+	}
+
+	template<class T, class TransformT>
+	SharedObject<T> Actor::Create(const Scene_ref& scene, const String& name)requires(std::derived_from<T, Actor> or std::derived_from<TransformT,Transform>)
+	{
+		SharedObject<T> ptr{ MakeShared<T>() };
+		SharedObject<Actor> actor{ Cast<Actor>(ptr) };
+		CreateEmpty_impl(scene, Cast<Actor>(ptr), typeid(T), name);
+		actor->mTransform = actor->attachComponent<TransformT>();
 		return ptr;
 	}
 }

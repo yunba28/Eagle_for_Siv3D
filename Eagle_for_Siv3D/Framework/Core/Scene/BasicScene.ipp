@@ -91,42 +91,49 @@ namespace eagle
 
 	template <class Data>
 	template<class T>
-	WeakObject<T> BasicScene<Data>::createActor(const String& _name)requires(std::derived_from<T, Actor>)
+	WeakObject<T> BasicScene<Data>::createActor(const String& _name)
 	{
 		return mScenePimpl->createActor<T>(_name);
 	}
 
 	template <class Data>
+	template<class T, class TransformT>
+	WeakObject<T> BasicScene<Data>::createActor(const String& _name)
+	{
+		return mScenePimpl->createActor<T, TransformT>(_name);
+	}
+
+	template <class Data>
 	template<class T>
-	WeakObject<T> BasicScene<Data>::getActor(const String& _name)const requires(std::derived_from<T, Actor>)
+	WeakObject<T> BasicScene<Data>::getActor(const String& _name)const
 	{
 		return mScenePimpl->getActor<T>(_name);
 	}
 
 	template <class Data>
 	template<class T>
-	WeakObject<T> BasicScene<Data>::getActorByTag(const String& _tag)const requires(std::derived_from<T, Actor>)
+	WeakObject<T> BasicScene<Data>::getActorByTag(const String& _tag)const
 	{
 		return mScenePimpl->getActorByTag(_tag);
 	}
 
 	template <class Data>
 	template<class T>
-	Array<WeakObject<T>> BasicScene<Data>::getActors()const requires(std::derived_from<T, Actor>)
+	Array<WeakObject<T>> BasicScene<Data>::getActors()const
 	{
-		return mScenePimpl->getActors();
+		return mScenePimpl->getActors<T>();
 	}
 
 	template <class Data>
 	template<class T>
-	Array<WeakObject<T>> BasicScene<Data>::getActorsByTag(const String& _tag)const requires(std::derived_from<T, Actor>)
+	Array<WeakObject<T>> BasicScene<Data>::getActorsByTag(const String& _tag)const
 	{
 		return mScenePimpl->getActorsByTag(_tag);
 	}
 
 	template <class Data>
 	template<class T>
-	void BasicScene<Data>::destroyActor(const String& _name)requires(std::derived_from<T, Actor>)
+	void BasicScene<Data>::destroyActor(const String& _name)
 	{
 		mScenePimpl->destroyActor();
 	}

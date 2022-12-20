@@ -33,4 +33,6 @@ namespace eagle
 	using DefaultWorld = GameWorld<EmptyData>;
 
 	using TypeID = std::type_index;
+
+	class Collision;
 }

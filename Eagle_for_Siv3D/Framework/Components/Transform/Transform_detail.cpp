@@ -659,13 +659,15 @@ namespace eagle
 		return mIsChanged;
 	}
 
-	void Transform::dispose()
+	void Transform::_internalDispose()
 	{
 		mCompanion.withdraw();
+		dispose();
 	}
 
-	void Transform::update()
+	void Transform::_internalUpdate()
 	{
+		Component::_internalUpdate();
 		mIsChanged = false;
 	}
 }

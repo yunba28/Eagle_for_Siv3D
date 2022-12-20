@@ -98,7 +98,9 @@ namespace eagle
 		/// @tparam T Componentの型
 		/// @return 見つからなければ空のWeakObjectが返る
 		template<class T>
-		WeakObject<T> getComponent()requires(std::derived_from<T, Component>);
+		WeakObject<T> getComponent()const requires(std::derived_from<T, Component>);
+
+		const Array<Component_ref>& getAllComponents()const;
 
 		/// @brief ActorにアタッチされているComponentをディタッチする
 		/// @tparam T Componentの型
@@ -120,6 +122,9 @@ namespace eagle
 		template<class T = Actor>
 		static SharedObject<T> Create(const Scene_ref& scene, const String& name)requires(std::derived_from<T, Actor>);
 
+		template<class T, class TransformT>
+		static SharedObject<T> Create(const Scene_ref& scene, const String& name)requires(std::derived_from<T, Actor> or std::derived_from<TransformT, Transform>);
+
 		static void Destroy(const Actor_ref& actor);
 
 		static void Destroy(const Actor_handle& actor);
@@ -127,6 +132,12 @@ namespace eagle
 	private:
 
 		static void Create_impl(
+			const Scene_ref& scene,
+			const SharedObject<Actor>& actor,
+			const std::type_index& type,
+			const String& name);
+
+		static void CreateEmpty_impl(
 			const Scene_ref& scene,
 			const SharedObject<Actor>& actor,
 			const std::type_index& type,
