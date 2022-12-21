@@ -1,6 +1,6 @@
 ﻿#include "LineCollider2D.hpp"
-
 #include <Components/Transform.hpp>
+#include <Utility/Load.hpp>
 
 namespace eagle
 {
@@ -10,6 +10,7 @@ namespace eagle
 		{
 			mP2Body.addLine(_line, _oneSided, _material, _filter);
 			mLine = _line;
+			mOneSided = _oneSided;
 		}
 	}
 
@@ -73,6 +74,32 @@ namespace eagle
 
 		collider.setupLine(line, oneSided, material, filter);
 
-		return collider.loadProperties(ini);
+		return Collider2D::LoadProperties(ini, collider);
+	}
+
+	template<>
+	bool Save<LineCollider2D>(const String& path, LineCollider2D& collider)
+	{
+		String out{ path };
+
+		if (FileSystem::Extension(out) != U"col")
+		{
+			auto it = std::find(out.begin(), out.end(), U'.');
+			out.erase(it + 1, out.end());
+			out += U"col";
+		}
+
+		INI ini{};
+
+		ini.addSection(U"Line");
+		ini.write(U"Line", U"LocalBegin", collider.mLine.begin);
+		ini.write(U"Line", U"LocalEnd", collider.mLine.end);
+		ini.write(U"Line", U"OneSided", collider.mOneSided.getBool());
+
+		Collider2D::SaveMaterial(ini, collider.mP2Body.shape(0));
+		Collider2D::SaveFilter(ini, collider.mP2Body.shape(0));
+		Collider2D::SaveProperties(ini, collider);
+
+		return ini.save(out);
 	}
 }

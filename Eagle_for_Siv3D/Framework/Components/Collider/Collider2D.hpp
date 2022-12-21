@@ -7,10 +7,18 @@
 #endif
 
 #include <Components/Collider/Collision.hpp>
-#include <Utility/Load.hpp>
 
 namespace eagle
 {
+	enum class ShapeType
+	{
+		Circe,
+		CircleTrigger,
+		Rect,
+		Line,
+		Polygon
+	};
+
 	class Collider2D :
 #ifdef _DEBUG
 		public DrawableComponent2D
@@ -147,11 +155,19 @@ namespace eagle
 
 	protected:
 
-		static bool LoadMaterial(const INI& _ini, P2Material& _material);
+		static bool LoadMaterial(const INI& ini, P2Material& material);
 
-		static bool LoadFilter(const INI& _ini, P2Filter& _filter);
+		static bool LoadFilter(const INI& ini, P2Filter& filter);
 
 		bool loadProperties(const INI& _ini);
+
+		static bool LoadProperties(const INI& ini, Collider2D& collider);
+
+		static void SaveMaterial(INI& ini, const P2Shape& shape);
+
+		static void SaveFilter(INI& ini, const P2Shape& shape);
+
+		static void SaveProperties(INI& ini, Collider2D& collider);
 
 	private:
 

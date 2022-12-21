@@ -7,43 +7,47 @@ MoveState = 1
 
 [Animation:IdleR]
 Name = Idle.R
-Texture = Player.Idle
+AssetTag = Player.Idle
 Division = (12,2)
 Range = (0,11)
 Loop = true
 Pivot = (0.5,1.0)
 Offset = (0.0,20.0)
 Duration = 1.0
+DiffuseColor = (255,255,255,255)
 
 [Animation:IdleL]
 Name = Idle.L
-Texture = Player.Idle
+AssetTag = Player.Idle
 Division = (12,2)
 Range = (12,23)
 Loop = true
 Pivot = (0.5,1.0)
 Offset = (0.0,20.0)
 Duration = 1.0
+DiffuseColor = (255,255,255,255)
 
 [Animation:MoveR]
 Name = Move.R
-Texture = Player.Move
+AssetTag = Player.Move
 Division = (12,2)
 Range = (0,11)
 Loop = true
 Pivot = (0.5,1.0)
 Offset = (0.0,20.0)
 Duration = 1.0
+DiffuseColor = (255,255,255,255)
 
 [Animation:MoveL]
 Name = Move.L
-Texture = Player.Move
+AssetTag = Player.Move
 Division = (12,2)
 Range = (12,23)
 Loop = true
 Pivot = (0.5,1.0)
 Offset = (0.0,20.0)
 Duration = 1.0
+DiffuseColor = (255,255,255,255)
 
 [Transition:IdleR_to_MoveR]
 Current = Idle.R

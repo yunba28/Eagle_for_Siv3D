@@ -13,7 +13,7 @@ private:
 
 	void start()override
 	{
-		mCollider = getActor()->getComponent<eagle::PolygonCollider2D>();
+		mCollider = getActor()->getComponent<eagle::MultiCollider2D>();
 		mAnimController = getActor()->getComponent<eagle::AnimationController2D>();
 		joinFixedSystem();
 	}
@@ -109,7 +109,7 @@ private:
 
 private:
 
-	eagle::WeakObject<eagle::PolygonCollider2D> mCollider;
+	eagle::WeakObject<eagle::MultiCollider2D> mCollider;
 
 	eagle::WeakObject<eagle::AnimationController2D> mAnimController;
 
@@ -133,12 +133,14 @@ public:
 		{
 			auto actor = createActor(U"Player").lock();
 			actor->addTag(U"Player");
-			Polygon body = RoundRect{ -32,-128,64,128,32 }.asPolygon(4);
-			auto collider = actor->attachComponent<eagle::PolygonCollider2D>().lock();
+
+			auto collider = actor->attachComponent<eagle::MultiCollider2D>().lock();
+			eagle::Load(U"Player.mcol", *collider);
+
 			auto animationController = actor->attachComponent<eagle::AnimationController2D>().lock();
-			actor->attachComponent<MoveComponent>();
-			eagle::Load(U"player.col", *collider);
 			eagle::Load(U"Player.anim", *animationController);
+
+			actor->attachComponent<MoveComponent>();
 		}
 
 		// 床

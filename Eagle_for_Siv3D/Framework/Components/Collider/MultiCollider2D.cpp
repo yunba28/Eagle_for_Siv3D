@@ -1,35 +1,36 @@
 ﻿#include "MultiCollider2D.hpp"
+#include <Utility/Load.hpp>
 
 namespace eagle
 {
 	void MultiCollider2D::addCircle(const Circle& _circle, const P2Material& _material, const P2Filter& _filter)
 	{
 		mP2Body.addCircle(_circle, _material, _filter);
-		mShapeTypes << typeid(P2Circle);
+		mShapeTypes << ShapeType::Circe;
 	}
 
 	void MultiCollider2D::addCircleTrigger(const Circle& _circle, const P2Filter& _filter)
 	{
 		mP2Body.addCircleSensor(_circle, _filter);
-		mShapeTypes << typeid(P2Circle);
+		mShapeTypes << ShapeType::CircleTrigger;
 	}
 
 	void MultiCollider2D::addRect(const RectF& _rect, const P2Material& _material, const P2Filter& _filter)
 	{
 		mP2Body.addRect(_rect, _material, _filter);
-		mShapeTypes << typeid(P2Rect);
+		mShapeTypes << ShapeType::Rect;
 	}
 
 	void MultiCollider2D::addLine(const Line& _line, OneSided _onesided, const P2Material& _material, const P2Filter& _filter)
 	{
 		mP2Body.addLine(_line, _onesided, _material, _filter);
-		mShapeTypes << typeid(P2Line);
+		mShapeTypes << ShapeType::Line;
 	}
 
 	void MultiCollider2D::addPolygon(const Polygon& _polygon, const P2Material& _material, const P2Filter& _filter)
 	{
 		mP2Body.addPolygon(_polygon, _material, _filter);
-		mShapeTypes << typeid(P2Polygon);
+		mShapeTypes << ShapeType::Polygon;
 	}
 
 	void MultiCollider2D::setFilter(P2Filter _filter, size_t _index)
@@ -261,6 +262,128 @@ namespace eagle
 		return false;
 	}
 
+	Array<String> MultiCollider2D::SaveShape(const String& path, MultiCollider2D& collider)
+	{
+		const int32 shapeCount = collider.getShapeCount();
+		Array<String> shapes{Arg::reserve = shapeCount};
+
+		const auto& body = collider.mP2Body;
+		const auto& types = collider.mShapeTypes;
+
+		const Vec2 offset{ -body.getPos() };
+
+		for (int32 i = 0; i < shapeCount; ++i)
+		{
+			INI ini{};
+
+			if (types[i] == ShapeType::Circe)
+			{
+				SaveCircle(ini, *body.as<P2Circle>(i), offset);
+			}
+			else if (types[i] == ShapeType::CircleTrigger)
+			{
+				SaveCircleTrigger(ini, *body.as<P2Circle>(i), offset);
+			}
+			else if (types[i] == ShapeType::Rect)
+			{
+				SaveRect(ini, *body.as<P2Rect>(i), offset);
+			}
+			else if (types[i] == ShapeType::Line)
+			{
+				SaveLine(ini, *body.as<P2Line>(i), offset);
+			}
+			else if (types[i] == ShapeType::Polygon)
+			{
+				SavePolygon(ini, *body.as<P2Polygon>(i), offset);
+			}
+
+			auto out = path + U"/shape{}.col"_fmt(i);
+			if (ini.save(out))
+			{
+				shapes << FileSystem::RelativePath(out);
+			}
+		}
+
+		return shapes;
+	}
+
+	bool MultiCollider2D::SaveCircle(INI& ini, const P2Circle& shape, Vec2 offset)
+	{
+		ini.addSection(U"Circle");
+
+		auto circle = shape.getCircle();
+
+		ini.write(U"Circle", U"LocalPos", circle.center.movedBy(offset));
+		ini.write(U"Circle", U"Radius", circle.r);
+
+		Collider2D::SaveMaterial(ini, shape);
+		Collider2D::SaveFilter(ini, shape);
+
+		return true;
+	}
+
+	bool MultiCollider2D::SaveCircleTrigger(INI& ini, const P2Circle& shape, Vec2 offset)
+	{
+		ini.addSection(U"CircleTrigger");
+
+		auto circle = shape.getCircle();
+
+		ini.write(U"CircleTrigger", U"LocalPos", circle.center.movedBy(offset));
+		ini.write(U"CircleTrigger", U"Radius", circle.r);
+
+		Collider2D::SaveFilter(ini, shape);
+
+		return true;
+	}
+
+	bool MultiCollider2D::SaveRect(INI& ini, const P2Rect& shape, Vec2 offset)
+	{
+		ini.addSection(U"Rect");
+
+		auto rect = shape.getQuad().boundingRect();
+
+		ini.write(U"Rect", U"LocalPos", rect.pos.movedBy(offset));
+		ini.write(U"Rect", U"Size", rect.size);
+
+		Collider2D::SaveMaterial(ini, shape);
+		Collider2D::SaveFilter(ini, shape);
+
+		return true;
+	}
+
+	bool MultiCollider2D::SaveLine(INI& ini, const P2Line& shape, Vec2 offset)
+	{
+		ini.addSection(U"Line");
+
+		auto line = shape.getLine();
+
+		ini.write(U"Line", U"LocalBegin", line.begin.movedBy(offset));
+		ini.write(U"Line", U"LocalEnd", line.end.movedBy(offset));
+
+		Collider2D::SaveMaterial(ini, shape);
+		Collider2D::SaveFilter(ini, shape);
+
+		return true;
+	}
+
+	bool MultiCollider2D::SavePolygon(INI& ini, const P2Polygon& shape, Vec2 offset)
+	{
+		ini.addSection(U"Polygon");
+
+		const auto& polygon = shape.getPolygon();
+		const auto& outer = polygon.outer();
+
+		for (int32 i = 0; i < outer.size(); ++i)
+		{
+			ini.write(U"Polygon", U"Elem{}"_fmt(i), outer[i].movedBy(offset));
+		}
+
+		Collider2D::SaveMaterial(ini, shape);
+		Collider2D::SaveFilter(ini, shape);
+
+		return true;
+	}
+
 	template<>
 	bool Load<MultiCollider2D>(const String& path, MultiCollider2D& collider)
 	{
@@ -280,6 +403,34 @@ namespace eagle
 			MultiCollider2D::LoadShape(key.value, collider);
 		}
 
-		return collider.loadProperties(ini);
+		return Collider2D::LoadProperties(ini, collider);
+	}
+
+	template<>
+	bool Save<MultiCollider2D>(const String& path, MultiCollider2D& collider)
+	{
+		String out{ path };
+
+		if (FileSystem::Extension(out) != U"mcol")
+		{
+			auto it = std::find(out.begin(), out.end(), U'.');
+			out.erase(it + 1, out.end());
+			out += U"mcol";
+		}
+
+		INI ini{};
+
+		ini.addSection(U"Shapes");
+
+		auto directory = FileSystem::ParentPath(out) + U"{}Shapes"_fmt(FileSystem::BaseName(out));
+		auto shapes = MultiCollider2D::SaveShape(directory, collider);
+		for (int32 i = 0;i < shapes.size();++i)
+		{
+			ini.write(U"Shapes", U"Shape{}"_fmt(i), shapes[i]);
+		}
+
+		Collider2D::SaveProperties(ini, collider);
+
+		return ini.save(out);
 	}
 }

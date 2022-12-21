@@ -52,6 +52,10 @@ namespace eagle
 
 		Transition& addTransition(const String& _animState);
 
+		Optional<Animation2D> getAnimation(const String& _state)const;
+
+		Array<Transition> getTransition(const String& _state)const;
+
 		void clear();
 
 	private:
@@ -64,19 +68,19 @@ namespace eagle
 
 		bool conditionUpdate();
 
-		bool loadAnim(const FilePath& _path);
+		static bool LoadBoolState(const INISection& data, AnimationController2D& controller);
+		static bool LoadIntState(const INISection& data, AnimationController2D& controller);
+		static bool LoadDoubleState(const INISection& data, AnimationController2D& controller);
+		static bool LoadAnimation(const INISection& data, AnimationController2D& controller);
+		static bool LoadTransition(const INISection& data, AnimationController2D& controller);
 
-		bool readBoolState(const INISection& _data);
+		static bool SaveBoolState(INI& ini, AnimationController2D& controller);
+		static bool SaveIntState(INI& ini, AnimationController2D& controller);
+		static bool SaveDoubleState(INI& ini, AnimationController2D& controller);
+		static bool SaveAnimation(INI& ini, AnimationController2D& controller);
+		static bool SaveTransition(INI& ini, AnimationController2D& controller);
 
-		bool readIntState(const INISection& _data);
-
-		bool readDoubleState(const INISection& _data);
-
-		bool readAnimation(const INISection& _data);
-
-		bool readTransition(const INISection& _data);
-
-		std::pair<String, String> getStringPair(const String& _data);
+		static std::pair<String, String> GetStringPair(const String& data);
 
 	private:
 
@@ -96,5 +100,8 @@ namespace eagle
 
 		template<class Type>
 		friend bool Load(const String& path, Type& controller);
+
+		template<class Type>
+		friend bool Save(const String& path, Type& controller);
 	};
 }

@@ -1,6 +1,6 @@
 ﻿#include "RectCollider2D.hpp"
-
 #include <Components/Transform.hpp>
+#include <Utility/Load.hpp>
 
 namespace eagle
 {
@@ -66,6 +66,31 @@ namespace eagle
 
 		collider.setupRect(rect, material, filter);
 
-		return collider.loadProperties(ini);
+		return Collider2D::LoadProperties(ini, collider);
+	}
+
+	template<>
+	bool Save<RectCollider2D>(const String& path, RectCollider2D& collider)
+	{
+		String out{ path };
+
+		if (FileSystem::Extension(out) != U"col")
+		{
+			auto it = std::find(out.begin(), out.end(), U'.');
+			out.erase(it + 1, out.end());
+			out += U"col";
+		}
+
+		INI ini{};
+
+		ini.addSection(U"Rect");
+		ini.write(U"Rect", U"LocalPos", collider.mRect.pos);
+		ini.write(U"Rect", U"Size", collider.mRect.size);
+
+		Collider2D::SaveMaterial(ini, collider.mP2Body.shape(0));
+		Collider2D::SaveFilter(ini, collider.mP2Body.shape(0));
+		Collider2D::SaveProperties(ini, collider);
+
+		return ini.save(out);
 	}
 }

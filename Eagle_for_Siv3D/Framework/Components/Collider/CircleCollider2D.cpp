@@ -1,5 +1,6 @@
 ﻿#include "CircleCollider2D.hpp"
 #include <Components/Transform.hpp>
+#include <Utility/Load.hpp>
 
 namespace eagle
 {
@@ -66,6 +67,31 @@ namespace eagle
 
 		collider.setupCircle(circle, material, filter);
 
-		return collider.loadProperties(ini);
+		return Collider2D::LoadProperties(ini, collider);
+	}
+
+	template<>
+	bool Save<CircleCollider2D>(const String& path, CircleCollider2D& collider)
+	{
+		String out{path};
+
+		if (FileSystem::Extension(out) != U"col")
+		{
+			auto it = std::find(out.begin(), out.end(), U'.');
+			out.erase(it + 1, out.end());
+			out += U"col";
+		}
+
+		INI ini{};
+
+		ini.addSection(U"Circle");
+		ini.write(U"Circle", U"LocalPos", collider.mCircle.center);
+		ini.write(U"Circle", U"Radius", collider.mCircle.r);
+
+		Collider2D::SaveMaterial(ini, collider.mP2Body.shape(0));
+		Collider2D::SaveFilter(ini, collider.mP2Body.shape(0));
+		Collider2D::SaveProperties(ini, collider);
+
+		return ini.save(out);
 	}
 }

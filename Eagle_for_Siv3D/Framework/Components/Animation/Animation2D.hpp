@@ -56,7 +56,9 @@ namespace eagle
 
 		void resume();
 
-		void setTexture(const Texture& _texture);
+		void setTextureAssetTag(const AssetTag& _asseTag);
+
+		void addKeyEvent(const KeyEvent& _event);
 
 		void setDiffuseColor(const Color& _color);
 
@@ -67,6 +69,18 @@ namespace eagle
 		void setParam(const Param& _param);
 
 		void setDuration(const Duration& _duration);
+
+		const AssetTag& getTextureAssetTag()const;
+
+		const Color& getDiffuseColor()const;
+
+		Vec2 getPivot()const;
+
+		Vec2 getOffset()const;
+
+		const Param& getParam()const;
+
+		Duration getDuration()const;
 
 		bool isStarted()const;
 
@@ -82,8 +96,11 @@ namespace eagle
 
 	private:
 
-		/// @brief 描画する画像
-		Texture mTexture;
+		/// @brief 描画する画像のアセットタグ
+		AssetTag mAssetTag;
+
+		/// @brief アニメーション中に実行されるキーイベント
+		Array<KeyEvent> mKeyEvents;
 
 		/// @brief 画像のディフューズカラー
 		Color mColor;

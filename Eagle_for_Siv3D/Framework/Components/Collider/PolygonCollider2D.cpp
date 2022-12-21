@@ -1,6 +1,6 @@
 ﻿#include "PolygonCollider2D.hpp"
-
 #include <Components/Transform.hpp>
+#include <Utility/Load.hpp>
 
 namespace eagle
 {
@@ -66,6 +66,35 @@ namespace eagle
 
 		collider.setupPolygon(polygon, material, filter);
 
-		return collider.loadProperties(ini);
+		return Collider2D::LoadProperties(ini, collider);
+	}
+
+	template<>
+	bool Save<PolygonCollider2D>(const String& path, PolygonCollider2D& collider)
+	{
+		String out{ path };
+
+		if (FileSystem::Extension(out) != U"col")
+		{
+			auto it = std::find(out.begin(), out.end(), U'.');
+			out.erase(it + 1, out.end());
+			out += U"col";
+		}
+
+		INI ini{};
+
+		ini.addSection(U"Polygon");
+
+		const auto& outer = collider.mPolygon.outer();
+		for (int32 i = 0; i < outer.size(); ++i)
+		{
+			ini.write(U"Polygon", U"Elem{}"_fmt(i), U"{:.3f}"_fmt(outer[i]));
+		}
+
+		Collider2D::SaveMaterial(ini, collider.mP2Body.shape(0));
+		Collider2D::SaveFilter(ini, collider.mP2Body.shape(0));
+		Collider2D::SaveProperties(ini, collider);
+
+		return ini.save(out);
 	}
 }

@@ -3,7 +3,7 @@
 namespace eagle
 {
 	Animation2D::Animation2D()
-		: mTexture()
+		: mAssetTag()
 		, mColor(255)
 		, mPivot(0,0)
 		, mOffset(0,0)
@@ -18,6 +18,19 @@ namespace eagle
 
 	void Animation2D::update()
 	{
+		const auto progress = mTimer.progress0_1();
+
+		for (const auto& keyEvent : mKeyEvents)
+		{
+			if (InRange(progress, keyEvent.beginSec, keyEvent.endSec))
+			{
+				if (keyEvent.callOnce and keyEvent.isCalled)
+					continue;
+
+				keyEvent.func();
+			}
+		}
+
 		if (isComplated() and mParam.hasLoop)
 		{
 			restart();
@@ -51,9 +64,14 @@ namespace eagle
 		mTimer.resume();
 	}
 
-	void Animation2D::setTexture(const Texture& _texture)
+	void Animation2D::setTextureAssetTag(const AssetTag& _asseTag)
 	{
-		mTexture = _texture;
+		mAssetTag = _asseTag;
+	}
+
+	void Animation2D::addKeyEvent(const KeyEvent& _event)
+	{
+		mKeyEvents << _event;
 	}
 
 	void Animation2D::setDiffuseColor(const Color& _color)
@@ -81,6 +99,36 @@ namespace eagle
 		mTimer.setRemaining(_duration);
 	}
 
+	const AssetTag& Animation2D::getTextureAssetTag() const
+	{
+		return mAssetTag;
+	}
+
+	const Color& Animation2D::getDiffuseColor() const
+	{
+		return mColor;
+	}
+
+	Vec2 Animation2D::getPivot() const
+	{
+		return mPivot;
+	}
+
+	Vec2 Animation2D::getOffset() const
+	{
+		return mOffset;
+	}
+
+	const Animation2D::Param& Animation2D::getParam() const
+	{
+		return mParam;
+	}
+
+	Duration Animation2D::getDuration() const
+	{
+		return mTimer.duration();
+	}
+
 	bool Animation2D::isStarted() const
 	{
 		return mTimer.isStarted();
@@ -103,11 +151,11 @@ namespace eagle
 
 	TextureRegion Animation2D::slisedTexture() const
 	{
+		const auto texture = TextureAsset(mAssetTag);
+
 		const auto progress = mTimer.progress0_1();
 
-		Print << progress;
-
-		const auto size = mTexture.size() / mParam.division;
+		const auto size = texture.size() / mParam.division;
 
 		const auto length = mParam.range.y - mParam.range.x;
 
@@ -115,6 +163,6 @@ namespace eagle
 
 		const Point index2D{ index % mParam.division.x ,index / mParam.division.x };
 
-		return mTexture(index2D * size, size);
+		return texture(index2D * size, size);
 	}
 }
