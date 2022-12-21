@@ -380,7 +380,7 @@
     <ClInclude Include="Framework\ProjectSettings\ProjectSettings.hpp" />
     <ClInclude Include="Framework\Utility\Companion.hpp" />
     <ClInclude Include="Framework\Utility\Concepts.hpp" />
-    <ClInclude Include="Framework\Utility\Loader\Load.hpp" />
+    <ClInclude Include="Framework\Utility\Load.hpp" />
     <ClInclude Include="Framework\Utility\Name\Name.hpp" />
     <ClInclude Include="Framework\Utility\Resource\Resource.hpp" />
     <ClInclude Include="Framework\Utility\SmartObject.hpp" />

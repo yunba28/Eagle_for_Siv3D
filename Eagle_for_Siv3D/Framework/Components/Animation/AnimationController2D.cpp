@@ -1,7 +1,7 @@
 ﻿#include "AnimationController2D.hpp"
 
 #include <Components/Transform.hpp>
-#include <Utility/Loader/Load.hpp>
+#include <Utility/Load.hpp>
 
 namespace eagle
 {

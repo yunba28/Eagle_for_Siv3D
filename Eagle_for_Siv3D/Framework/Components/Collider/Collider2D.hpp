@@ -7,7 +7,7 @@
 #endif
 
 #include <Components/Collider/Collision.hpp>
-#include <Utility/Loader/Load.hpp>
+#include <Utility/Load.hpp>
 
 namespace eagle
 {

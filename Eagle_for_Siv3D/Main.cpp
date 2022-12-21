@@ -3,7 +3,7 @@
 #include <Components/Colliders2D.hpp>
 #include <Components/Renderer.hpp>
 #include <Components/Animation.hpp>
-#include <Utility/Loader/Load.hpp>
+#include <Utility/Load.hpp>
 
 class MoveComponent : public eagle::Component
 {
@@ -20,7 +20,7 @@ private:
 
 	void update()override
 	{
-		mMoveScale = KeyRight.pressed() - KeyLeft.pressed();
+		mMoveScale = eagle::InputAxis[U"Move"];
 
 		if (mIsGround and (not mIsJump))
 		{
@@ -188,8 +188,12 @@ public:
 
 void Main()
 {
+	// デフォルトのディレクトリを変更
+	FileSystem::ChangeCurrentDirectory(U"../Assets");
 	// リソースの事前登録
 	eagle::Resource::LoadTextures(U"texture");
+	// InputAxisの設定を読みこむ
+	eagle::Load(U"Project.iax", eagle::InputAxis);
 
 	// シーンを管理するマネジメントクラスを生成
 	eagle::DefaultWorld world{};
@@ -203,6 +207,9 @@ void Main()
 		if (not world.update())
 			break;
 	}
+
+	// InputAxisの設定を保存
+	eagle::Save(U"Project.ini", eagle::InputAxis);
 }
 
 //
