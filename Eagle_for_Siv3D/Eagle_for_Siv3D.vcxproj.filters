@@ -191,6 +191,9 @@
     <Filter Include="Eagle\Utility\Resource">
       <UniqueIdentifier>{7645344c-e93b-4e8e-89fc-f785ac1c882d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Eagle\Utility\Loader">
+      <UniqueIdentifier>{4b7e48ef-0250-4142-ac94-1ea0fe7c5102}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Utility\Name\Name.cpp">
@@ -1031,6 +1034,15 @@
     </ClInclude>
     <ClInclude Include="Framework\Utility\Resource\Resource.hpp">
       <Filter>Eagle\Utility\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Animation\Compares.hpp">
+      <Filter>Eagle\Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Animation.hpp">
+      <Filter>Eagle\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Utility\Loader\Load.hpp">
+      <Filter>Eagle\Utility\Loader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

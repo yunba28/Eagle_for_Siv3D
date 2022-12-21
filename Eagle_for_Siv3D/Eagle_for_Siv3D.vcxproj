@@ -340,8 +340,10 @@
     <Xml Include="App\example\xml\test.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Framework\Components\Animation.hpp" />
     <ClInclude Include="Framework\Components\Animation\Animation2D.hpp" />
     <ClInclude Include="Framework\Components\Animation\AnimationController2D.hpp" />
+    <ClInclude Include="Framework\Components\Animation\Compares.hpp" />
     <ClInclude Include="Framework\Components\Colliders2D.hpp" />
     <ClInclude Include="Framework\Components\Collider\CircleCollider2D.hpp" />
     <ClInclude Include="Framework\Components\Collider\CircleTrigger2D.hpp" />
@@ -378,6 +380,7 @@
     <ClInclude Include="Framework\ProjectSettings\ProjectSettings.hpp" />
     <ClInclude Include="Framework\Utility\Companion.hpp" />
     <ClInclude Include="Framework\Utility\Concepts.hpp" />
+    <ClInclude Include="Framework\Utility\Loader\Load.hpp" />
     <ClInclude Include="Framework\Utility\Name\Name.hpp" />
     <ClInclude Include="Framework\Utility\Resource\Resource.hpp" />
     <ClInclude Include="Framework\Utility\SmartObject.hpp" />

@@ -20,5 +20,8 @@ namespace eagle
 
 		Line mLine{};
 
+		template<class Type>
+		friend bool Load(const String& path, Type& collider);
+
 	};
 }

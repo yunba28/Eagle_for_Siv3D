@@ -34,7 +34,24 @@ namespace eagle
 
 		bool inRegion()const final override;
 
+		static bool LoadShape(const String& path, MultiCollider2D& collider);
+
+		static bool LoadCircle(const INI& ini, MultiCollider2D& collider);
+
+		static bool LoadCircleTrigger(const INI& ini, MultiCollider2D& collider);
+
+		static bool LoadRect(const INI& ini, MultiCollider2D& collider);
+
+		static bool LoadLine(const INI& ini, MultiCollider2D& collider);
+
+		static bool LoadPolygon(const INI& ini, MultiCollider2D& collider);
+
 	private:
+
+		Array<TypeID> mShapeTypes;
+
+		template<class Type>
+		friend bool Load(const String& path, Type& collider);
 
 	};
 }

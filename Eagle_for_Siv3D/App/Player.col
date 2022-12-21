@@ -1,0 +1,57 @@
+;[Circle]
+;LocalPos = (0.0,0.0)
+;Radius = 50.0
+
+;[CircleTrigger]
+;LocalPos = (0.0,0.0)
+;Radius = 50.0
+
+;[Rect]
+;LocalPos = (0.0,0.0)
+;Size = (100.0,100.0)
+
+;[Line]
+;LocalBegin = (0.0,0.0)
+;LocalEnd = (100.0,0.0)
+;OneSided = false
+
+[Polygon]
+Elem0 = (0.000,-128.000)
+Elem1 = (12.246,-125.564)
+Elem2 = (22.627,-118.627)
+Elem3 = (29.564,-108.246)
+Elem4 = (32.000,-96.000)
+Elem5 = (32.000,-32.000)
+Elem6 = (29.564,-19.754)
+Elem7 = (22.627,-9.373)
+Elem8 = (12.246,-2.436)
+Elem9 = (0.000,0.000)
+Elem10 = (-12.246,-2.436)
+Elem11 = (-22.627,-9.373)
+Elem12 = (-29.564,-19.754)
+Elem13 = (-32.000,-32.000)
+Elem14 = (-32.000,-96.000)
+Elem15 = (-29.564,-108.246)
+Elem16 = (-22.627,-118.627)
+Elem17 = (-12.246,-125.564)
+
+[Material]
+Density = 1.0
+Restitution = 0.1
+Friction = 0.5
+RestitutionThreshold = 9999.0
+
+[Filter]
+Category = 1
+Mask = 65535
+
+[Properties]
+Position = (400.0,500.0)
+VelocityRange = (-360.0,-1000.0,720,2000)
+Angle = 0.0
+BodyType = 2
+Damping = 0.0
+FixedRotation = true
+GravityScale = 1.5
+Awake = true
+Bullte = false

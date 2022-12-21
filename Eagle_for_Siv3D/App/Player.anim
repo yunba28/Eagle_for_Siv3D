@@ -1,0 +1,94 @@
+;[State:Bool]
+
+[State:Int]
+MoveState = 1
+
+;[State:Double]
+
+[Animation:IdleR]
+Name = Idle.R
+Texture = Player.Idle
+Division = (12,2)
+Range = (0,11)
+Loop = true
+Pivot = (0.5,1.0)
+Offset = (0.0,20.0)
+Duration = 1.0
+
+[Animation:IdleL]
+Name = Idle.L
+Texture = Player.Idle
+Division = (12,2)
+Range = (12,23)
+Loop = true
+Pivot = (0.5,1.0)
+Offset = (0.0,20.0)
+Duration = 1.0
+
+[Animation:MoveR]
+Name = Move.R
+Texture = Player.Move
+Division = (12,2)
+Range = (0,11)
+Loop = true
+Pivot = (0.5,1.0)
+Offset = (0.0,20.0)
+Duration = 1.0
+
+[Animation:MoveL]
+Name = Move.L
+Texture = Player.Move
+Division = (12,2)
+Range = (12,23)
+Loop = true
+Pivot = (0.5,1.0)
+Offset = (0.0,20.0)
+Duration = 1.0
+
+[Transition:IdleR_to_MoveR]
+Current = Idle.R
+Next = Move.R
+HasExit = false
+MoveState = (IntEq,2)
+
+[Transition:IdleR_to_MoveL]
+Current = Idle.R
+Next = Move.L
+HasExit = false
+MoveState = (IntEq,-2)
+
+[Transition:IdleL_to_MoveR]
+Current = Idle.L
+Next = Move.R
+HasExit = false
+MoveState = (IntEq,2)
+
+[Transition:IdleL_to_MoveL]
+Current = Idle.L
+Next = Move.L
+HasExit = false
+MoveState = (IntEq,-2)
+
+[Transition:MoveR_to_IdleR]
+Current = Move.R
+Next = Idle.R
+HasExit = false
+MoveState = (IntEq,1)
+
+[Transition:MoveR_to_MoveL]
+Current = Move.R
+Next = Move.L
+HasExit = false
+MoveState = (IntEq,-2)
+
+[Transition:MoveL_to_IdleL]
+Current = Move.L
+Next = Idle.L
+HasExit = false
+MoveState = (IntEq,-1)
+
+[Transition:MoveL_to_MoveR]
+Current = Move.L
+Next = Move.R
+HasExit = false
+MoveState = (IntEq,2)

@@ -1,0 +1,13 @@
+[Shapes]
+Shape0 = Player.col
+
+[Properties]
+Position = (400.0,500.0)
+VelocityRange = (-360.0,-1000.0,720,2000)
+Angle = 0.0
+BodyType = 2
+Damping = 0.0
+FixedRotation = true
+GravityScale = 1.5
+Awake = true
+Bullte = false

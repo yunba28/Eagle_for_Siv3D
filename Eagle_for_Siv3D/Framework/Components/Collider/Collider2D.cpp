@@ -10,7 +10,7 @@ namespace eagle
 	Collider2D::Collider2D()
 		: mP2World()
 		, mP2Body()
-		, mMaxVelocity(10000, 10000)
+		, mVelocityRange(-1000, -1000, 2000, 2000)
 		, mPrevCollisions()
 		, mCurrentCollisions()
 	{
@@ -63,14 +63,19 @@ namespace eagle
 		return mP2Body.getVelocity();
 	}
 
-	void Collider2D::setMaxVelocity(Vec2 _maxVelocity)
+	void Collider2D::setVelocityRange(RectF _range)
 	{
-		mMaxVelocity = _maxVelocity;
+		mVelocityRange = _range;
 	}
 
-	Vec2 Collider2D::getMaxVelocity() const
+	void Collider2D::setVelocityRange(Vec2 _range)
 	{
-		return mMaxVelocity;
+		mVelocityRange.set(Arg::center = Vec2{ 0,0 }, _range);
+	}
+
+	RectF Collider2D::getVelocityRange() const
+	{
+		return mVelocityRange;
 	}
 
 	void Collider2D::addForce(double _x, double _y)
@@ -299,10 +304,7 @@ namespace eagle
 		tf->setPos(mP2Body.getPos(), Space::Absolute);
 		tf->setRot(Mat4x4::RotateZ(mP2Body.getAngle()), Space::Absolute);
 
-		Vec2 velocity{ mP2Body.getVelocity() };
-		velocity.x = Clamp(velocity.x, -mMaxVelocity.x, mMaxVelocity.x);
-		velocity.y = Clamp(velocity.y, -mMaxVelocity.y, mMaxVelocity.y);
-		mP2Body.setVelocity(velocity);
+		mP2Body.setVelocity(mP2Body.getVelocity().clamped(mVelocityRange));
 
 		if (mCurrentCollisions.isEmpty())
 		{
@@ -413,5 +415,107 @@ namespace eagle
 				ref.lock()->onCollisionEnter(ccol);
 			}
 		}
+	}
+
+	bool Collider2D::LoadMaterial(const INI& _ini, P2Material& _material)
+	{
+		if (_ini.hasValue(U"Material", U"Density"))
+		{
+			_material.density = ParseFloat<double>(_ini[U"Material.Density"]);
+		}
+
+		if (_ini.hasValue(U"Material", U"Restitution"))
+		{
+			_material.restitution = ParseFloat<double>(_ini[U"Material.Restitution"]);
+		}
+
+		if (_ini.hasValue(U"Material", U"Friction"))
+		{
+			_material.friction = ParseFloat<double>(_ini[U"Material.Friction"]);
+		}
+
+		if (_ini.hasValue(U"Material", U"RestitutionThreshold"))
+		{
+			_material.restitutionThreshold = ParseFloat<double>(_ini[U"Material.RestitutionThreshold"]);
+		}
+
+		return true;
+	}
+
+	bool Collider2D::LoadFilter(const INI& _ini, P2Filter& _filter)
+	{
+		if (_ini.hasValue(U"Filter", U"Category"))
+		{
+			_filter.categoryBits = ParseInt<uint16>(_ini[U"Filter.Category"]);
+		}
+
+		if (_ini.hasValue(U"Filter", U"Mask"))
+		{
+			_filter.categoryBits = ParseInt<uint16>(_ini[U"Filter.Mask"]);
+		}
+
+		return true;
+	}
+
+	bool Collider2D::loadProperties(const INI& _ini)
+	{
+		const String section = U"Properties";
+
+		if (not _ini.hasSection(section))
+			return false;
+
+		try
+		{
+			if (_ini.hasValue(section,U"Position"))
+			{
+				setPos(Parse<Vec2>(_ini[section + U".Position"]), true);
+			}
+
+			if (_ini.hasValue(section,U"VelocityRange"))
+			{
+				setVelocityRange(Parse<RectF>(_ini[section + U".VelocityRange"]));
+			}
+
+			if (_ini.hasValue(section, U"Angle"))
+			{
+				setAngle(Parse<double>(_ini[section + U".Angle"]), true);
+			}
+
+			if (_ini.hasValue(section,U"BodyType"))
+			{
+				setBodyType(static_cast<P2BodyType>(Parse<uint8>(_ini[section + U".BodyType"])));
+			}
+
+			if (_ini.hasValue(section, U"Damping"))
+			{
+				setDamping(Parse<double>(_ini[section + U".Damping"]));
+			}
+
+			if (_ini.hasValue(section, U"FixedRotation"))
+			{
+				setFixedRotation(Parse<bool>(_ini[section + U".FixedRotation"]));
+			}
+
+			if (_ini.hasValue(section, U"GravityScale"))
+			{
+				setGravityScale(Parse<double>(_ini[section + U".GravityScale"]));
+			}
+
+			if (_ini.hasValue(section, U"Awake"))
+			{
+				setAwake(Parse<bool>(_ini[section + U".Awake"]));
+			}
+
+			if (_ini.hasValue(section, U"Bullte"))
+			{
+				setBulletMode(Parse<bool>(_ini[section + U".Bullte"]));
+			}
+		}
+		catch (ParseError&)
+		{
+			return false;
+		}
+
+		return true;
 	}
 }

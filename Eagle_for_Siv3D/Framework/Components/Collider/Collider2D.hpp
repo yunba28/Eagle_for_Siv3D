@@ -7,6 +7,7 @@
 #endif
 
 #include <Components/Collider/Collision.hpp>
+#include <Utility/Loader/Load.hpp>
 
 namespace eagle
 {
@@ -35,9 +36,11 @@ namespace eagle
 
 		Vec2 getVelocity()const;
 
-		void setMaxVelocity(Vec2 _maxVelocity);
+		void setVelocityRange(RectF _range);
 
-		Vec2 getMaxVelocity()const;
+		void setVelocityRange(Vec2 _range);
+
+		RectF getVelocityRange()const;
 
 		void addForce(double _x, double _y);
 
@@ -142,6 +145,14 @@ namespace eagle
 
 		void callCollision();
 
+	protected:
+
+		static bool LoadMaterial(const INI& _ini, P2Material& _material);
+
+		static bool LoadFilter(const INI& _ini, P2Filter& _filter);
+
+		bool loadProperties(const INI& _ini);
+
 	private:
 
 		WeakObject<P2World> mP2World;
@@ -154,7 +165,7 @@ namespace eagle
 
 	private:
 
-		Vec2 mMaxVelocity;
+		RectF mVelocityRange;
 
 		Array<Collision> mPrevCollisions;
 

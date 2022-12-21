@@ -16,6 +16,11 @@ namespace eagle
 
 		bool inRegion()const final override;
 
+	private:
+
 		Polygon mPolygon{};
+
+		template<class Type>
+		friend bool Load(const String& path, Type& collider);
 	};
 }

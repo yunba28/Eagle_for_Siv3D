@@ -1,19 +1,26 @@
 ﻿#pragma once
 
 #include "Animation2D.hpp"
+#include "Compares.hpp"
 
 namespace eagle
 {
 	class AnimationController2D : public DrawableComponent2D
 	{
+	private:
+
+		using BoolConditional = Array<std::pair<String, std::function<bool(bool)>>>;
+		using IntConditional = Array<std::pair<String, std::function<bool(int32)>>>;
+		using DoubleConditional = Array<std::pair<String, std::function<bool(double)>>>;
+
 	public:
 
 		struct Transition
 		{
 			String next;
-			Array<std::pair<String, bool(*)(bool)>> boolConditional;
-			Array<std::pair<String, bool(*)(int32)>> intConditional;
-			Array<std::pair<String, bool(*)(double)>> doubleConditional;
+			BoolConditional boolConditional;
+			IntConditional intConditional;
+			DoubleConditional doubleConditional;
 			bool hasExit;
 		};
 
@@ -45,6 +52,8 @@ namespace eagle
 
 		Transition& addTransition(const String& _animState);
 
+		void clear();
+
 	private:
 
 		void start()override;
@@ -54,6 +63,20 @@ namespace eagle
 		void draw()const override;
 
 		bool conditionUpdate();
+
+		bool loadAnim(const FilePath& _path);
+
+		bool readBoolState(const INISection& _data);
+
+		bool readIntState(const INISection& _data);
+
+		bool readDoubleState(const INISection& _data);
+
+		bool readAnimation(const INISection& _data);
+
+		bool readTransition(const INISection& _data);
+
+		std::pair<String, String> getStringPair(const String& _data);
 
 	private:
 
@@ -70,5 +93,8 @@ namespace eagle
 		String mCurrentState;
 
 		Optional<String> mNextState;
+
+		template<class Type>
+		friend bool Load(const String& path, Type& controller);
 	};
 }

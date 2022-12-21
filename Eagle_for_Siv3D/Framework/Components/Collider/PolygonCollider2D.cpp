@@ -26,4 +26,46 @@ namespace eagle
 
 		return area.intersects(getPolygon().boundingRect());
 	}
+
+	template<>
+	bool Load<PolygonCollider2D>(const String& path, PolygonCollider2D& collider)
+	{
+		if (FileSystem::Extension(path) != U"col")
+			return false;
+
+		const INI ini{ path };
+
+		if (ini.isEmpty())
+			return false;
+
+		if (not ini.hasSection(U"Polygon"))
+			return false;
+
+		Polygon polygon{};
+		P2Material material{};
+		P2Filter filter{};
+		
+		try
+		{
+			Array<Vec2> points{};
+
+			for (auto& key : ini.getSection(U"Polygon").keys)
+			{
+				points << Parse<Vec2>(key.value);
+			}
+
+			polygon = Polygon{ points };
+
+			Collider2D::LoadMaterial(ini, material);
+			Collider2D::LoadFilter(ini, filter);
+		}
+		catch (ParseError&)
+		{
+			return false;
+		}
+
+		collider.setupPolygon(polygon, material, filter);
+
+		return collider.loadProperties(ini);
+	}
 }

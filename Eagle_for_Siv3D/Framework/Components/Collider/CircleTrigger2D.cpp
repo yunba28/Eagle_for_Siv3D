@@ -25,4 +25,45 @@ namespace eagle
 
 		return area.intersects(getCircle());
 	}
+
+	template<>
+	bool Load<CircleTrigger2D>(const String& path, CircleTrigger2D& collider)
+	{
+		if (FileSystem::Extension(path) != U"col")
+			return false;
+
+		const INI ini{ path };
+
+		if (ini.isEmpty())
+			return false;
+
+		if (not ini.hasSection(U"CircleTrigger"))
+			return false;
+
+		Circle circle{};
+		P2Filter filter{};
+
+		try
+		{
+			if (ini.hasValue(U"CircleTrigger", U"LocalPos"))
+			{
+				circle.center = Parse<Vec2>(ini[U"CircleTrigger.LocalPos"]);
+			}
+
+			if (ini.hasValue(U"CircleTrigger", U"Radius"))
+			{
+				circle.r = Parse<double>(ini[U"CircleTrigger.Radius"]);
+			}
+
+			Collider2D::LoadFilter(ini, filter);
+		}
+		catch (ParseError&)
+		{
+			return false;
+		}
+
+		collider.setupCircle(circle, filter);
+
+		return collider.loadProperties(ini);
+	}
 }
