@@ -13,17 +13,7 @@ namespace eagle::Internal
 
 		struct Node
 		{
-			union
-			{
-				Input input{};
-
-				struct
-				{
-					uint8 deviceType;
-					uint8 code;
-					uint8 playerIndex;
-				};
-			};
+			Input input{};
 
 			double scale{};
 
@@ -41,7 +31,7 @@ namespace eagle::Internal
 			template <class CharType>
 			friend std::basic_istream<CharType>& operator >>(std::basic_istream<CharType>& input, eagle::Internal::InputAxis_impl::Node& value)
 			{
-				CharType unused;
+				CharType unused{};
 				int64 elem[3]{};
 
 				input >> unused
@@ -50,9 +40,14 @@ namespace eagle::Internal
 					>> elem[2] >> unused
 					>> value.scale >> unused;
 
-				value.deviceType = static_cast<uint8>(elem[0]);
-				value.code = static_cast<uint8>(elem[1]);
-				value.playerIndex = static_cast<uint8>(elem[2]);
+				Input inputData
+				{
+					static_cast<InputDeviceType>(elem[0]),
+					static_cast<uint8>(elem[1]),
+					static_cast<uint8>(elem[2])
+				};
+
+				value.input = inputData;
 
 				return input;
 			}

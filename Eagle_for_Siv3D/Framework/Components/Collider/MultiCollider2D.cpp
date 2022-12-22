@@ -264,7 +264,7 @@ namespace eagle
 
 	Array<String> MultiCollider2D::SaveShape(const String& path, MultiCollider2D& collider)
 	{
-		const int32 shapeCount = collider.getShapeCount();
+		const size_t shapeCount = collider.getShapeCount();
 		Array<String> shapes{Arg::reserve = shapeCount};
 
 		const auto& body = collider.mP2Body;
@@ -272,7 +272,7 @@ namespace eagle
 
 		const Vec2 offset{ -body.getPos() };
 
-		for (int32 i = 0; i < shapeCount; ++i)
+		for (size_t i = 0; i < shapeCount; ++i)
 		{
 			INI ini{};
 

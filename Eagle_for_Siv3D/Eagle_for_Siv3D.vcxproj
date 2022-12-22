@@ -141,6 +141,7 @@
     <ClCompile Include="Framework\Utility\Resource\Resource.cpp" />
     <ClCompile Include="Framework\Utility\Tag\Tag.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Project\Scene\BootScene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -385,6 +386,8 @@
     <ClInclude Include="Framework\Utility\Resource\Resource.hpp" />
     <ClInclude Include="Framework\Utility\SmartObject.hpp" />
     <ClInclude Include="Framework\Utility\Tag\Tag.hpp" />
+    <ClInclude Include="Project\ProjectCommons.hpp" />
+    <ClInclude Include="Project\Scene\BootScene.hpp" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

@@ -126,6 +126,8 @@ namespace eagle
 
 		void onCollision(const Collision& _collision);
 
+		ObjectHandle<P2World> getP2World()const;
+
 		P2BodyID id()const noexcept;
 
 	protected:

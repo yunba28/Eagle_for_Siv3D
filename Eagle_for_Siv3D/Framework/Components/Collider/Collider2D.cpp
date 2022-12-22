@@ -274,6 +274,11 @@ namespace eagle
 		mCurrentCollisions << _collision;
 	}
 
+	ObjectHandle<P2World> Collider2D::getP2World() const
+	{
+		return mP2World.lock();
+	}
+
 	P2BodyID Collider2D::id() const noexcept
 	{
 		return mP2Body.id();

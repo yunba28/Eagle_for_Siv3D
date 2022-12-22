@@ -30,19 +30,35 @@ namespace eagle
 
 		SpriteRenderer();
 
-		void setTexture(const Texture& _texture);
+		void setTextureAssetTag(const AssetTag& _assetTag);
+
+		const AssetTag& getTextureAssetTag()const;
 
 		void setDiffuseColor(const Color& _color);
 
+		const Color& getDiffuseColor()const;
+
 		void setPivot(Vec2 _pivot);
+
+		Vec2 getPivot()const;
 
 		void setOffset(Vec2 _offset);
 
+		Vec2 getOffset()const;
+
 		void setDrawMode(DrawMode _mode);
 
-		void setFlipEnable(bool _flipX, bool _flipY);
+		DrawMode getDrawMode()const;
+
+		void setFlipEnable(bool _mirror, bool _flip);
+
+		bool isMirrored()const;
+
+		bool isFliped()const;
 
 		void setSliseParam(const SliseParam& _param);
+
+		const SliseParam& getSliseParam()const;
 
 	private:
 
@@ -60,8 +76,8 @@ namespace eagle
 
 	private:
 
-		/// @brief 描画する画像
-		Texture mTexture;
+		/// @brief 描画する画像のアセットタグ
+		AssetTag mAssetTag;
 
 		/// @brief 画像のディフューズカラー
 		Color mColor;
@@ -80,5 +96,11 @@ namespace eagle
 
 		/// @brief 分割描画の情報
 		SliseParam mParam;
+
+		template<class Type>
+		friend bool Load(const String& path, Type& renderer);
+
+		template<class Type>
+		friend bool Save(const String& path, Type& renderer);
 	};
 }

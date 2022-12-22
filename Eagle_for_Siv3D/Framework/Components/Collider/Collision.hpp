@@ -8,6 +8,11 @@ namespace eagle
 	class Collision final
 	{
 	public:
+
+		ObjectHandle<Actor> getOpponent()const { return opponent.lock(); }
+
+	public:
+
 		WeakObject<Actor> opponent{};
 
 		struct P2

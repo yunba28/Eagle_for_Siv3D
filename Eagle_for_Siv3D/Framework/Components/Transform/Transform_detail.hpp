@@ -34,27 +34,27 @@ namespace eagle
 		/*---------------------------------------- 設定関数 -----------------------------------------------*/
 
 		/// @brief Transformの座標・回転・拡縮を設定
-		void set(Vec3 _pos, Quaternion _rot, Vec3 _scale, Space _relativeTo = Space::Relative);
+		virtual void set(Vec3 _pos, Quaternion _rot, Vec3 _scale, Space _relativeTo = Space::Relative);
 
-		void setPos(double _x, double _y, double _z, Space _relativeTo = Space::Relative);
+		virtual void setPos(double _x, double _y, double _z, Space _relativeTo = Space::Relative);
 
-		void setPos(Vec3 _pos, Space _relativeTo = Space::Relative);
+		virtual void setPos(Vec3 _pos, Space _relativeTo = Space::Relative);
 
-		void setPos(double _x, double _y, Space _relativeTo = Space::Relative);
+		virtual void setPos(double _x, double _y, Space _relativeTo = Space::Relative);
 
-		void setPos(Vec2 _pos, Space _relativeTo = Space::Relative);
+		virtual void setPos(Vec2 _pos, Space _relativeTo = Space::Relative);
 
-		void setRot(double _roll, double _pitch, double _yaw, Space _relativeTo = Space::Relative);
+		virtual void setRot(double _roll, double _pitch, double _yaw, Space _relativeTo = Space::Relative);
 
-		void setRot(Vec3 _rollPitchYaw, Space _relativeTo = Space::Relative);
+		virtual void setRot(Vec3 _rollPitchYaw, Space _relativeTo = Space::Relative);
 
-		void setRot(const Mat4x4& _mat, Space _relativeTo = Space::Relative);
+		virtual void setRot(const Mat4x4& _mat, Space _relativeTo = Space::Relative);
 
-		void setRot(Quaternion _rot, Space _relativeTo = Space::Relative);
+		virtual void setRot(Quaternion _rot, Space _relativeTo = Space::Relative);
 
-		void setScale(double _x, double _y, double _z, Space _relativeTo = Space::Relative);
+		virtual void setScale(double _x, double _y, double _z, Space _relativeTo = Space::Relative);
 
-		void setScale(Vec3 _scale, Space _relativeTo = Space::Relative);
+		virtual void setScale(Vec3 _scale, Space _relativeTo = Space::Relative);
 
 		/*---------------------------------------- 取得関数 -----------------------------------------------*/
 

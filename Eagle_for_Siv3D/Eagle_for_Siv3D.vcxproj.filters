@@ -191,6 +191,12 @@
     <Filter Include="Eagle\Utility\Resource">
       <UniqueIdentifier>{7645344c-e93b-4e8e-89fc-f785ac1c882d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Project">
+      <UniqueIdentifier>{daa56e8f-f6f5-4da0-a7ac-4e03480efcb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\Scene">
+      <UniqueIdentifier>{927d1413-d1aa-49fb-a45d-af001b568391}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Utility\Name\Name.cpp">
@@ -273,6 +279,9 @@
     </ClCompile>
     <ClCompile Include="Framework\Utility\Resource\Resource.cpp">
       <Filter>Eagle\Utility\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\Scene\BootScene.cpp">
+      <Filter>Project\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1040,6 +1049,12 @@
     </ClInclude>
     <ClInclude Include="Framework\Utility\Load.hpp">
       <Filter>Eagle\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\ProjectCommons.hpp">
+      <Filter>Project</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\Scene\BootScene.hpp">
+      <Filter>Project\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
