@@ -104,6 +104,18 @@ namespace eagle
 		/// @remark この関数を呼ぶと、以降のこのシーンを管理するクラスの `SceneManager::update()` が false を返します。
 		void notifyError();
 
+		/// @brief シーンで使われる2Dカメラを取得します
+		WeakObject<Camera2D> getCamera2D()const noexcept;
+
+		/// @brief シーンで使われる3Dカメラを取得します
+		WeakObject<DebugCamera3D> getCamera3D()const noexcept;
+
+		/// @brief シーンの背景色を設定します
+		void setBackgroundColor(const ColorF& _color);
+
+		/// @brief シーンの背景色を取得します
+		const ColorF& getBackgroundColor()const;
+
 		template<class T = Actor>
 		WeakObject<T> createActor(const String& _name);
 

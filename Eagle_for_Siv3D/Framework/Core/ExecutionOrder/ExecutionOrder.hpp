@@ -15,7 +15,7 @@ namespace eagle
 
 	public:
 
-		static void Set(const std::type_index& type, uint64 order);
+		static void Set(const TypeID& type, uint64 order);
 
 		template<class T>
 		static void Set(uint64 order)requires(std::derived_from<T, Component>)
@@ -23,7 +23,7 @@ namespace eagle
 			Set(typeid(T), order);
 		}
 
-		static uint64 Get(const std::type_index& type);
+		static uint64 Get(const TypeID& type);
 
 		template<class T>
 		static uint64 Get()requires(std::derived_from<T, Component>)

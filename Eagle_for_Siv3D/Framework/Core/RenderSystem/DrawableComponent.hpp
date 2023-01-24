@@ -37,7 +37,7 @@ namespace eagle
 
 	private:
 
-		bool mEnabledDraw;
+		bool mIsEnabledDraw;
 
 	protected:
 
@@ -70,7 +70,7 @@ namespace eagle
 
 	private:
 
-		bool mEnabledDraw;
+		bool mIsEnabledDraw;
 
 	};
 }

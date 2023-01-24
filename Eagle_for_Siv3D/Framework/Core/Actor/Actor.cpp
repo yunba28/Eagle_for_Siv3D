@@ -46,7 +46,15 @@ namespace eagle
 	{
 		if (auto scene = getScene();scene)
 		{
-			mTagList << scene->_makeTag(_tag);
+			auto compare = [&_tag](const Tag& tag)
+			{
+				return tag == _tag;
+			};
+
+			if (mTagList.none(compare))
+			{
+				mTagList << scene->_makeTag(_tag);
+			}
 		}
 	}
 
@@ -68,17 +76,17 @@ namespace eagle
 		}
 	}
 
-	Actor::Scene_handle Actor::getScene() const noexcept
+	Scene_handle Actor::getScene() const noexcept
 	{
 		return mScene.lock();
 	}
 
-	Actor::Transform_handle Actor::getTransform() const noexcept
+	Transform_handle Actor::getTransform() const noexcept
 	{
 		return mTransform.lock();
 	}
 
-	Actor::Actor_handle Actor::getParent() const noexcept
+	Actor_handle Actor::getParent() const noexcept
 	{
 		if (auto parent = mTransform.lock()->getParent(); parent)
 		{
@@ -88,7 +96,7 @@ namespace eagle
 		return Actor_ref{}.lock();
 	}
 
-	Actor::Actor_handle Actor::getRoot() const noexcept
+	Actor_handle Actor::getRoot() const noexcept
 	{
 		if (auto parent = mTransform.lock()->getRoot(); parent)
 		{
@@ -142,7 +150,7 @@ namespace eagle
 		return mIsPendingKill;
 	}
 
-	const Array<Actor::Component_ref>& Actor::getAllComponents() const
+	const Array<Component_ref>& Actor::getAllComponents() const
 	{
 		return mComponents;
 	}
@@ -188,7 +196,7 @@ namespace eagle
 	void Actor::Create_impl(
 		const Scene_ref& scene,
 		const SharedObject<Actor>& actor,
-		const std::type_index& type,
+		const TypeID& type,
 		const String& name)
 	{
 		auto system = scene.lock()->_getActorSystem();
@@ -203,7 +211,7 @@ namespace eagle
 	void Actor::CreateEmpty_impl(
 		const Scene_ref& scene,
 		const SharedObject<Actor>& actor,
-		const std::type_index& type,
+		const TypeID& type,
 		const String& name)
 	{
 		auto system = scene.lock()->_getActorSystem();

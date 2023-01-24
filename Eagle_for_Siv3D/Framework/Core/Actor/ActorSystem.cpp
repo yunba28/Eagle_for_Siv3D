@@ -22,24 +22,24 @@ namespace eagle::Internal
 		}
 	}
 
-	void ActorSystem::add(const SharedObject<Actor>& _actor, const std::type_index& _type)
+	void ActorSystem::add(const SharedObject<Actor>& _actor, const TypeID& _type)
 	{
 		if (not mActors.contains(_type))
 		{
-			mActors.emplace(_type, List_t{});
+			mActors.emplace(_type, Array<SharedObject<Actor>>{});
 		}
 
 		mActors[_type] << _actor;
 	}
 
-	WeakObject<Actor> ActorSystem::getActor(const String& _name, const std::type_index& _type) const
+	WeakObject<Actor> ActorSystem::getActor(const String& _name, const TypeID& _type) const
 	{
 		// 型がない
 		if (not contains(_type))
 			return WeakObject<Actor>{};
 
 		// 名前を比較するためのラムダ式
-		auto compare = [&_name](List_t::const_reference actor)
+		auto compare = [&_name](const SharedObject<Actor>& actor)
 		{
 			return actor->compareName(_name);
 		};
@@ -55,14 +55,14 @@ namespace eagle::Internal
 		return WeakObject<Actor>{};
 	}
 
-	WeakObject<Actor> ActorSystem::getActorByTag(const String& _tag, const std::type_index& _type) const
+	WeakObject<Actor> ActorSystem::getActorByTag(const String& _tag, const TypeID& _type) const
 	{
 		// 型がない
 		if (not contains(_type))
 			return WeakObject<Actor>{};
 
 		// タグを比較するためのラムダ式
-		auto compare = [&_tag](List_t::const_reference actor)
+		auto compare = [&_tag](const SharedObject<Actor>& actor)
 		{
 			return actor->compareTag(_tag);
 		};
@@ -78,7 +78,7 @@ namespace eagle::Internal
 		return WeakObject<Actor>{};
 	}
 
-	Array<WeakObject<Actor>> ActorSystem::getActors(const std::type_index& _type) const
+	Array<WeakObject<Actor>> ActorSystem::getActors(const TypeID& _type) const
 	{
 		Array<WeakObject<Actor>> result;
 
@@ -94,7 +94,7 @@ namespace eagle::Internal
 		return result;
 	}
 
-	Array<WeakObject<Actor>> ActorSystem::getActorsByTag(const String& _tag, const std::type_index& _type) const
+	Array<WeakObject<Actor>> ActorSystem::getActorsByTag(const String& _tag, const TypeID& _type) const
 	{
 		Array<WeakObject<Actor>> result;
 
@@ -102,7 +102,7 @@ namespace eagle::Internal
 			return result;
 
 		// タグを比較するためのラムダ式
-		auto compare = [&_tag](List_t::const_reference actor)
+		auto compare = [&_tag](const SharedObject<Actor>& actor)
 		{
 			return actor->compareTag(_tag);
 		};
@@ -125,7 +125,7 @@ namespace eagle::Internal
 	Array<WeakObject<Actor>> ActorSystem::getAllActorsByTag(const String& _tag) const
 	{
 		// タグを比較するためのラムダ式
-		auto compare = [&_tag](List_t::const_reference actor)
+		auto compare = [&_tag](const SharedObject<Actor>& actor)
 		{
 			return actor->compareTag(_tag);
 		};
@@ -149,7 +149,7 @@ namespace eagle::Internal
 		return result;
 	}
 
-	size_t ActorSystem::count(const std::type_index& _type) const
+	size_t ActorSystem::count(const TypeID& _type) const
 	{
 		if (contains(_type))
 		{
@@ -169,7 +169,7 @@ namespace eagle::Internal
 		return s;
 	}
 
-	bool ActorSystem::contains(const std::type_index& _type) const
+	bool ActorSystem::contains(const TypeID& _type) const
 	{
 		return mActors.contains(_type);
 	}

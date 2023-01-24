@@ -17,9 +17,10 @@ namespace eagle
 		, mIsEnabled(true)
 		, mIsStarted(false)
 		, mIsPendingKill(false)
-		, mEnabledUpdate(true)
-		, mEnabledLateUpdate(true)
-		, mEnabledFixedUpdate(false)
+		, mIsEnabledUpdate(true)
+		, mIsEnabledLateUpdate(true)
+		, mIsEnabledFixedUpdate(false)
+		, mIsJoinedFixedSystem(false)
 	{
 	}
 
@@ -37,24 +38,24 @@ namespace eagle
 		if (mIsEnabled == _enable)
 			return;
 
-		setEnableUncalledEvent(_enable);
+		mIsEnabled = _enable;
 
 		mIsEnabled ? onEnable() : onDisable();
 	}
 
 	void Component::setFunctionEnable(bool _update, bool _lateUpdate, bool _fixedUpdate) noexcept
 	{
-		mEnabledUpdate = _update;
-		mEnabledLateUpdate = _lateUpdate;
-		mEnabledFixedUpdate = _fixedUpdate;
+		mIsEnabledUpdate = _update;
+		mIsEnabledLateUpdate = _lateUpdate;
+		mIsEnabledFixedUpdate = _fixedUpdate;
 	}
 
-	Component::Actor_handle Component::getActor() const noexcept
+	Actor_handle Component::getActor() const noexcept
 	{
 		return mActor.lock();
 	}
 
-	Component::Transform_handle Component::getTransform() const noexcept
+	Transform_handle Component::getTransform() const noexcept
 	{
 		if (auto actor = getActor(); actor)
 		{
@@ -67,6 +68,11 @@ namespace eagle
 	const TypeID& Component::getType() const noexcept
 	{
 		return mType;
+	}
+
+	const uint64 Component::getCode() const noexcept
+	{
+		return mType.hash_code();
 	}
 
 	bool Component::compareType(const TypeID& _type) const noexcept
@@ -117,7 +123,7 @@ namespace eagle
 	void Component::_internalUpdate()
 	{
 		// updateが無効
-		if (not mEnabledUpdate)
+		if (not mIsEnabledUpdate)
 			return;
 
 		auto actor = getActor();
@@ -139,7 +145,7 @@ namespace eagle
 	void Component::_internalLateUpdate()
 	{
 		// lateUpdateが無効
-		if (not mEnabledLateUpdate)
+		if (not mIsEnabledLateUpdate)
 			return;
 
 		auto actor = getActor();
@@ -154,7 +160,7 @@ namespace eagle
 	void Component::_internalFixedUpdate()
 	{
 		// fixedUpdateが無効
-		if (not mEnabledFixedUpdate)
+		if (not mIsEnabledFixedUpdate)
 			return;
 
 		auto actor = getActor();
@@ -166,41 +172,59 @@ namespace eagle
 		}
 	}
 
-	void Component::setEnableUncalledEvent(bool _enable)
+	void Component::setEnable(bool _enable, bool _callEvent)
 	{
-		mIsEnabled = _enable;
+		if (_callEvent)
+		{
+			setEnable(_enable);
+		}
+		else
+		{
+			mIsEnabled = _enable;
+		}
 	}
 
 	bool Component::isEnableUpdate() const noexcept
 	{
-		return mEnabledUpdate;
+		return mIsEnabledUpdate;
 	}
 
 	bool Component::isEnableLateUpdate() const noexcept
 	{
-		return mEnabledLateUpdate;
+		return mIsEnabledLateUpdate;
 	}
 
 	bool Component::isEnableFixedUpdate() const noexcept
 	{
-		return mEnabledFixedUpdate;
+		return mIsEnabledFixedUpdate;
 	}
 
 	void Component::joinFixedSystem()
 	{
-		auto system = getActor()->getScene()->_getFixedSystem();
-		system->add(mThis);
-		mEnabledFixedUpdate = true;
-		mJoinedFixedSystem = true;
+		if (not mIsJoinedFixedSystem)
+		{
+			auto system = getActor()->getScene()->_getFixedSystem();
+			system->add(mThis);
+			mIsEnabledFixedUpdate = true;
+			mIsJoinedFixedSystem = true;
+		}
 	}
 
 	void Component::joinFixedSystem(const WeakObject<class Collider2D>& _collider)
 	{
-		auto system = getActor()->getScene()->_getFixedSystem();
-		system->add(_collider);
-		system->add(mThis);
-		mEnabledFixedUpdate = true;
-		mJoinedFixedSystem = true;
+		if (not mIsJoinedFixedSystem)
+		{
+			auto system = getActor()->getScene()->_getFixedSystem();
+			system->add(_collider);
+			system->add(mThis);
+			mIsEnabledFixedUpdate = true;
+			mIsJoinedFixedSystem = true;
+		}
+		else
+		{
+			auto system = getActor()->getScene()->_getFixedSystem();
+			system->add(_collider);
+		}
 	}
 
 	void Component::Destroy(const Component_ref& component)

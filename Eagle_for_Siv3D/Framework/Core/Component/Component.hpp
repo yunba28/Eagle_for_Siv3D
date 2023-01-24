@@ -7,20 +7,6 @@ namespace eagle
 {
 	class Component : Uncopyable
 	{
-	private:
-
-		using Actor_ref = WeakObject<Actor>;
-
-		using Actor_handle = ObjectHandle<Actor>;
-
-		using Component_ref = WeakObject<Component>;
-
-		using Component_handle = ObjectHandle<Component>;
-
-		using Transform_ref = WeakObject<Transform>;
-
-		using Transform_handle = ObjectHandle<Transform>;
-
 	public:
 
 		Component();
@@ -50,6 +36,9 @@ namespace eagle
 
 		/// @brief Componentの型情報を取得する
 		const TypeID& getType()const noexcept;
+
+		/// @brief Componentの型ハッシュを取得する 
+		const uint64 getCode()const noexcept;
 
 		/// @brief Componentの型情報が等しいか比較する
 		/// @param _type 比較する型情報
@@ -107,26 +96,38 @@ namespace eagle
 
 	protected:
 
-		/// @brief onEnableとonDiscableを呼ばない 
-		void setEnableUncalledEvent(bool _enable);
+		/// @brief Componentの有効・無効を設定する
+		/// @param _enable Componentの有効・無効
+		/// @param _callEvent onEnable・onDisableを呼ぶかどうか
+		void setEnable(bool _enable, bool _callEvent);
 
+		/// @brief update関数が有効かどうか
 		bool isEnableUpdate()const noexcept;
 
+		/// @brief lateUpdateが有効かどうか
 		bool isEnableLateUpdate()const noexcept;
 
+		/// @brief fixedUpdateが有効かどうか
 		bool isEnableFixedUpdate()const noexcept;
 
+		/// @brief fixedUpdateが使えるようにする
 		void joinFixedSystem();
 
+		/// @brief ColliderをFixedSystemに追加する
 		void joinFixedSystem(const WeakObject<class Collider2D>& _collider);
 
 	public:
 
+		/// @brief Componentを作成する
+		/// @tparam T 作成するComponentの型
+		/// @param actor アタッチする先のActor
 		template<class T>
 		static SharedObject<T> Create(const Actor_ref& actor)requires(std::derived_from<T, Component>);
 
+		/// @brief Componentを削除する
 		static void Destroy(const Component_ref& component);
 
+		/// @brief Componentを削除する
 		static void Destroy(const Component_handle& component);
 
 	private:
@@ -156,16 +157,16 @@ namespace eagle
 		bool mIsPendingKill;
 
 		/// @brief update関数が有効かどうか
-		bool mEnabledUpdate;
+		bool mIsEnabledUpdate;
 
 		/// @brief lateUpdate関数が有効かどうか
-		bool mEnabledLateUpdate;
+		bool mIsEnabledLateUpdate;
 
 		/// @brief fixedUpdate関数が有効かどうか
-		bool mEnabledFixedUpdate;
+		bool mIsEnabledFixedUpdate;
 
 		/// @brief fixedUpdate関数が使える状態かどうか
-		bool mJoinedFixedSystem;
+		bool mIsJoinedFixedSystem;
 
 	};
 }

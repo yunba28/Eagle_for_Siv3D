@@ -34,28 +34,9 @@ namespace eagle
 
 		bool inRegion()const final override;
 
-		static bool LoadShape(const String& path, MultiCollider2D& collider);
-		static bool LoadCircle(const INI& ini, MultiCollider2D& collider);
-		static bool LoadCircleTrigger(const INI& ini, MultiCollider2D& collider);
-		static bool LoadRect(const INI& ini, MultiCollider2D& collider);
-		static bool LoadLine(const INI& ini, MultiCollider2D& collider);
-		static bool LoadPolygon(const INI& ini, MultiCollider2D& collider);
-
-		static Array<String> SaveShape(const String& path, MultiCollider2D& collider);
-		static bool SaveCircle(INI& ini, const P2Circle& shape, Vec2 offset);
-		static bool SaveCircleTrigger(INI& ini, const P2Circle& shape, Vec2 offset);
-		static bool SaveRect(INI& ini, const P2Rect& shape, Vec2 offset);
-		static bool SaveLine(INI& ini, const P2Line& shape, Vec2 offset);
-		static bool SavePolygon(INI& ini, const P2Polygon& shape, Vec2 offset);
-
 	private:
 
 		Array<ShapeType> mShapeTypes;
 
-		template<class Type>
-		friend bool Load(const String& path, Type& collider);
-
-		template<class Type>
-		friend bool Save(const String& path, Type& collider);
 	};
 }

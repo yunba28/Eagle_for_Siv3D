@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <Core/RenderSystem/DrawableComponent.hpp>
+#include <Siv3D.hpp>
 
 namespace eagle
 {
@@ -56,7 +56,11 @@ namespace eagle
 
 		void resume();
 
-		void setTextureAssetTag(const AssetTag& _asseTag);
+		void setTexturePath(const FilePath& _path);
+
+		void setBeginEvent(const std::function<void()>& _event);
+
+		void setEndEvent(const std::function<void()>& _event);
 
 		void addKeyEvent(const KeyEvent& _event);
 
@@ -70,7 +74,7 @@ namespace eagle
 
 		void setDuration(const Duration& _duration);
 
-		const AssetTag& getTextureAssetTag()const;
+		const FilePath& getTexturePath()const;
 
 		const Color& getDiffuseColor()const;
 
@@ -96,8 +100,18 @@ namespace eagle
 
 	private:
 
-		/// @brief 描画する画像のアセットタグ
-		AssetTag mAssetTag;
+		/// @brief 描画のためのテクスチャ
+		Texture mTexture;
+
+		/// @brief テクスチャ取得のために使われたパス
+		FilePath mPath;
+
+		/// @brief アニメーションが開始した際に呼ばれるイベント
+		std::function<void()> mBeginEvent;
+
+		/// @brief アニメーションが終了した際に呼ばれるイベント
+		/// @remark 途中で切り替わった場合は呼ばれないので注意
+		std::function<void()> mEndEvent;
 
 		/// @brief アニメーション中に実行されるキーイベント
 		Array<KeyEvent> mKeyEvents;

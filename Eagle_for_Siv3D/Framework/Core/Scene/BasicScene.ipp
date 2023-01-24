@@ -89,6 +89,30 @@ namespace eagle
 		return mWorld->notifyError();
 	}
 
+	template<class Data>
+	WeakObject<Camera2D> BasicScene<Data>::getCamera2D() const noexcept
+	{
+		return mScenePimpl->getCamera2D();
+	}
+
+	template<class Data>
+	WeakObject<DebugCamera3D> BasicScene<Data>::getCamera3D() const noexcept
+	{
+		return mScenePimpl->getCamera3D();
+	}
+
+	template<class Data>
+	void BasicScene<Data>::setBackgroundColor(const ColorF& _color)
+	{
+		mScenePimpl->setBackgroundColor(_color);
+	}
+
+	template<class Data>
+	const ColorF& BasicScene<Data>::getBackgroundColor() const
+	{
+		return mScenePimpl->getBackgroundColor();
+	}
+
 	template <class Data>
 	template<class T>
 	WeakObject<T> BasicScene<Data>::createActor(const String& _name)

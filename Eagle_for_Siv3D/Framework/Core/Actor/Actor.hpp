@@ -8,26 +8,6 @@ namespace eagle
 {
 	class Actor : Uncopyable
 	{
-	private:
-
-		using Scene_ref = WeakObject<Internal::ScenePimpl>;
-
-		using Scene_handle = ObjectHandle<Internal::ScenePimpl>;
-
-		using Actor_ref = WeakObject<Actor>;
-
-		using Actor_handle = ObjectHandle<Actor>;
-
-		using Component_ref = WeakObject<Component>;
-
-		using Component_handle = ObjectHandle<Component>;
-
-		using Transform_ref = WeakObject<Transform>;
-
-		using Transform_handle = ObjectHandle<Transform>;
-
-		using TagList = Array<Tag>;
-
 	public:
 
 		Actor();
@@ -100,6 +80,7 @@ namespace eagle
 		template<class T>
 		WeakObject<T> getComponent()const requires(std::derived_from<T, Component>);
 
+		/// @brief Actorにアタッチされているすべてのコンポーネントを取得する
 		const Array<Component_ref>& getAllComponents()const;
 
 		/// @brief ActorにアタッチされているComponentをディタッチする
@@ -134,13 +115,13 @@ namespace eagle
 		static void Create_impl(
 			const Scene_ref& scene,
 			const SharedObject<Actor>& actor,
-			const std::type_index& type,
+			const TypeID& type,
 			const String& name);
 
 		static void CreateEmpty_impl(
 			const Scene_ref& scene,
 			const SharedObject<Actor>& actor,
-			const std::type_index& type,
+			const TypeID& type,
 			const String& name);
 
 	protected:
@@ -160,7 +141,7 @@ namespace eagle
 		Name mName;
 
 		/// @brief Actorが持つタグ
-		TagList mTagList;
+		Array<Tag> mTagList;
 
 		/// @brief ActorにアタッチされたComponentの参照
 		Array<Component_ref> mComponents;

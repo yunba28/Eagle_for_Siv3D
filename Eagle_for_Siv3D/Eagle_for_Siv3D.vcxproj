@@ -116,7 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Components\Animation\Animation2D.cpp" />
-    <ClCompile Include="Framework\Components\Animation\AnimationController2D.cpp" />
+    <ClCompile Include="Framework\Components\Animation\Animator2D.cpp" />
     <ClCompile Include="Framework\Components\Collider\CircleCollider2D.cpp" />
     <ClCompile Include="Framework\Components\Collider\CircleTrigger2D.cpp" />
     <ClCompile Include="Framework\Components\Collider\Collider2D.cpp" />
@@ -132,13 +132,13 @@
     <ClCompile Include="Framework\Core\Component\ComponentSystem.cpp" />
     <ClCompile Include="Framework\Core\ExecutionOrder\ExecutionOrder.cpp" />
     <ClCompile Include="Framework\Core\FixedSystem\FixedSystem.cpp" />
+    <ClCompile Include="Framework\Core\ProjectSettings\ProjectSettings.cpp" />
     <ClCompile Include="Framework\Core\RenderSystem\DrawableComponent.cpp" />
     <ClCompile Include="Framework\Core\RenderSystem\RenderSystem.cpp" />
     <ClCompile Include="Framework\Core\Scene\ScenePimpl.cpp" />
-    <ClCompile Include="Framework\ProjectSettings\InputAxis.cpp" />
-    <ClCompile Include="Framework\ProjectSettings\ProjectSettings.cpp" />
+    <ClCompile Include="Framework\Utility\Input\InputAction.cpp" />
+    <ClCompile Include="Framework\Utility\Input\InputAxis.cpp" />
     <ClCompile Include="Framework\Utility\Name\Name.cpp" />
-    <ClCompile Include="Framework\Utility\Resource\Resource.cpp" />
     <ClCompile Include="Framework\Utility\Tag\Tag.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Project\Scene\BootScene.cpp" />
@@ -343,8 +343,7 @@
   <ItemGroup>
     <ClInclude Include="Framework\Components\Animation.hpp" />
     <ClInclude Include="Framework\Components\Animation\Animation2D.hpp" />
-    <ClInclude Include="Framework\Components\Animation\AnimationController2D.hpp" />
-    <ClInclude Include="Framework\Components\Animation\Compares.hpp" />
+    <ClInclude Include="Framework\Components\Animation\Animator2D.hpp" />
     <ClInclude Include="Framework\Components\Colliders2D.hpp" />
     <ClInclude Include="Framework\Components\Collider\CircleCollider2D.hpp" />
     <ClInclude Include="Framework\Components\Collider\CircleTrigger2D.hpp" />
@@ -370,6 +369,7 @@
     <ClInclude Include="Framework\Core\FixedSystem\FixedSystem.hpp" />
     <ClInclude Include="Framework\Core\GameWorld\GameWorld.hpp" />
     <ClInclude Include="Framework\Core\GameWorld\GameWorld.ipp" />
+    <ClInclude Include="Framework\Core\ProjectSettings\ProjectSettings.hpp" />
     <ClInclude Include="Framework\Core\RenderSystem\DrawableComponent.hpp" />
     <ClInclude Include="Framework\Core\RenderSystem\RenderSystem.hpp" />
     <ClInclude Include="Framework\Core\Scene\BasicScene.hpp" />
@@ -377,13 +377,13 @@
     <ClInclude Include="Framework\Core\Scene\ScenePimpl.hpp" />
     <ClInclude Include="Framework\Core\Scene\ScenePimpl.ipp" />
     <ClInclude Include="Framework\Eagle.hpp" />
-    <ClInclude Include="Framework\ProjectSettings\InputAxis.hpp" />
-    <ClInclude Include="Framework\ProjectSettings\ProjectSettings.hpp" />
     <ClInclude Include="Framework\Utility\Companion.hpp" />
+    <ClInclude Include="Framework\Utility\Compares.hpp" />
     <ClInclude Include="Framework\Utility\Concepts.hpp" />
-    <ClInclude Include="Framework\Utility\Load.hpp" />
+    <ClInclude Include="Framework\Utility\Input.hpp" />
+    <ClInclude Include="Framework\Utility\Input\InputAction.hpp" />
+    <ClInclude Include="Framework\Utility\Input\InputAxis.hpp" />
     <ClInclude Include="Framework\Utility\Name\Name.hpp" />
-    <ClInclude Include="Framework\Utility\Resource\Resource.hpp" />
     <ClInclude Include="Framework\Utility\SmartObject.hpp" />
     <ClInclude Include="Framework\Utility\Tag\Tag.hpp" />
     <ClInclude Include="Project\ProjectCommons.hpp" />

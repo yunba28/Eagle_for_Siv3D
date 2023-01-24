@@ -7,14 +7,14 @@ namespace eagle
 {
 	DrawableComponent2D::DrawableComponent2D()
 		: mDrawOrder(1000)
-		, mEnabledDraw(true)
+		, mIsEnabledDraw(true)
 	{
 	}
 
 	void DrawableComponent2D::setFunctionEnable(bool _update, bool _lateUpdate, bool _fixedUpdate, bool _draw) noexcept
 	{
 		Component::setFunctionEnable(_update, _lateUpdate, _fixedUpdate);
-		mEnabledDraw = _draw;
+		mIsEnabledDraw = _draw;
 	}
 
 	void DrawableComponent2D::setDrawOrder(uint64 _order) noexcept
@@ -44,7 +44,7 @@ namespace eagle
 	void DrawableComponent2D::_internalDraw() const
 	{
 		// draw関数が無効
-		if (not mEnabledDraw)
+		if (not mIsEnabledDraw)
 			return;
 
 		auto actor = getActor();
@@ -58,18 +58,18 @@ namespace eagle
 
 	bool DrawableComponent2D::isEnableDraw() const noexcept
 	{
-		return mEnabledDraw;
+		return mIsEnabledDraw;
 	}
 
 	DrawableComponent3D::DrawableComponent3D()
-		: mEnabledDraw(true)
+		: mIsEnabledDraw(true)
 	{
 	}
 
 	void DrawableComponent3D::setFunctionEnable(bool _update, bool _lateUpdate, bool _fixedUpdate, bool _draw) noexcept
 	{
 		Component::setFunctionEnable(_update, _lateUpdate, _fixedUpdate);
-		mEnabledDraw = _draw;
+		mIsEnabledDraw = _draw;
 	}
 
 	void DrawableComponent3D::_internalAwake()
@@ -86,7 +86,7 @@ namespace eagle
 	void DrawableComponent3D::_internalDraw() const
 	{
 		// draw関数が無効
-		if (not mEnabledDraw)
+		if (not mIsEnabledDraw)
 			return;
 
 		auto actor = getActor();
@@ -99,6 +99,6 @@ namespace eagle
 	}
 	bool DrawableComponent3D::isEnableDraw() const noexcept
 	{
-		return mEnabledDraw;
+		return mIsEnabledDraw;
 	}
 }

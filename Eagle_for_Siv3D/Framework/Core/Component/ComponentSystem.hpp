@@ -38,10 +38,6 @@ namespace eagle::Internal
 
 	class ComponentSystem final
 	{
-	private:
-
-		using List_t = ComponentArray;
-
 	public:
 
 		ComponentSystem();
@@ -50,31 +46,31 @@ namespace eagle::Internal
 
 		void lateUpdate();
 
-		void add(const SharedObject<Component>& _component, const std::type_index& _type);
+		void add(const SharedObject<Component>& _component, const TypeID& _type);
 
-		WeakObject<Component> getComponent(const WeakObject<Actor>& _actor, const std::type_index& _type)const;
+		WeakObject<Component> getComponent(const WeakObject<Actor>& _actor, const TypeID& _type)const;
 
-		WeakObject<Component> getComponentByTag(const String& _tag, const std::type_index& _type)const;
+		WeakObject<Component> getComponentByTag(const String& _tag, const TypeID& _type)const;
 
-		Array<WeakObject<Component>> getComponents(const std::type_index& _type)const;
+		Array<WeakObject<Component>> getComponents(const TypeID& _type)const;
 
-		Array<WeakObject<Component>> getComponentsByTag(const String& _tag, const std::type_index& _type)const;
+		Array<WeakObject<Component>> getComponentsByTag(const String& _tag, const TypeID& _type)const;
 
-		size_t count(const std::type_index& _type)const;
+		size_t count(const TypeID& _type)const;
 
 		size_t count()const;
 
-		bool contains(const std::type_index& _type)const;
+		bool contains(const TypeID& _type)const;
 
 	private:
 
 		/// @brief すべてのComponentを管理
-		HashTable<std::type_index, List_t> mComponents;
+		HashTable<TypeID, ComponentArray> mComponents;
 
 		/// @brief Componentの実行順
-		Array<std::type_index> mExecutionOrder;
+		Array<TypeID> mExecutionOrder;
 
-		Array<std::type_index> mPendingOrders;
+		Array<TypeID> mPendingOrders;
 
 	};
 }

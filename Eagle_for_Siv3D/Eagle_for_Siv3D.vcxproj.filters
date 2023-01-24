@@ -140,9 +140,6 @@
     <Filter Include="Eagle\Core">
       <UniqueIdentifier>{b98b9990-14b5-4424-81c2-600ed0128c14}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Eagle\ProjectSettings">
-      <UniqueIdentifier>{6f508b01-dd4c-444a-ae98-3f79b00225c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Eagle\Utility">
       <UniqueIdentifier>{2f7542d5-fe23-4dc0-ac60-725b26a03457}</UniqueIdentifier>
     </Filter>
@@ -188,14 +185,17 @@
     <Filter Include="Eagle\Components\Animation">
       <UniqueIdentifier>{fd472e55-44db-4eb3-9c2b-fa370b3a2da7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Eagle\Utility\Resource">
-      <UniqueIdentifier>{7645344c-e93b-4e8e-89fc-f785ac1c882d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Project">
       <UniqueIdentifier>{daa56e8f-f6f5-4da0-a7ac-4e03480efcb6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Project\Scene">
       <UniqueIdentifier>{927d1413-d1aa-49fb-a45d-af001b568391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Eagle\Core\ProjectSettings">
+      <UniqueIdentifier>{7c959e73-3fc3-44a0-a5fc-87071144729a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Eagle\Utility\Input">
+      <UniqueIdentifier>{2cdffb47-34ec-4cf3-8506-760447af6389}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -235,12 +235,6 @@
     <ClCompile Include="Framework\Core\RenderSystem\RenderSystem.cpp">
       <Filter>Eagle\Core\RenderSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\ProjectSettings\InputAxis.cpp">
-      <Filter>Eagle\ProjectSettings</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\ProjectSettings\ProjectSettings.cpp">
-      <Filter>Eagle\ProjectSettings</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Siv3D</Filter>
     </ClCompile>
@@ -274,14 +268,20 @@
     <ClCompile Include="Framework\Components\Animation\Animation2D.cpp">
       <Filter>Eagle\Components\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Components\Animation\AnimationController2D.cpp">
+    <ClCompile Include="Framework\Components\Animation\Animator2D.cpp">
       <Filter>Eagle\Components\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Utility\Resource\Resource.cpp">
-      <Filter>Eagle\Utility\Resource</Filter>
     </ClCompile>
     <ClCompile Include="Project\Scene\BootScene.cpp">
       <Filter>Project\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Core\ProjectSettings\ProjectSettings.cpp">
+      <Filter>Eagle\Core\ProjectSettings</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Utility\Input\InputAxis.cpp">
+      <Filter>Eagle\Utility\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Utility\Input\InputAction.cpp">
+      <Filter>Eagle\Utility\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -972,9 +972,6 @@
     <ClInclude Include="Framework\Core\Scene\ScenePimpl.ipp">
       <Filter>Eagle\Core\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Core\FixedSystem\FixedSystem.hpp">
-      <Filter>Eagle\Core\FixedSystem</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Core\RenderSystem\DrawableComponent.hpp">
       <Filter>Eagle\Core\RenderSystem</Filter>
     </ClInclude>
@@ -986,12 +983,6 @@
     </ClInclude>
     <ClInclude Include="Framework\Core\GameWorld\GameWorld.ipp">
       <Filter>Eagle\Core\GameWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\ProjectSettings\InputAxis.hpp">
-      <Filter>Eagle\ProjectSettings</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\ProjectSettings\ProjectSettings.hpp">
-      <Filter>Eagle\ProjectSettings</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Eagle.hpp">
       <Filter>Eagle</Filter>
@@ -1035,26 +1026,35 @@
     <ClInclude Include="Framework\Components\Animation\Animation2D.hpp">
       <Filter>Eagle\Components\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Components\Animation\AnimationController2D.hpp">
-      <Filter>Eagle\Components\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Utility\Resource\Resource.hpp">
-      <Filter>Eagle\Utility\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Components\Animation\Compares.hpp">
+    <ClInclude Include="Framework\Components\Animation\Animator2D.hpp">
       <Filter>Eagle\Components\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Components\Animation.hpp">
       <Filter>Eagle\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Utility\Load.hpp">
-      <Filter>Eagle\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Project\ProjectCommons.hpp">
       <Filter>Project</Filter>
     </ClInclude>
     <ClInclude Include="Project\Scene\BootScene.hpp">
       <Filter>Project\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Core\FixedSystem\FixedSystem.hpp">
+      <Filter>Eagle\Core\FixedSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Utility\Compares.hpp">
+      <Filter>Eagle\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Core\ProjectSettings\ProjectSettings.hpp">
+      <Filter>Eagle\Core\ProjectSettings</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Utility\Input\InputAxis.hpp">
+      <Filter>Eagle\Utility\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Utility\Input.hpp">
+      <Filter>Eagle\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Utility\Input\InputAction.hpp">
+      <Filter>Eagle\Utility\Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

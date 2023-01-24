@@ -1,3 +1,3 @@
 ﻿#pragma once
 
-#include <Components/Animation/AnimationController2D.hpp>
+#include <Components/Animation/Animator2D.hpp>

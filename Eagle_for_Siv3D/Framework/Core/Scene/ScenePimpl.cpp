@@ -58,6 +58,16 @@ namespace eagle::Internal
 		return mRenderSystem->getCamera3D();
 	}
 
+	void ScenePimpl::setBackgroundColor(const ColorF& _color)
+	{
+		mRenderSystem->setBackgroundColor(_color);
+	}
+
+	const ColorF& ScenePimpl::getBackgroundColor() const
+	{
+		return mRenderSystem->getBackgroundColor();
+	}
+
 	ObjectHandle<ActorSystem> ScenePimpl::_getActorSystem() const noexcept
 	{
 		return mActorSystem.weak().lock();

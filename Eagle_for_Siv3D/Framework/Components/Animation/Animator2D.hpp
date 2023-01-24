@@ -1,11 +1,13 @@
 ﻿#pragma once
 
-#include "Animation2D.hpp"
-#include "Compares.hpp"
+#include <Core/RenderSystem/DrawableComponent.hpp>
+#include <Utility/Compares.hpp>
 
 namespace eagle
 {
-	class AnimationController2D : public DrawableComponent2D
+	class Animation2D;
+
+	class Animator2D : public DrawableComponent2D
 	{
 	private:
 
@@ -26,9 +28,9 @@ namespace eagle
 
 	public:
 
-		AnimationController2D();
+		Animator2D();
 
-		~AnimationController2D();
+		~Animator2D();
 
 		void addBoolState(const String& _state, bool _default = false);
 
@@ -48,13 +50,23 @@ namespace eagle
 
 		void setDouble(const String& _state, double _value);
 
+		bool getBool(const String& _state);
+
+		uint32 getInt(const String& _state);
+
+		double getDouble(const String& _state);
+
 		Animation2D& addAnimation(const String& _state);
 
 		Transition& addTransition(const String& _animState);
 
-		Optional<Animation2D> getAnimation(const String& _state)const;
+		Animation2D& getAnimation(const String& _state);
 
-		Array<Transition> getTransition(const String& _state)const;
+		const Animation2D& getAnimation(const String& _state)const;
+
+		Array<Transition>& getTransition(const String& _state);
+
+		const Array<Transition>& getTransition(const String& _state)const;
 
 		void clear();
 
@@ -67,20 +79,6 @@ namespace eagle
 		void draw()const override;
 
 		bool conditionUpdate();
-
-		static bool LoadBoolState(const INISection& data, AnimationController2D& controller);
-		static bool LoadIntState(const INISection& data, AnimationController2D& controller);
-		static bool LoadDoubleState(const INISection& data, AnimationController2D& controller);
-		static bool LoadAnimation(const INISection& data, AnimationController2D& controller);
-		static bool LoadTransition(const INISection& data, AnimationController2D& controller);
-
-		static bool SaveBoolState(INI& ini, AnimationController2D& controller);
-		static bool SaveIntState(INI& ini, AnimationController2D& controller);
-		static bool SaveDoubleState(INI& ini, AnimationController2D& controller);
-		static bool SaveAnimation(INI& ini, AnimationController2D& controller);
-		static bool SaveTransition(INI& ini, AnimationController2D& controller);
-
-		static std::pair<String, String> GetStringPair(const String& data);
 
 	private:
 
@@ -97,11 +95,5 @@ namespace eagle
 		String mCurrentState;
 
 		Optional<String> mNextState;
-
-		template<class Type>
-		friend bool Load(const String& path, Type& controller);
-
-		template<class Type>
-		friend bool Save(const String& path, Type& controller);
 	};
 }

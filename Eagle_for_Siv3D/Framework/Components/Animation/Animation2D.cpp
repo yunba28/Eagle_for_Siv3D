@@ -3,7 +3,8 @@
 namespace eagle
 {
 	Animation2D::Animation2D()
-		: mAssetTag()
+		: mTexture()
+		, mPath()
 		, mColor(255)
 		, mPivot(0,0)
 		, mOffset(0,0)
@@ -31,9 +32,17 @@ namespace eagle
 			}
 		}
 
-		if (isComplated() and mParam.hasLoop)
+		if (isComplated())
 		{
-			restart();
+			if (mEndEvent)
+			{
+				mEndEvent();
+			}
+
+			if(mParam.hasLoop)
+			{
+				restart();
+			}
 		}
 	}
 
@@ -47,11 +56,16 @@ namespace eagle
 	void Animation2D::start()
 	{
 		mTimer.start();
+
+		if (mBeginEvent)
+		{
+			mBeginEvent();
+		}
 	}
 
 	void Animation2D::restart()
 	{
-		mTimer.restart();
+		start();
 	}
 
 	void Animation2D::pause()
@@ -64,9 +78,26 @@ namespace eagle
 		mTimer.resume();
 	}
 
-	void Animation2D::setTextureAssetTag(const AssetTag& _asseTag)
+	void Animation2D::setTexturePath(const FilePath& _path)
 	{
-		mAssetTag = _asseTag;
+		mTexture = Texture{ _path };
+		mPath = _path;
+	}
+
+	void Animation2D::setBeginEvent(const std::function<void()>& _event)
+	{
+		if (_event)
+		{
+			mBeginEvent = _event;
+		}
+	}
+
+	void Animation2D::setEndEvent(const std::function<void()>& _event)
+	{
+		if(_event)
+		{
+			mEndEvent = _event;
+		}
 	}
 
 	void Animation2D::addKeyEvent(const KeyEvent& _event)
@@ -99,9 +130,9 @@ namespace eagle
 		mTimer.setRemaining(_duration);
 	}
 
-	const AssetTag& Animation2D::getTextureAssetTag() const
+	const FilePath& Animation2D::getTexturePath() const
 	{
-		return mAssetTag;
+		return mPath;
 	}
 
 	const Color& Animation2D::getDiffuseColor() const
@@ -151,11 +182,9 @@ namespace eagle
 
 	TextureRegion Animation2D::slisedTexture() const
 	{
-		const auto texture = TextureAsset(mAssetTag);
-
 		const auto progress = mTimer.progress0_1();
 
-		const auto size = texture.size() / mParam.division;
+		const auto size = mTexture.size() / mParam.division;
 
 		const auto length = mParam.range.y - mParam.range.x;
 
@@ -163,6 +192,6 @@ namespace eagle
 
 		const Point index2D{ index % mParam.division.x ,index / mParam.division.x };
 
-		return texture(index2D * size, size);
+		return mTexture(index2D * size, size);
 	}
 }

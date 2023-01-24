@@ -2,14 +2,14 @@
 
 namespace eagle
 {
-	HashTable<std::type_index, uint64> ExecutionOrder::cOrderList{};
+	HashTable<TypeID, uint64> ExecutionOrder::cOrderList{};
 
-	void ExecutionOrder::Set(const std::type_index& type, uint64 order)
+	void ExecutionOrder::Set(const TypeID& type, uint64 order)
 	{
 		cOrderList[type] = order;
 	}
 
-	uint64 ExecutionOrder::Get(const std::type_index& type)
+	uint64 ExecutionOrder::Get(const TypeID& type)
 	{
 		if (cOrderList.contains(type))
 		{

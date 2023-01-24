@@ -104,6 +104,7 @@ namespace eagle::Internal
 	void RenderSystem::setBackgroundColor(const ColorF& _color)
 	{
 		mBackgroundColor = _color;
+		Scene::SetBackground(_color);
 	}
 
 	const ColorF& RenderSystem::getBackgroundColor() const

@@ -6,10 +6,6 @@ void Main()
 {
 	// デフォルトのディレクトリを変更
 	FileSystem::ChangeCurrentDirectory(U"../Assets");
-	// リソースの事前登録
-	eagle::Resource::LoadTextures(U"Assets");
-	// InputAxisの設定を読みこむ
-	eagle::Load(U"Project.iax", eagle::InputAxis);
 
 	// シーンを管理するマネジメントクラスを生成
 	eagle::DefaultWorld world{};
@@ -23,9 +19,6 @@ void Main()
 		if (not world.update())
 			break;
 	}
-
-	// InputAxisの設定を保存
-	eagle::Save(U"Project.ini", eagle::InputAxis);
 }
 
 //

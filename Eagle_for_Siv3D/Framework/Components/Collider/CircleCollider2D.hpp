@@ -20,11 +20,5 @@ namespace eagle
 
 		Circle mCircle{};
 
-		template<class Type>
-		friend bool Load(const String& path, Type& collider);
-
-		template<class Type>
-		friend bool Save(const String& path, Type& collider);
-
 	};
 }

@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <Siv3D.hpp>
+#include <Utility/SmartObject.hpp>
 
 namespace eagle
 {
@@ -35,4 +36,20 @@ namespace eagle
 	using TypeID = std::type_index;
 
 	class Collision;
+
+	using Scene_ref = WeakObject<Internal::ScenePimpl>;
+
+	using Scene_handle = ObjectHandle<Internal::ScenePimpl>;
+
+	using Actor_ref = WeakObject<Actor>;
+
+	using Actor_handle = ObjectHandle<Actor>;
+
+	using Component_ref = WeakObject<Component>;
+
+	using Component_handle = ObjectHandle<Component>;
+
+	using Transform_ref = WeakObject<Transform>;
+
+	using Transform_handle = ObjectHandle<Transform>;
 }

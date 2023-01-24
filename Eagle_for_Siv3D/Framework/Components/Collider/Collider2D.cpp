@@ -269,6 +269,15 @@ namespace eagle
 		setAngle(mP2Body.getAngle() + _radianAngle, true);
 	}
 
+	void Collider2D::reset()
+	{
+		auto system = getActor()->getScene()->_getFixedSystem();
+		system->removeCollider(mP2Body.id());
+		mP2Body.release();
+		mP2Body = mP2World.lock()->createPlaceholder(P2BodyType::Dynamic, Vec2{ 0,0 });
+		joinFixedSystem(Cast<Collider2D>(mThis));
+	}
+
 	void Collider2D::onCollision(const Collision& _collision)
 	{
 		mCurrentCollisions << _collision;
@@ -420,201 +429,5 @@ namespace eagle
 				ref.lock()->onCollisionEnter(ccol);
 			}
 		}
-	}
-
-	bool Collider2D::LoadMaterial(const INI& _ini, P2Material& _material)
-	{
-		if (_ini.hasValue(U"Material", U"Density"))
-		{
-			_material.density = ParseFloat<double>(_ini[U"Material.Density"]);
-		}
-
-		if (_ini.hasValue(U"Material", U"Restitution"))
-		{
-			_material.restitution = ParseFloat<double>(_ini[U"Material.Restitution"]);
-		}
-
-		if (_ini.hasValue(U"Material", U"Friction"))
-		{
-			_material.friction = ParseFloat<double>(_ini[U"Material.Friction"]);
-		}
-
-		if (_ini.hasValue(U"Material", U"RestitutionThreshold"))
-		{
-			_material.restitutionThreshold = ParseFloat<double>(_ini[U"Material.RestitutionThreshold"]);
-		}
-
-		return true;
-	}
-
-	bool Collider2D::LoadFilter(const INI& _ini, P2Filter& _filter)
-	{
-		if (_ini.hasValue(U"Filter", U"Category"))
-		{
-			_filter.categoryBits = ParseInt<uint16>(_ini[U"Filter.Category"]);
-		}
-
-		if (_ini.hasValue(U"Filter", U"Mask"))
-		{
-			_filter.categoryBits = ParseInt<uint16>(_ini[U"Filter.Mask"]);
-		}
-
-		return true;
-	}
-
-	bool Collider2D::loadProperties(const INI& _ini)
-	{
-		const String section = U"Properties";
-
-		if (not _ini.hasSection(section))
-			return false;
-
-		try
-		{
-			if (_ini.hasValue(section,U"Position"))
-			{
-				setPos(Parse<Vec2>(_ini[section + U".Position"]), true);
-			}
-
-			if (_ini.hasValue(section,U"VelocityRange"))
-			{
-				setVelocityRange(Parse<RectF>(_ini[section + U".VelocityRange"]));
-			}
-
-			if (_ini.hasValue(section, U"Angle"))
-			{
-				setAngle(Parse<double>(_ini[section + U".Angle"]), true);
-			}
-
-			if (_ini.hasValue(section,U"BodyType"))
-			{
-				setBodyType(static_cast<P2BodyType>(Parse<uint8>(_ini[section + U".BodyType"])));
-			}
-
-			if (_ini.hasValue(section, U"Damping"))
-			{
-				setDamping(Parse<double>(_ini[section + U".Damping"]));
-			}
-
-			if (_ini.hasValue(section, U"FixedRotation"))
-			{
-				setFixedRotation(Parse<bool>(_ini[section + U".FixedRotation"]));
-			}
-
-			if (_ini.hasValue(section, U"GravityScale"))
-			{
-				setGravityScale(Parse<double>(_ini[section + U".GravityScale"]));
-			}
-
-			if (_ini.hasValue(section, U"Awake"))
-			{
-				setAwake(Parse<bool>(_ini[section + U".Awake"]));
-			}
-
-			if (_ini.hasValue(section, U"Bullte"))
-			{
-				setBulletMode(Parse<bool>(_ini[section + U".Bullte"]));
-			}
-		}
-		catch (ParseError&)
-		{
-			return false;
-		}
-
-		return true;
-	}
-
-	bool Collider2D::LoadProperties(const INI& ini, Collider2D& collider)
-	{
-		const String section = U"Properties";
-
-		if (not ini.hasSection(section))
-			return false;
-
-		try
-		{
-			if (ini.hasValue(section, U"Position"))
-			{
-				collider.setPos(Parse<Vec2>(ini[section + U".Position"]), true);
-			}
-
-			if (ini.hasValue(section, U"VelocityRange"))
-			{
-				collider.setVelocityRange(Parse<RectF>(ini[section + U".VelocityRange"]));
-			}
-
-			if (ini.hasValue(section, U"Angle"))
-			{
-				collider.setAngle(Parse<double>(ini[section + U".Angle"]), true);
-			}
-
-			if (ini.hasValue(section, U"BodyType"))
-			{
-				collider.setBodyType(static_cast<P2BodyType>(Parse<uint8>(ini[section + U".BodyType"])));
-			}
-
-			if (ini.hasValue(section, U"Damping"))
-			{
-				collider.setDamping(Parse<double>(ini[section + U".Damping"]));
-			}
-
-			if (ini.hasValue(section, U"FixedRotation"))
-			{
-				collider.setFixedRotation(Parse<bool>(ini[section + U".FixedRotation"]));
-			}
-
-			if (ini.hasValue(section, U"GravityScale"))
-			{
-				collider.setGravityScale(Parse<double>(ini[section + U".GravityScale"]));
-			}
-
-			if (ini.hasValue(section, U"Awake"))
-			{
-				collider.setAwake(Parse<bool>(ini[section + U".Awake"]));
-			}
-
-			if (ini.hasValue(section, U"Bullte"))
-			{
-				collider.setBulletMode(Parse<bool>(ini[section + U".Bullte"]));
-			}
-		}
-		catch (ParseError&)
-		{
-			return false;
-		}
-
-		return true;
-	}
-
-	void Collider2D::SaveMaterial(INI& ini, const P2Shape& shape)
-	{
-		ini.addSection(U"Material");
-		ini.write(U"Material", U"Density", shape.getDensity());
-		ini.write(U"Material", U"Restitution", shape.getRestitution());
-		ini.write(U"Material", U"Friction", shape.getFriction());
-		ini.write(U"Material", U"RestitutionThreshold", shape.getRestitutionThreshold());
-	}
-
-	void Collider2D::SaveFilter(INI& ini, const P2Shape& shape)
-	{
-		ini.addSection(U"Filter");
-		ini.write(U"Filter", U"Category", shape.getFilter().categoryBits);
-		ini.write(U"Filter", U"Mask", shape.getFilter().maskBits);
-	}
-
-	void Collider2D::SaveProperties(INI& ini, Collider2D& collider)
-	{
-		const auto& body = collider.mP2Body;
-
-		ini.addSection(U"Properties");
-		ini.write(U"Properties", U"Position", body.getPos());
-		ini.write(U"Properties", U"VelocityRange", collider.getVelocityRange());
-		ini.write(U"Properties", U"Angle", body.getAngle());
-		ini.write(U"Properties", U"BodyType", static_cast<uint8>(body.getBodyType()));
-		ini.write(U"Properties", U"Damping", body.getDamping());
-		ini.write(U"Properties", U"FixedRotation", body.isFixedRotation());
-		ini.write(U"Properties", U"GravityScale", body.getGravityScale());
-		ini.write(U"Properties", U"Awake", body.isAwake());
-		ini.write(U"Properties", U"Bullte", body.isBullet());
 	}
 }

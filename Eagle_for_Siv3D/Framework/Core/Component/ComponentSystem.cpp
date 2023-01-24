@@ -150,7 +150,7 @@ namespace eagle::Internal
 			mExecutionOrder.append(mPendingOrders);
 			mPendingOrders.clear();
 
-			auto compare = [](const std::type_index& a, const std::type_index& b)
+			auto compare = [](const TypeID& a, const TypeID& b)
 			{
 				return ExecutionOrder::Get(a) < ExecutionOrder::Get(b);
 			};
@@ -172,19 +172,19 @@ namespace eagle::Internal
 		}
 	}
 
-	void ComponentSystem::add(const SharedObject<Component>& _component, const std::type_index& _type)
+	void ComponentSystem::add(const SharedObject<Component>& _component, const TypeID& _type)
 	{
 		// 新しい型の追加
 		if (not contains(_type))
 		{
-			mComponents.emplace(_type, List_t{});
+			mComponents.emplace(_type, ComponentArray{});
 			mPendingOrders << _type;
 		}
 
 		mComponents[_type].add(_component);
 	}
 
-	WeakObject<Component> ComponentSystem::getComponent(const WeakObject<Actor>& _actor, const std::type_index& _type) const
+	WeakObject<Component> ComponentSystem::getComponent(const WeakObject<Actor>& _actor, const TypeID& _type) const
 	{
 		if (contains(_type))
 		{
@@ -194,7 +194,7 @@ namespace eagle::Internal
 		return WeakObject<Component>{};
 	}
 
-	WeakObject<Component> ComponentSystem::getComponentByTag(const String& _tag, const std::type_index& _type) const
+	WeakObject<Component> ComponentSystem::getComponentByTag(const String& _tag, const TypeID& _type) const
 	{
 		if (contains(_type))
 		{
@@ -204,7 +204,7 @@ namespace eagle::Internal
 		return WeakObject<Component>{};
 	}
 
-	Array<WeakObject<Component>> ComponentSystem::getComponents(const std::type_index& _type) const
+	Array<WeakObject<Component>> ComponentSystem::getComponents(const TypeID& _type) const
 	{
 		if (contains(_type))
 		{
@@ -214,7 +214,7 @@ namespace eagle::Internal
 		return Array<WeakObject<Component>>{};
 	}
 
-	Array<WeakObject<Component>> ComponentSystem::getComponentsByTag(const String& _tag, const std::type_index& _type) const
+	Array<WeakObject<Component>> ComponentSystem::getComponentsByTag(const String& _tag, const TypeID& _type) const
 	{
 		if (contains(_type))
 		{
@@ -224,7 +224,7 @@ namespace eagle::Internal
 		return Array<WeakObject<Component>>{};
 	}
 
-	size_t ComponentSystem::count(const std::type_index& _type) const
+	size_t ComponentSystem::count(const TypeID& _type) const
 	{
 		if (contains(_type))
 		{
@@ -244,7 +244,7 @@ namespace eagle::Internal
 		return s;
 	}
 
-	bool ComponentSystem::contains(const std::type_index& _type) const
+	bool ComponentSystem::contains(const TypeID& _type) const
 	{
 		return mComponents.contains(_type);
 	}

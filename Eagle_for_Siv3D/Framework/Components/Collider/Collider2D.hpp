@@ -124,6 +124,10 @@ namespace eagle
 
 		void rotate(double _radianAngle);
 
+		void reset();
+
+	public:
+
 		void onCollision(const Collision& _collision);
 
 		ObjectHandle<P2World> getP2World()const;
@@ -154,22 +158,6 @@ namespace eagle
 		void callCollisionExit();
 
 		void callCollision();
-
-	protected:
-
-		static bool LoadMaterial(const INI& ini, P2Material& material);
-
-		static bool LoadFilter(const INI& ini, P2Filter& filter);
-
-		bool loadProperties(const INI& _ini);
-
-		static bool LoadProperties(const INI& ini, Collider2D& collider);
-
-		static void SaveMaterial(INI& ini, const P2Shape& shape);
-
-		static void SaveFilter(INI& ini, const P2Shape& shape);
-
-		static void SaveProperties(INI& ini, Collider2D& collider);
 
 	private:
 

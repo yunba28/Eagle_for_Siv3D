@@ -14,7 +14,7 @@ namespace eagle
 	{
 	public:
 
-		struct SliseParam
+		struct Param
 		{
 			/// @brief 画像の分割数
 			Size division;
@@ -30,9 +30,9 @@ namespace eagle
 
 		SpriteRenderer();
 
-		void setTextureAssetTag(const AssetTag& _assetTag);
+		void setTexturePath(const FilePath& _path);
 
-		const AssetTag& getTextureAssetTag()const;
+		const FilePath& getTexturePath()const;
 
 		void setDiffuseColor(const Color& _color);
 
@@ -56,9 +56,9 @@ namespace eagle
 
 		bool isFliped()const;
 
-		void setSliseParam(const SliseParam& _param);
+		void setParam(const Param& _param);
 
-		const SliseParam& getSliseParam()const;
+		const Param& getParam()const;
 
 	private:
 
@@ -75,9 +75,11 @@ namespace eagle
 		TextureRegion modifyTexture(const TextureRegion& _textureRegion)const;
 
 	private:
+		/// @brief 描画用テクスチャ
+		Texture mTexture;
 
-		/// @brief 描画する画像のアセットタグ
-		AssetTag mAssetTag;
+		/// @brief テクスチャ取得に使われたパス
+		FilePath mPath;
 
 		/// @brief 画像のディフューズカラー
 		Color mColor;
@@ -95,12 +97,6 @@ namespace eagle
 		std::pair<bool, bool> mFlip;
 
 		/// @brief 分割描画の情報
-		SliseParam mParam;
-
-		template<class Type>
-		friend bool Load(const String& path, Type& renderer);
-
-		template<class Type>
-		friend bool Save(const String& path, Type& renderer);
+		Param mParam;
 	};
 }
