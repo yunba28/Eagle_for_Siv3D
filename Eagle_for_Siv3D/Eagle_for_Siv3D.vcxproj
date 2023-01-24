@@ -74,12 +74,13 @@
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ForcedIncludeFiles>stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <AdditionalIncludeDirectories>$(ProjectDir)/Framework/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/Library/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <DelayLoadDLLs>advapi32.dll;crypt32.dll;dwmapi.dll;gdi32.dll;imm32.dll;ole32.dll;oleaut32.dll;opengl32.dll;shell32.dll;shlwapi.dll;user32.dll;winmm.dll;ws2_32.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>$(ProjectDir)/Library/EagleLibrary.lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)App"</Command>
@@ -101,7 +102,7 @@
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ForcedIncludeFiles>stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <AdditionalIncludeDirectories>$(ProjectDir)/Framework/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/Library/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -109,26 +110,15 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <DelayLoadDLLs>advapi32.dll;crypt32.dll;dwmapi.dll;gdi32.dll;imm32.dll;ole32.dll;oleaut32.dll;opengl32.dll;shell32.dll;shlwapi.dll;user32.dll;winmm.dll;ws2_32.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>$(ProjectDir)/Library/EagleLibrary.lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)App"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Framework\Components\Transform\Transform_detail.cpp" />
-    <ClCompile Include="Framework\Core\Actor\Actor.cpp" />
-    <ClCompile Include="Framework\Core\Actor\ActorSystem.cpp" />
-    <ClCompile Include="Framework\Core\Component\Component.cpp" />
-    <ClCompile Include="Framework\Core\Component\ComponentSystem.cpp" />
-    <ClCompile Include="Framework\Core\ExecutionOrder\ExecutionOrder.cpp" />
-    <ClCompile Include="Framework\Core\FixedSystem\FixedSystem.cpp" />
-    <ClCompile Include="Framework\Core\RenderSystem\DrawableComponent.cpp" />
-    <ClCompile Include="Framework\Core\RenderSystem\RenderSystem.cpp" />
-    <ClCompile Include="Framework\Core\Scene\ScenePimpl.cpp" />
-    <ClCompile Include="Framework\ProjectSettings\InputAxis.cpp" />
-    <ClCompile Include="Framework\ProjectSettings\ProjectSettings.cpp" />
-    <ClCompile Include="Framework\Utility\Name\Name.cpp" />
-    <ClCompile Include="Framework\Utility\Tag\Tag.cpp" />
+    <ClCompile Include="Framework\Components\Behavior.cpp" />
+    <ClCompile Include="Framework\Components\Transform.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -329,34 +319,10 @@
     <Xml Include="App\example\xml\test.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Framework\Components\Behavior.hpp" />
     <ClInclude Include="Framework\Components\Transform.hpp" />
-    <ClInclude Include="Framework\Components\Transform\Transform_detail.hpp" />
-    <ClInclude Include="Framework\Core\Actor\Actor.hpp" />
-    <ClInclude Include="Framework\Core\Actor\Actor.ipp" />
-    <ClInclude Include="Framework\Core\Actor\ActorSystem.hpp" />
-    <ClInclude Include="Framework\Core\Component\Component.hpp" />
-    <ClInclude Include="Framework\Core\Component\Component.ipp" />
-    <ClInclude Include="Framework\Core\Component\ComponentSystem.hpp" />
-    <ClInclude Include="Framework\Core\Core.hpp" />
-    <ClInclude Include="Framework\Core\CoreFwd.hpp" />
-    <ClInclude Include="Framework\Core\ExecutionOrder\ExecutionOrder.hpp" />
-    <ClInclude Include="Framework\Core\FixedSystem\FixedSystem.hpp" />
-    <ClInclude Include="Framework\Core\GameWorld\GameWorld.hpp" />
-    <ClInclude Include="Framework\Core\GameWorld\GameWorld.ipp" />
-    <ClInclude Include="Framework\Core\RenderSystem\DrawableComponent.hpp" />
-    <ClInclude Include="Framework\Core\RenderSystem\RenderSystem.hpp" />
-    <ClInclude Include="Framework\Core\Scene\BasicScene.hpp" />
-    <ClInclude Include="Framework\Core\Scene\BasicScene.ipp" />
-    <ClInclude Include="Framework\Core\Scene\ScenePimpl.hpp" />
-    <ClInclude Include="Framework\Core\Scene\ScenePimpl.ipp" />
-    <ClInclude Include="Framework\Eagle.hpp" />
-    <ClInclude Include="Framework\ProjectSettings\InputAxis.hpp" />
-    <ClInclude Include="Framework\ProjectSettings\ProjectSettings.hpp" />
-    <ClInclude Include="Framework\Utility\Companion.hpp" />
-    <ClInclude Include="Framework\Utility\Concepts.hpp" />
-    <ClInclude Include="Framework\Utility\Name\Name.hpp" />
-    <ClInclude Include="Framework\Utility\SmartObject.hpp" />
-    <ClInclude Include="Framework\Utility\Tag\Tag.hpp" />
+    <ClInclude Include="Framework\Fwd.hpp" />
+    <ClInclude Include="Framework\Scene\BasicScene.hpp" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

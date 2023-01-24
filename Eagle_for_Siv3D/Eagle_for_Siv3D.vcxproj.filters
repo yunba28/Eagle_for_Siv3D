@@ -128,106 +128,34 @@
     <Filter Include="Resource Files\engine\font\min">
       <UniqueIdentifier>{1b103960-f11a-4515-b4f1-f59333ce00d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Eagle">
-      <UniqueIdentifier>{d32e5833-48ab-4466-bc54-186929d396bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Components">
-      <UniqueIdentifier>{a835ce1a-39de-4d2c-b573-1abae2c15f19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Actors">
-      <UniqueIdentifier>{c85875ae-0278-486c-a55a-ea98c125f666}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Core">
-      <UniqueIdentifier>{b98b9990-14b5-4424-81c2-600ed0128c14}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\ProjectSettings">
-      <UniqueIdentifier>{6f508b01-dd4c-444a-ae98-3f79b00225c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Utility">
-      <UniqueIdentifier>{2f7542d5-fe23-4dc0-ac60-725b26a03457}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Utility\Name">
-      <UniqueIdentifier>{36951389-9f49-477e-b989-c5da0c3e2d11}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Utility\Tag">
-      <UniqueIdentifier>{e47ee2e0-5535-4849-9950-bbe4bec8f1b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Core\Actor">
-      <UniqueIdentifier>{3bef6d8f-f32d-4749-88a4-6bd053afa47d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Core\Component">
-      <UniqueIdentifier>{1b87e777-711b-470b-9c9a-2e9b9378200a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Core\ExecutionOrder">
-      <UniqueIdentifier>{65250f25-ce3f-4f37-b065-1d2dcf03765f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Core\FixedSystem">
-      <UniqueIdentifier>{fedb958c-1442-45d8-990b-9dfa0d3958eb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Core\GameWorld">
-      <UniqueIdentifier>{0ea4db3d-8eff-44ad-998a-043d2f176700}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Core\RenderSystem">
-      <UniqueIdentifier>{a554748a-ef17-4ba9-bc25-faf2da1548c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Core\Scene">
-      <UniqueIdentifier>{4ac1cd6e-bbec-418e-95cd-c475f4dc3ba1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Eagle\Components\Transform">
-      <UniqueIdentifier>{453e827d-8638-4caf-bddc-f9fbf76a5f03}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Siv3D">
       <UniqueIdentifier>{62e1e47c-7269-44d1-8447-aa30fc76fd67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{7dd5dde8-f750-48a2-a6b9-ca0e25ff3ca6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene">
+      <UniqueIdentifier>{6abbec63-a9e1-40b8-b031-40caefa415ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Actors">
+      <UniqueIdentifier>{e03f3304-ce50-48b8-bf54-372e832f397e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Components">
+      <UniqueIdentifier>{27d921bb-06dc-4b86-9225-63662c3d00f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Framework\Utility\Name\Name.cpp">
-      <Filter>Eagle\Utility\Name</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Utility\Tag\Tag.cpp">
-      <Filter>Eagle\Utility\Tag</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Core\Actor\Actor.cpp">
-      <Filter>Eagle\Core\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Core\Actor\ActorSystem.cpp">
-      <Filter>Eagle\Core\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Core\Component\Component.cpp">
-      <Filter>Eagle\Core\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Core\Component\ComponentSystem.cpp">
-      <Filter>Eagle\Core\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Components\Transform\Transform_detail.cpp">
-      <Filter>Eagle\Components\Transform</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Core\ExecutionOrder\ExecutionOrder.cpp">
-      <Filter>Eagle\Core\ExecutionOrder</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Core\Scene\ScenePimpl.cpp">
-      <Filter>Eagle\Core\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Core\FixedSystem\FixedSystem.cpp">
-      <Filter>Eagle\Core\FixedSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Core\RenderSystem\DrawableComponent.cpp">
-      <Filter>Eagle\Core\RenderSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Core\RenderSystem\RenderSystem.cpp">
-      <Filter>Eagle\Core\RenderSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\ProjectSettings\InputAxis.cpp">
-      <Filter>Eagle\ProjectSettings</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\ProjectSettings\ProjectSettings.cpp">
-      <Filter>Eagle\ProjectSettings</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Siv3D</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Siv3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Behavior.cpp">
+      <Filter>Framework\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Components\Transform.cpp">
+      <Filter>Framework\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -858,92 +786,20 @@
     </Xml>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Framework\Utility\Concepts.hpp">
-      <Filter>Eagle\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Utility\Name\Name.hpp">
-      <Filter>Eagle\Utility\Name</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Utility\Tag\Tag.hpp">
-      <Filter>Eagle\Utility\Tag</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Utility\Companion.hpp">
-      <Filter>Eagle\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Utility\SmartObject.hpp">
-      <Filter>Eagle\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\Core.hpp">
-      <Filter>Eagle\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\CoreFwd.hpp">
-      <Filter>Eagle\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\Actor\Actor.hpp">
-      <Filter>Eagle\Core\Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\Actor\Actor.ipp">
-      <Filter>Eagle\Core\Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\Actor\ActorSystem.hpp">
-      <Filter>Eagle\Core\Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\Component\Component.hpp">
-      <Filter>Eagle\Core\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\Component\Component.ipp">
-      <Filter>Eagle\Core\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\Component\ComponentSystem.hpp">
-      <Filter>Eagle\Core\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Components\Transform\Transform_detail.hpp">
-      <Filter>Eagle\Components\Transform</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Components\Transform.hpp">
-      <Filter>Eagle\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\ExecutionOrder\ExecutionOrder.hpp">
-      <Filter>Eagle\Core\ExecutionOrder</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\Scene\BasicScene.hpp">
-      <Filter>Eagle\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\Scene\BasicScene.ipp">
-      <Filter>Eagle\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\Scene\ScenePimpl.hpp">
-      <Filter>Eagle\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\Scene\ScenePimpl.ipp">
-      <Filter>Eagle\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\FixedSystem\FixedSystem.hpp">
-      <Filter>Eagle\Core\FixedSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\RenderSystem\DrawableComponent.hpp">
-      <Filter>Eagle\Core\RenderSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\RenderSystem\RenderSystem.hpp">
-      <Filter>Eagle\Core\RenderSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\GameWorld\GameWorld.hpp">
-      <Filter>Eagle\Core\GameWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Core\GameWorld\GameWorld.ipp">
-      <Filter>Eagle\Core\GameWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\ProjectSettings\InputAxis.hpp">
-      <Filter>Eagle\ProjectSettings</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\ProjectSettings\ProjectSettings.hpp">
-      <Filter>Eagle\ProjectSettings</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Eagle.hpp">
-      <Filter>Eagle</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Scene\BasicScene.hpp">
+      <Filter>Framework\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Behavior.hpp">
+      <Filter>Framework\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Fwd.hpp">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Components\Transform.hpp">
+      <Filter>Framework\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

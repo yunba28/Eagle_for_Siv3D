@@ -1,33 +1,13 @@
-﻿# include <Eagle.hpp> // OpenSiv3D v0.6.6
-
-// シーンの作成
-class TestScene : public eagle::DefaultWorld::BasicScene
-{
-public:
-	TestScene(const InitData& _ini) : BasicScene(_ini)
-	{
-		
-	}
-
-	void update()override
-	{
-		Print << U"TestScene";
-	}
-};
+﻿#include <Siv3D.hpp>
+#include <Eagle.hpp>
 
 void Main()
 {
-	// シーンを管理するマネジメントクラスを生成
-	eagle::DefaultWorld world{};
-	// TestSceneをMySceneという名前でworldに登録
-	world.add<TestScene>(U"MyScene");
+	
 
 	while (s3d::System::Update())
 	{
-		ClearPrint();
-
-		if (not world.update())
-			break;
+		
 	}
 }
 

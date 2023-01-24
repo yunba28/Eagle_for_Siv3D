@@ -1,3 +1,19 @@
 ﻿#pragma once
 
-#include <Components/Transform/Transform_detail.hpp>
+#include <Framework/Component.hpp>
+
+#include "../Fwd.hpp"
+
+namespace eagle
+{
+	class Transform : public Component
+	{
+	public:
+
+	private:
+
+
+
+	};
+}
+
