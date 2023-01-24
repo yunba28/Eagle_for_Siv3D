@@ -6,6 +6,12 @@
 
 namespace eagle
 {
+	enum class Space
+	{
+		Absolute,
+		Relative
+	};
+
 	class Transform : public Component
 	{
 	public:
