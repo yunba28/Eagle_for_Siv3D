@@ -131,17 +131,23 @@
     <Filter Include="Siv3D">
       <UniqueIdentifier>{62e1e47c-7269-44d1-8447-aa30fc76fd67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework">
-      <UniqueIdentifier>{7dd5dde8-f750-48a2-a6b9-ca0e25ff3ca6}</UniqueIdentifier>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{c1c5d4e2-1bd8-41da-996a-c328e8343329}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Scene">
-      <UniqueIdentifier>{6abbec63-a9e1-40b8-b031-40caefa415ab}</UniqueIdentifier>
+    <Filter Include="Engine\Framework">
+      <UniqueIdentifier>{69f563e6-91c2-4414-a5c0-45b7b104c3d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Actors">
-      <UniqueIdentifier>{e03f3304-ce50-48b8-bf54-372e832f397e}</UniqueIdentifier>
+    <Filter Include="Engine\Common">
+      <UniqueIdentifier>{588ba22c-c14d-4ea8-96ce-5596c9d9bb8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Components">
-      <UniqueIdentifier>{27d921bb-06dc-4b86-9225-63662c3d00f5}</UniqueIdentifier>
+    <Filter Include="Engine\Framework\Detail">
+      <UniqueIdentifier>{b0c786b2-1ff3-4c0d-85bd-38ee6f557b89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Framework\Source">
+      <UniqueIdentifier>{6afcb86f-4178-42d7-893d-99e0cf67e590}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Common\Source">
+      <UniqueIdentifier>{8d83c1e3-0823-4165-8626-d4df0c7f3e02}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -151,11 +157,44 @@
     <ClCompile Include="Main.cpp">
       <Filter>Siv3D</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Components\Behavior.cpp">
-      <Filter>Framework\Components</Filter>
+    <ClCompile Include="Engine\Framework\Source\CommonTag.cpp">
+      <Filter>Engine\Framework\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Components\Transform.cpp">
-      <Filter>Framework\Components</Filter>
+    <ClCompile Include="Engine\Framework\Source\SceneObjectDetail.cpp">
+      <Filter>Engine\Framework\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Source\UniqueTag.cpp">
+      <Filter>Engine\Framework\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Source\SceneObject.cpp">
+      <Filter>Engine\Framework\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Source\Component.cpp">
+      <Filter>Engine\Framework\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Source\Actor.cpp">
+      <Filter>Engine\Framework\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Source\ActorSystem.cpp">
+      <Filter>Engine\Framework\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Common\Source\FixedUpdate.cpp">
+      <Filter>Engine\Common\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Source\ComponentSystem.cpp">
+      <Filter>Engine\Framework\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Source\ExecutionOrder.cpp">
+      <Filter>Engine\Framework\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Source\Transform.cpp">
+      <Filter>Engine\Framework\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Source\Renderer2D.cpp">
+      <Filter>Engine\Framework\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Source\Renderer3D.cpp">
+      <Filter>Engine\Framework\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -789,17 +828,59 @@
     <ClInclude Include="stdafx.h">
       <Filter>Siv3D</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Scene\BasicScene.hpp">
-      <Filter>Framework\Scene</Filter>
+    <ClInclude Include="Engine\Framework\FrameworkFwd.hpp">
+      <Filter>Engine\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Components\Behavior.hpp">
-      <Filter>Framework\Components</Filter>
+    <ClInclude Include="Engine\Framework\SceneObject.hpp">
+      <Filter>Engine\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Fwd.hpp">
-      <Filter>Framework</Filter>
+    <ClInclude Include="Engine\Common\SmartObject.hpp">
+      <Filter>Engine\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Components\Transform.hpp">
-      <Filter>Framework\Components</Filter>
+    <ClInclude Include="Engine\Framework\Detail\CommonTag.hpp">
+      <Filter>Engine\Framework\Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Detail\SceneObjectDetail.hpp">
+      <Filter>Engine\Framework\Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Detail\UniqueTag.hpp">
+      <Filter>Engine\Framework\Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Actor.hpp">
+      <Filter>Engine\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Component.hpp">
+      <Filter>Engine\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Detail\ActorSystem.hpp">
+      <Filter>Engine\Framework\Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Detail\ComponentSystem.hpp">
+      <Filter>Engine\Framework\Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Common\FixedUpdate.hpp">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\ExecutionOrder.hpp">
+      <Filter>Engine\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Behavior.hpp">
+      <Filter>Engine\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Transform.hpp">
+      <Filter>Engine\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Common\Companion.hpp">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Detail\RenderSystem.hpp">
+      <Filter>Engine\Framework\Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Renderer2D.hpp">
+      <Filter>Engine\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Renderer3D.hpp">
+      <Filter>Engine\Framework</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

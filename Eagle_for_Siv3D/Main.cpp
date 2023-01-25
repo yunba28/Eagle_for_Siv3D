@@ -1,13 +1,35 @@
 ﻿#include <Siv3D.hpp>
-#include <Eagle.hpp>
+
+#include <Framework/SceneObject.hpp>
+#include <Framework/Actor.hpp>
+#include <Framework/Behavior.hpp>
+
+class PrintComponent : public eagle::Behavior
+{
+public:
+
+private:
+
+	void update()override final
+	{
+		Print << U"hello world";
+	}
+
+};
 
 void Main()
 {
-	
+	auto sceneObject = eagle::SceneObject::Create();
+
+	{
+		auto actor = sceneObject->createActor().lock();
+		actor->attachComponent<PrintComponent>();
+	}
 
 	while (s3d::System::Update())
 	{
-		
+		ClearPrint();
+		sceneObject->detail()->update();
 	}
 }
 
