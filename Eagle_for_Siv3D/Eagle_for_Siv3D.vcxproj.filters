@@ -149,15 +149,18 @@
     <Filter Include="Engine\Common\Source">
       <UniqueIdentifier>{8d83c1e3-0823-4165-8626-d4df0c7f3e02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Template">
+    <Filter Include="Engine\_Template">
       <UniqueIdentifier>{12242bb6-6ec0-492c-8466-caf676bf20be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project">
+      <UniqueIdentifier>{438ecb39-e250-4d28-8720-7f18a636062e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\Scenes">
+      <UniqueIdentifier>{dfcd6774-a4ea-4d0f-9654-642a8f6f0a90}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Siv3D</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
       <Filter>Siv3D</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Framework\Source\CommonTag.cpp">
@@ -203,19 +206,25 @@
       <Filter>Engine\Framework\Source</Filter>
     </ClCompile>
     <ClCompile Include="Engine\_Template\_Actor.cpp">
-      <Filter>Engine\Template</Filter>
+      <Filter>Engine\_Template</Filter>
     </ClCompile>
     <ClCompile Include="Engine\_Template\_Behavior.cpp">
-      <Filter>Engine\Template</Filter>
+      <Filter>Engine\_Template</Filter>
     </ClCompile>
     <ClCompile Include="Engine\_Template\_Renderer2D.cpp">
-      <Filter>Engine\Template</Filter>
+      <Filter>Engine\_Template</Filter>
     </ClCompile>
     <ClCompile Include="Engine\_Template\_Renderer3D.cpp">
-      <Filter>Engine\Template</Filter>
+      <Filter>Engine\_Template</Filter>
     </ClCompile>
     <ClCompile Include="Engine\_Template\_Scene.cpp">
-      <Filter>Engine\Template</Filter>
+      <Filter>Engine\_Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Siv3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\Scenes\DefaultScene.cpp">
+      <Filter>Project\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -904,22 +913,28 @@
       <Filter>Engine\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Engine\_Template\_Actor.hpp">
-      <Filter>Engine\Template</Filter>
+      <Filter>Engine\_Template</Filter>
     </ClInclude>
     <ClInclude Include="Engine\_Template\_Behavior.hpp">
-      <Filter>Engine\Template</Filter>
+      <Filter>Engine\_Template</Filter>
     </ClInclude>
     <ClInclude Include="Engine\_Template\_Renderer2D.hpp">
-      <Filter>Engine\Template</Filter>
+      <Filter>Engine\_Template</Filter>
     </ClInclude>
     <ClInclude Include="Engine\_Template\_Renderer3D.hpp">
-      <Filter>Engine\Template</Filter>
+      <Filter>Engine\_Template</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Framework\BasicScene.hpp">
       <Filter>Engine\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Engine\_Template\_Scene.hpp">
-      <Filter>Engine\Template</Filter>
+      <Filter>Engine\_Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\Project.hpp">
+      <Filter>Project</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\Scenes\DefaultScene.hpp">
+      <Filter>Project\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

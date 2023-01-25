@@ -1,25 +1,18 @@
-﻿#include <Siv3D.hpp>
-
-#include <Framework/SceneObject.hpp>
-#include <Framework/Actor.hpp>
-#include <Framework/Behavior.hpp>
-#include <Framework/Renderer2D.hpp>
-#include <Framework/Transform.hpp>
-
-#include <_Template/_Actor.hpp>
+﻿#include <Scenes/DefaultScene.hpp>
 
 void Main()
 {
-	auto sceneObject = eagle::SceneObject{};
+	Project::GameWorld gameWorld;
+	gameWorld.add<Project::DefaultScene>(U"DefaultScene");
 
-	auto actor = sceneObject.createActor<MyActor>(U"_Actor");
-
-
-	
-	while (s3d::System::Update())
+	while (System::Update())
 	{
-		sceneObject.getDetail()->update();
-		sceneObject.getDetail()->draw();
+		/// @brief Printで出力されたデータをクリアする
+		ClearPrint();
+
+		/// @brief GameWorldがエラーを起こさない限り更新し続ける
+		if (not gameWorld.update())
+			break;
 	}
 }
 

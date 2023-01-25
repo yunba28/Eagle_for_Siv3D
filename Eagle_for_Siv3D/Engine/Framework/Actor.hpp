@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <Framework/Component.hpp>
+#include <Framework/Transform.hpp>
 #include <Framework/Detail/UniqueTag.hpp>
 #include <Framework/Detail/CommonTag.hpp>
 

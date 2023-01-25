@@ -21,6 +21,12 @@ namespace eagle
 
 		virtual ~BasicScene();
 
+		/// @brief T型のActorを作成する
+		/// @tparam T Actorの派生クラス
+		/// @param _name Actorの名前
+		template<class T = Actor>
+		WeakObject<T> createActor(const String& _name = U"MyActor");
+
 		/// @brief 画面の背景色を設定する
 		void setBackgroundColor(const Color& _background);
 
@@ -56,7 +62,7 @@ namespace eagle
 {
 	template<class State, class Data>
 	inline BasicScene<State, Data>::BasicScene(const InitData& _init)
-		: Scene(_init)
+		: IScene(_init)
 		, mSceneObject()
 	{
 		awake();
@@ -66,6 +72,13 @@ namespace eagle
 	inline BasicScene<State, Data>::~BasicScene()
 	{
 		dispose();
+	}
+
+	template<class State, class Data>
+	template<class T>
+	inline WeakObject<T> BasicScene<State, Data>::createActor(const String& _name)
+	{
+		return mSceneObject.createActor<T>(_name);
 	}
 
 	template<class State, class Data>
