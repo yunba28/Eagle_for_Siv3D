@@ -9,7 +9,9 @@
 #include <Siv3D/Color.hpp>
 
 using s3d::Camera2D;
-
+using s3d::DebugCamera3D;
+using s3d::MSRenderTexture;
+using s3d::Color;
 
 namespace eagle::backend
 {
@@ -17,18 +19,47 @@ namespace eagle::backend
 	{
 	public:
 
+		RenderSystem();
+
+		~RenderSystem();
+
+		void update();
+
+		void draw()const;
+
+		void add(const WeakObject<Renderer2D>& _renderer);
+
+		void add(const WeakObject<Renderer3D>& _renderer);
+
+		void notifyChageDrawOrder();
+
+	private:
+
+		void draw2D()const;
+
+		void draw3D()const;
+
 	private:
 
 		struct
 		{
 			Array<WeakObject<Renderer2D>> list;
 			Array<WeakObject<Renderer2D>> queue;
+			SharedObject<Camera2D> camera;
 			mutable bool notifyRemove;
 			bool notifySort;
 		}m2D;
 
+		struct
+		{
+			Array<WeakObject<Renderer3D>> list;
+			Array<WeakObject<Renderer3D>> queue;
+			SharedObject<DebugCamera3D> camera;
+			mutable bool notifyRemove;
+		}m3D;
+
 		MSRenderTexture mRenderTexture;
 
-		ColorF mBackgroundColor;
+		Color mBackgroundColor;
 	};
 }

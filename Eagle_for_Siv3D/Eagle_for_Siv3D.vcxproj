@@ -126,6 +126,7 @@
     <ClCompile Include="Engine\Framework\Source\ExecutionOrder.cpp" />
     <ClCompile Include="Engine\Framework\Source\Renderer2D.cpp" />
     <ClCompile Include="Engine\Framework\Source\Renderer3D.cpp" />
+    <ClCompile Include="Engine\Framework\Source\RenderSystem.cpp" />
     <ClCompile Include="Engine\Framework\Source\SceneObject.cpp" />
     <ClCompile Include="Engine\Framework\Source\SceneObjectDetail.cpp" />
     <ClCompile Include="Engine\Framework\Source\Transform.cpp" />

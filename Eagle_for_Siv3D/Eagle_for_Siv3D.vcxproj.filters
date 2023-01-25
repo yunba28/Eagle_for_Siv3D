@@ -196,6 +196,9 @@
     <ClCompile Include="Engine\Framework\Source\Renderer3D.cpp">
       <Filter>Engine\Framework\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Framework\Source\RenderSystem.cpp">
+      <Filter>Engine\Framework\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
