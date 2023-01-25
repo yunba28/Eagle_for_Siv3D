@@ -6,6 +6,7 @@
 namespace eagle
 {
 	Renderer3D::Renderer3D()
+		: mDrawEnable(true)
 	{
 	}
 
@@ -13,9 +14,28 @@ namespace eagle
 	{
 	}
 
+	void Renderer3D::setEnable(Enable _enable, DrawEnable _drawEnable)
+	{
+		Component::setEnable(_enable);
+		mDrawEnable = _drawEnable;
+	}
+
+	bool Renderer3D::isDrawEnable() const noexcept
+	{
+		return mDrawEnable.draw;
+	}
+
 	void Renderer3D::_internalAwake()
 	{
-		getActor()->sceneObject()->addRenderer(Cast<Renderer3D>(self()));
+		getActor()->getSceneObject()->addRenderer(Cast<Renderer3D>(self()));
 		Component::_internalAwake();
+	}
+
+	void Renderer3D::_internalDraw()
+	{
+		if (mDrawEnable.draw)
+		{
+			draw();
+		}
 	}
 }

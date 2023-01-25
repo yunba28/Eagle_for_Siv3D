@@ -111,19 +111,55 @@ namespace eagle::backend
 		m2D.notifySort = true;
 	}
 
+	void RenderSystem::setBackgroundColor(const Color& _background)
+	{
+		mBackgroundColor = _background;
+	}
+
+	WeakObject<Camera2D> RenderSystem::getCamera2D() const noexcept
+	{
+		return m2D.camera.weak();
+	}
+
+	WeakObject<DebugCamera3D> RenderSystem::getCamera3D() const noexcept
+	{
+		return m3D.camera.weak();
+	}
+
+	const Color& RenderSystem::getBackgroundColor() const noexcept
+	{
+		return mBackgroundColor;
+	}
+
 	void RenderSystem::draw2D() const
 	{
-		const auto transformer = m2D.camera->createTransformer();
-
-		for (auto& ref : m2D.list)
+		// 通常の描画
 		{
-			auto component = ref.lock();
-			if ((not component) or component->isPendingKill())
+			const auto transformer = m2D.camera->createTransformer();
+
+			for (auto& ref : m2D.list)
 			{
-				m2D.notifyRemove = true;
-				continue;
+				auto component = ref.lock();
+				if ((not component) or component->isPendingKill())
+				{
+					m2D.notifyRemove = true;
+					continue;
+				}
+				component->_internalDraw();
 			}
-			component->draw();
+		}
+
+		// 2Dカメラの影響を受けない描画
+		{
+			for (auto& ref : m2D.list)
+			{
+				auto component = ref.lock();
+				if ((not component) or component->isPendingKill())
+				{
+					continue;
+				}
+				component->_internalDrawScreen();
+			}
 		}
 	}
 
@@ -145,7 +181,7 @@ namespace eagle::backend
 					m3D.notifyRemove = true;
 					continue;
 				}
-				component->draw();
+				component->_internalDraw();
 			}
 		}
 

@@ -131,6 +131,11 @@
     <ClCompile Include="Engine\Framework\Source\SceneObjectDetail.cpp" />
     <ClCompile Include="Engine\Framework\Source\Transform.cpp" />
     <ClCompile Include="Engine\Framework\Source\UniqueTag.cpp" />
+    <ClCompile Include="Engine\_Template\_Actor.cpp" />
+    <ClCompile Include="Engine\_Template\_Behavior.cpp" />
+    <ClCompile Include="Engine\_Template\_Renderer2D.cpp" />
+    <ClCompile Include="Engine\_Template\_Renderer3D.cpp" />
+    <ClCompile Include="Engine\_Template\_Scene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -335,6 +340,7 @@
     <ClInclude Include="Engine\Common\FixedUpdate.hpp" />
     <ClInclude Include="Engine\Common\SmartObject.hpp" />
     <ClInclude Include="Engine\Framework\Actor.hpp" />
+    <ClInclude Include="Engine\Framework\BasicScene.hpp" />
     <ClInclude Include="Engine\Framework\Behavior.hpp" />
     <ClInclude Include="Engine\Framework\Component.hpp" />
     <ClInclude Include="Engine\Framework\Detail\ActorSystem.hpp" />
@@ -349,6 +355,11 @@
     <ClInclude Include="Engine\Framework\Renderer3D.hpp" />
     <ClInclude Include="Engine\Framework\SceneObject.hpp" />
     <ClInclude Include="Engine\Framework\Transform.hpp" />
+    <ClInclude Include="Engine\_Template\_Actor.hpp" />
+    <ClInclude Include="Engine\_Template\_Behavior.hpp" />
+    <ClInclude Include="Engine\_Template\_Renderer2D.hpp" />
+    <ClInclude Include="Engine\_Template\_Renderer3D.hpp" />
+    <ClInclude Include="Engine\_Template\_Scene.hpp" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

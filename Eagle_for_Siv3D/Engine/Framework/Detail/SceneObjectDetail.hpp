@@ -5,6 +5,14 @@
 #include <Framework/Detail/CommonTag.hpp>
 #include <Common/SmartObject.hpp>
 
+#include <Siv3D/Camera2D.hpp>
+#include <Siv3D/DebugCamera3D.hpp>
+#include <Siv3D/Color.hpp>
+
+using s3d::Camera2D;
+using s3d::DebugCamera3D;
+using s3d::Color;
+
 namespace eagle::backend
 {
 	class SceneObjectDetail
@@ -63,6 +71,18 @@ namespace eagle::backend
 		/// @param _tag タグを設定するCommonTag
 		void securedTag(const String& _name, CommonTag& _tag);
 
+		/// @brief 画面の背景色を設定する
+		void setBackgroundColor(const Color& _background);
+
+		/// @brief 2Dカメラの弱参照を取得する
+		WeakObject<Camera2D> getCamera2D()const noexcept;
+
+		/// @brief 3Dカメラの弱参照を取得する
+		WeakObject<DebugCamera3D> getCamera3D()const noexcept;
+
+		/// @brief 画面の背景色を取得する
+		const Color& getBackgroundColor()const noexcept;
+
 	public:
 
 		void update();
@@ -77,7 +97,7 @@ namespace eagle::backend
 
 		UniqueObject<class ComponentSystem> mComponentSystem;
 
-		//UniqueObject<class RenderSystem> mRenderSystem;
+		UniqueObject<class RenderSystem> mRenderSystem;
 
 		UniqueTagAsset mNameAsset;
 

@@ -8,9 +8,31 @@ namespace eagle
 	{
 	public:
 
+		struct DrawEnable
+		{
+			constexpr DrawEnable()
+				: draw(true)
+			{}
+
+			constexpr DrawEnable(bool _draw)
+				: draw(_draw)
+			{}
+
+			/// @brief draw関数の有効無効
+			bool draw;
+		};
+
+	public:
+
 		Renderer3D();
 
 		virtual ~Renderer3D();
+
+		using Component::setEnable;
+
+		void setEnable(Enable _enable, DrawEnable _drawEnable);
+
+		bool isDrawEnable()const noexcept;
 
 	private:
 
@@ -35,6 +57,12 @@ namespace eagle
 	public:
 
 		virtual void draw()const = 0;
+
+		virtual void _internalDraw();
+
+	private:
+
+		DrawEnable mDrawEnable;
 
 	};
 }

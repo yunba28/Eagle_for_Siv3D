@@ -33,6 +33,14 @@ namespace eagle::backend
 
 		void notifyChageDrawOrder();
 
+		void setBackgroundColor(const Color& _background);
+
+		WeakObject<Camera2D> getCamera2D()const noexcept;
+
+		WeakObject<DebugCamera3D> getCamera3D()const noexcept;
+
+		const Color& getBackgroundColor()const noexcept;
+
 	private:
 
 		void draw2D()const;

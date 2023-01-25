@@ -18,9 +18,14 @@ namespace eagle
 	{
 	}
 
-	ObjectHandle<backend::SceneObjectDetail> Actor::sceneObject() const noexcept
+	ObjectHandle<backend::SceneObjectDetail> Actor::getSceneObject() const noexcept
 	{
 		return mSceneObject.lock();
+	}
+
+	ObjectHandle<Transform> Actor::getTransform() const noexcept
+	{
+		return mTransform.lock();
 	}
 
 	void Actor::setName(const String& _name)
@@ -107,7 +112,6 @@ namespace eagle
 
 	void Actor::_internalAwake()
 	{
-		attachComponent<Transform>();
 		awake();
 	}
 
@@ -145,6 +149,7 @@ namespace eagle
 			actor->mSelf = actor.weak();
 			actor->mSceneObject = scene;
 			scene.lock()->securedName(name, actor->mName);
+			actor->mTransform = actor->attachComponent<Transform>();
 			actor->_internalAwake();
 			return true;
 		}

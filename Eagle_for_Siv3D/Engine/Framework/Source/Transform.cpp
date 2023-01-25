@@ -90,6 +90,7 @@ namespace eagle
 	{
 		static std::once_flag flag{};
 		std::call_once(flag, ExecutionOrder::Set<Transform>, 100ui64);
+		setEnable({ false,false,false });
 	}
 
 	Transform::~Transform()

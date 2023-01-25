@@ -15,7 +15,10 @@ namespace eagle
 		virtual ~Actor();
 
 		/// @brief Actorが所属するシーンのオブジェクトを取得する
-		ObjectHandle<backend::SceneObjectDetail> sceneObject()const noexcept;
+		ObjectHandle<backend::SceneObjectDetail> getSceneObject()const noexcept;
+
+		/// @brief Actorが所有するTransformの参照を取得する
+		ObjectHandle<Transform> getTransform()const noexcept;
 
 		/// @brief 名前を設定する 
 		void setName(const String& _name);
@@ -94,6 +97,9 @@ namespace eagle
 
 		/// @brief 自身が所属しているSceneの弱参照
 		WeakObject<backend::SceneObjectDetail> mSceneObject;
+
+		/// @brief Actorが所有するTransformの弱参照
+		WeakObject<Transform> mTransform;
 
 		/// @brief Actor固有の名前
 		UniqueTag mName;

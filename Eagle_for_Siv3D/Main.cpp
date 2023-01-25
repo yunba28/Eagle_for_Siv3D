@@ -3,33 +3,23 @@
 #include <Framework/SceneObject.hpp>
 #include <Framework/Actor.hpp>
 #include <Framework/Behavior.hpp>
+#include <Framework/Renderer2D.hpp>
+#include <Framework/Transform.hpp>
 
-class PrintComponent : public eagle::Behavior
-{
-public:
-
-private:
-
-	void update()override final
-	{
-		Print << U"hello world";
-	}
-
-};
+#include <_Template/_Actor.hpp>
 
 void Main()
 {
-	auto sceneObject = eagle::SceneObject::Create();
+	auto sceneObject = eagle::SceneObject{};
 
-	{
-		auto actor = sceneObject->createActor().lock();
-		actor->attachComponent<PrintComponent>();
-	}
+	auto actor = sceneObject.createActor<MyActor>(U"_Actor");
 
+
+	
 	while (s3d::System::Update())
 	{
-		ClearPrint();
-		sceneObject->detail()->update();
+		sceneObject.getDetail()->update();
+		sceneObject.getDetail()->draw();
 	}
 }
 

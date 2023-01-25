@@ -4,27 +4,42 @@
 
 namespace eagle
 {
+
 	class SceneObject final : Uncopyable
 	{
 	public:
 
 		SceneObject();
 
+		/// @brief T型のActorを作成する
+		/// @tparam T Actorの派生クラス
+		/// @param _name Actorの名前
 		template<class T = Actor>
-		WeakObject<T> createActor(const String& _name = U"MyActor")
-		{
-			return mSceneObject->createActor<T>(_name);
-		}
+		WeakObject<T> createActor(const String& _name = U"MyActor");
 
-		ObjectHandle<backend::SceneObjectDetail> detail()const noexcept;
+		/// @brief 画面の背景色を設定する
+		void setBackgroundColor(const Color& _background);
 
-	public:
+		/// @brief 2Dカメラの弱参照を取得する
+		WeakObject<Camera2D> getCamera2D()const noexcept;
 
-		static SharedObject<SceneObject> Create();
+		/// @brief 3Dカメラの弱参照を取得する
+		WeakObject<DebugCamera3D> getCamera3D()const noexcept;
+
+		/// @brief 画面の背景色を取得する
+		const Color& getBackgroundColor()const noexcept;
+
+		ObjectHandle<backend::SceneObjectDetail> getDetail()const noexcept;
 
 	private:
 
 		SharedObject<backend::SceneObjectDetail> mSceneObject;
 
 	};
+
+	template<class T>
+	WeakObject<T> SceneObject::createActor(const String& _name)
+	{
+		return mSceneObject->createActor<T>(_name);
+	}
 }

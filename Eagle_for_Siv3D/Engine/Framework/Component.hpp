@@ -29,16 +29,6 @@ namespace eagle
 				, pendingKill(false)
 			{}
 
-			/// @brief update関数の有効・無効
-			bool update;
-
-			/// @brief lateUpdate関数の有効・無効
-			bool lateUpdate;
-
-			/// @brief fixedUpdate関数の有効・無効
-			bool fixedUpdate;
-
-		private:
 			constexpr Enable(bool _enable) noexcept
 				: update(true)
 				, lateUpdate(true)
@@ -56,6 +46,17 @@ namespace eagle
 				, started(false)
 				, pendingKill(false)
 			{}
+
+			/// @brief update関数の有効・無効
+			bool update;
+
+			/// @brief lateUpdate関数の有効・無効
+			bool lateUpdate;
+
+			/// @brief fixedUpdate関数の有効・無効
+			bool fixedUpdate;
+
+		private:
 
 			/// @brief Componentの有効・無効
 			bool value;

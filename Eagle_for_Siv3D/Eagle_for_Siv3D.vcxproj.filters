@@ -149,6 +149,9 @@
     <Filter Include="Engine\Common\Source">
       <UniqueIdentifier>{8d83c1e3-0823-4165-8626-d4df0c7f3e02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Template">
+      <UniqueIdentifier>{12242bb6-6ec0-492c-8466-caf676bf20be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -198,6 +201,21 @@
     </ClCompile>
     <ClCompile Include="Engine\Framework\Source\RenderSystem.cpp">
       <Filter>Engine\Framework\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\_Template\_Actor.cpp">
+      <Filter>Engine\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\_Template\_Behavior.cpp">
+      <Filter>Engine\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\_Template\_Renderer2D.cpp">
+      <Filter>Engine\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\_Template\_Renderer3D.cpp">
+      <Filter>Engine\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\_Template\_Scene.cpp">
+      <Filter>Engine\Template</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -884,6 +902,24 @@
     </ClInclude>
     <ClInclude Include="Engine\Framework\Renderer3D.hpp">
       <Filter>Engine\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\_Template\_Actor.hpp">
+      <Filter>Engine\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\_Template\_Behavior.hpp">
+      <Filter>Engine\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\_Template\_Renderer2D.hpp">
+      <Filter>Engine\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\_Template\_Renderer3D.hpp">
+      <Filter>Engine\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\BasicScene.hpp">
+      <Filter>Engine\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\_Template\_Scene.hpp">
+      <Filter>Engine\Template</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

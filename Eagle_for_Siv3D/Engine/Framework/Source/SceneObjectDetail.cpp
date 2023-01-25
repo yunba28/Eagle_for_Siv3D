@@ -2,6 +2,7 @@
 
 #include <Framework/Detail/ActorSystem.hpp>
 #include <Framework/Detail/ComponentSystem.hpp>
+#include <Framework/Detail/RenderSystem.hpp>
 
 namespace eagle::backend
 {
@@ -9,7 +10,7 @@ namespace eagle::backend
 		: mSelf()
 		, mActorSystem(new ActorSystem())
 		, mComponentSystem(new ComponentSystem())
-		//, mRenderSystem()
+		, mRenderSystem(new RenderSystem())
 		, mNameAsset()
 		, mTagAsset()
 	{
@@ -31,14 +32,17 @@ namespace eagle::backend
 
 	void SceneObjectDetail::addRenderer(const WeakObject<Renderer2D>& _renderer)
 	{
+		mRenderSystem->add(_renderer);
 	}
 
 	void SceneObjectDetail::addRenderer(const WeakObject<Renderer3D>& _renderer)
 	{
+		mRenderSystem->add(_renderer);
 	}
 
 	void SceneObjectDetail::notifyChangeDrawOrder()
 	{
+		mRenderSystem->notifyChageDrawOrder();
 	}
 
 	void SceneObjectDetail::securedName(const String& _name, UniqueTag& _tag)
@@ -51,13 +55,35 @@ namespace eagle::backend
 		mTagAsset.secured(_name, _tag);
 	}
 
+	void SceneObjectDetail::setBackgroundColor(const Color& _background)
+	{
+		mRenderSystem->setBackgroundColor(_background);
+	}
+
+	WeakObject<Camera2D> SceneObjectDetail::getCamera2D() const noexcept
+	{
+		return mRenderSystem->getCamera2D();
+	}
+
+	WeakObject<DebugCamera3D> SceneObjectDetail::getCamera3D() const noexcept
+	{
+		return mRenderSystem->getCamera3D();
+	}
+
+	const Color& SceneObjectDetail::getBackgroundColor() const noexcept
+	{
+		return mRenderSystem->getBackgroundColor();
+	}
+
 	void SceneObjectDetail::update()
 	{
 		mActorSystem->update();
 		mComponentSystem->update();
+		mRenderSystem->update();
 	}
 
 	void SceneObjectDetail::draw() const
 	{
+		mRenderSystem->draw();
 	}
 }
