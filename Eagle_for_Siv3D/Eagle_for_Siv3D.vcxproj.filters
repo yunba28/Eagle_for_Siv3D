@@ -158,6 +158,12 @@
     <Filter Include="Project\Scenes">
       <UniqueIdentifier>{dfcd6774-a4ea-4d0f-9654-642a8f6f0a90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Components">
+      <UniqueIdentifier>{12230534-63ec-498d-82d1-198bb23c18c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components\Camera">
+      <UniqueIdentifier>{90f6a711-181e-4339-b5e1-8d182a846d79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -225,6 +231,15 @@
     </ClCompile>
     <ClCompile Include="Project\Scenes\DefaultScene.cpp">
       <Filter>Project\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Common\Source\InputAxis.cpp">
+      <Filter>Engine\Common\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Common\Source\InputAction.cpp">
+      <Filter>Engine\Common\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\Camera\FollowingCamera2D.cpp">
+      <Filter>Engine\Components\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -935,6 +950,21 @@
     </ClInclude>
     <ClInclude Include="Project\Scenes\DefaultScene.hpp">
       <Filter>Project\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Eagle.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\GameWorld.hpp">
+      <Filter>Engine\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Common\InputAxis.hpp">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Common\InputAction.hpp">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\Camera\FollowingCamera2D.hpp">
+      <Filter>Engine\Components\Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

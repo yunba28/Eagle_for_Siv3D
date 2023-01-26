@@ -4,7 +4,7 @@
 
 namespace Project
 {
-	class DefaultScene : public EagleScene
+	class DefaultScene : public GameWorld::Scene
 	{
 	public:
 
@@ -13,12 +13,6 @@ namespace Project
 
 		/// @brief シーンのデストラクタ
 		virtual ~DefaultScene();
-
-		/// @brief シーンが構築されたときに呼び出されます
-		virtual void awake()override;
-
-		/// @brief シーンが破棄されたときに呼びだされます
-		virtual void dispose()override;
 
 		/// @brief 通常時に呼び出される更新処理です
 		virtual void update()override;

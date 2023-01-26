@@ -1,65 +1,73 @@
 ﻿#include "DefaultScene.hpp"
 
-#include <Framework/Actor.hpp>
-#include <Framework/Behavior.hpp>
-#include <Framework/Renderer2D.hpp>
-
-class MoveComponent : public eagle::Behavior
+namespace Project
 {
-public:
-
-	void update()override
+	class MoveComponent : public eagle::Behavior
 	{
-		Vec2 axis
+		void awake()override
 		{
-			KeyRight.pressed() - KeyLeft.pressed(),
-			KeyDown.pressed() - KeyUp.pressed()
-		};
+			getTransform()->setPos(Scene::CenterF());
+		}
 
-		if (axis.isZero())
-			return;
+		void update()override
+		{
+			Vec2 axis
+			{
+				InputAxis(U"MoveX"),
+				InputAxis(U"MoveY")
+			};
 
-		axis.normalize();
+			if (axis.isZero())
+			{
+				Print << U"Axis:{:-5.3f}"_fmt(axis);
+				return;
+			}
 
-		const double deltaSpeed = 300.0 * Scene::DeltaTime();
-		const Vec2 velocity = axis * deltaSpeed;
+			if (axis.lengthSq() > 1)
+			{
+				axis.normalize();
+			}
 
-		getTransform()->translate(velocity.xy0());
-	}
+			Print << U"Axis:{:-5.3f}"_fmt(axis);
 
-};
+			const double deltaSpeed = 200.0 * Scene::DeltaTime();
+			const Vec2 velocity = axis * deltaSpeed;
 
-class CircleComponent : public eagle::Renderer2D
-{
-public:
+			getTransform()->translate(velocity.xy0());
+		}
+	};
 
-	void draw()const override
+	class CircleComponent : public eagle::Renderer2D
 	{
-		auto pos = getTransform()->getPos2D();
-		Circle{ pos,20 }.draw();
-	}
-
-};
+		void draw()const override
+		{
+			auto pos = getTransform()->getPos2D();
+			Circle{ pos,20 }.draw();
+		}
+	};
+}
 
 namespace Project
 {
 	DefaultScene::DefaultScene(const InitData& _init)
 		: Super(_init)
 	{
+		InputAxis[U"MoveX"]
+			.add(KeyA | KeyLeft, -1)
+			.add(KeyD | KeyRight, 1)
+			.add({ PadState::LThumbX });
+
+		InputAxis[U"MoveY"]
+			.add(KeyW | KeyUp, -1)
+			.add(KeyS | KeyDown, 1)
+			.add({ PadState::LThumbY, -1 });
+
+		auto actor = createActor().lock();
+		actor->attachComponent<MoveComponent>();
+		actor->attachComponent<CircleComponent>();
 	}
 
 	DefaultScene::~DefaultScene()
-	{
-	}
-
-	void DefaultScene::awake()
-	{
-		auto actor = createActor(U"Player").lock();
-		auto move = actor->attachComponent<MoveComponent>().lock();
-		auto circle = actor->attachComponent<CircleComponent>().lock();
-	}
-
-	void DefaultScene::dispose()
 	{
 	}
 

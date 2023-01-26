@@ -118,6 +118,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Common\Source\FixedUpdate.cpp" />
+    <ClCompile Include="Engine\Common\Source\InputAction.cpp" />
+    <ClCompile Include="Engine\Common\Source\InputAxis.cpp" />
+    <ClCompile Include="Engine\Components\Camera\FollowingCamera2D.cpp" />
     <ClCompile Include="Engine\Framework\Source\Actor.cpp" />
     <ClCompile Include="Engine\Framework\Source\ActorSystem.cpp" />
     <ClCompile Include="Engine\Framework\Source\CommonTag.cpp" />
@@ -339,7 +342,11 @@
   <ItemGroup>
     <ClInclude Include="Engine\Common\Companion.hpp" />
     <ClInclude Include="Engine\Common\FixedUpdate.hpp" />
+    <ClInclude Include="Engine\Common\InputAction.hpp" />
+    <ClInclude Include="Engine\Common\InputAxis.hpp" />
     <ClInclude Include="Engine\Common\SmartObject.hpp" />
+    <ClInclude Include="Engine\Components\Camera\FollowingCamera2D.hpp" />
+    <ClInclude Include="Engine\Eagle.hpp" />
     <ClInclude Include="Engine\Framework\Actor.hpp" />
     <ClInclude Include="Engine\Framework\BasicScene.hpp" />
     <ClInclude Include="Engine\Framework\Behavior.hpp" />
@@ -352,6 +359,7 @@
     <ClInclude Include="Engine\Framework\Detail\UniqueTag.hpp" />
     <ClInclude Include="Engine\Framework\ExecutionOrder.hpp" />
     <ClInclude Include="Engine\Framework\FrameworkFwd.hpp" />
+    <ClInclude Include="Engine\Framework\GameWorld.hpp" />
     <ClInclude Include="Engine\Framework\Renderer2D.hpp" />
     <ClInclude Include="Engine\Framework\Renderer3D.hpp" />
     <ClInclude Include="Engine\Framework\SceneObject.hpp" />

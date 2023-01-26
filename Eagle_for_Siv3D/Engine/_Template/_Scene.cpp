@@ -9,14 +9,6 @@ MyScene::~MyScene()
 {
 }
 
-void MyScene::awake()
-{
-}
-
-void MyScene::dispose()
-{
-}
-
 void MyScene::update()
 {
 	/// @brief この処理を書かないとActor・Componentの更新処理が呼ばれません

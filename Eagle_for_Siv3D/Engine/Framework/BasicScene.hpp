@@ -5,6 +5,7 @@
 #include <Siv3D/SceneManager.hpp>
 
 using s3d::SceneManager;
+using s3d::IScene;
 
 namespace eagle
 {
@@ -13,7 +14,7 @@ namespace eagle
 	{
 	public:
 
-		using typename SceneManager<State, Data>::Scene::InitData;
+		using typename IScene<State, Data>::InitData;
 
 		using Super = BasicScene<State, Data>;
 
@@ -39,12 +40,6 @@ namespace eagle
 		/// @brief 画面の背景色を取得する
 		const Color& getBackgroundColor()const noexcept;
 
-		/// @brief シーンの構築時に呼びだされます
-		virtual void awake() {}
-
-		/// @brief シーンのは生地に呼び出されます
-		virtual void dispose() {}
-
 		/// @brief 通常時の更新処理です
 		virtual void update()override;
 
@@ -62,17 +57,13 @@ namespace eagle
 {
 	template<class State, class Data>
 	inline BasicScene<State, Data>::BasicScene(const InitData& _init)
-		: IScene(_init)
+		: IScene<State, Data>(_init)
 		, mSceneObject()
-	{
-		awake();
-	}
+	{}
 
 	template<class State, class Data>
 	inline BasicScene<State, Data>::~BasicScene()
-	{
-		dispose();
-	}
+	{}
 
 	template<class State, class Data>
 	template<class T>

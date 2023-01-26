@@ -33,6 +33,7 @@ namespace eagle
 		mEnable.update = _enable.update;
 		mEnable.lateUpdate = _enable.lateUpdate;
 		mEnable.fixedUpdate = _enable.fixedUpdate;
+		mEnable.value = _enable.value;
 	}
 
 	ObjectHandle<Actor> Component::getActor()const noexcept
