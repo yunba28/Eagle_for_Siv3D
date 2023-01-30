@@ -2,9 +2,9 @@
 
 void Main()
 {
-	Project::GameWorld gameWorld;
+	GameWorld gameWorld;
 	{
-		gameWorld.add<Project::DefaultScene>(U"DefaultScene");
+		gameWorld.add<DefaultScene>(U"DefaultScene");
 	}
 
 	while (System::Update())

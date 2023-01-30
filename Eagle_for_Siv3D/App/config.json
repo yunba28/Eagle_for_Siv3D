@@ -1,0 +1,312 @@
+﻿{
+  "InputAction": {
+    "InputActionMap": [
+      {
+        "name": "Clicked",
+        "value": {
+          "node": [
+            {
+              "action": {
+                "deadZone": 0.0,
+                "state": 0
+              },
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 13,
+                    "deviceType": 1,
+                    "playerIndex": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": {
+                "deadZone": 0.0,
+                "state": 0
+              },
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 0,
+                    "deviceType": 2,
+                    "playerIndex": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": {
+                "deadZone": 0.0,
+                "state": 0
+              },
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 12,
+                    "deviceType": 4,
+                    "playerIndex": 0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Decide",
+        "value": {
+          "node": [
+            {
+              "action": {
+                "deadZone": 0.0,
+                "state": 0
+              },
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 13,
+                    "deviceType": 1,
+                    "playerIndex": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": {
+                "deadZone": 0.0,
+                "state": 0
+              },
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 0,
+                    "deviceType": 2,
+                    "playerIndex": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": {
+                "deadZone": 0.0,
+                "state": 0
+              },
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 12,
+                    "deviceType": 4,
+                    "playerIndex": 0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Pressed",
+        "value": {
+          "node": [
+            {
+              "action": {
+                "deadZone": 0.0,
+                "state": 1
+              },
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 13,
+                    "deviceType": 1,
+                    "playerIndex": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": {
+                "deadZone": 0.0,
+                "state": 1
+              },
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 0,
+                    "deviceType": 2,
+                    "playerIndex": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": {
+                "deadZone": 0.0,
+                "state": 1
+              },
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 12,
+                    "deviceType": 4,
+                    "playerIndex": 0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Cancel",
+        "value": {
+          "node": [
+            {
+              "action": {
+                "deadZone": 0.0,
+                "state": 0
+              },
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 27,
+                    "deviceType": 1,
+                    "playerIndex": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": {
+                "deadZone": 0.0,
+                "state": 0
+              },
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 1,
+                    "deviceType": 2,
+                    "playerIndex": 0
+                  }
+                ]
+              }
+            },
+            {
+              "action": {
+                "deadZone": 0.0,
+                "state": 0
+              },
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 13,
+                    "deviceType": 4,
+                    "playerIndex": 0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "InputAxis": {
+    "InputAxisMap": [
+      {
+        "name": "Vertical",
+        "value": {
+          "node": [
+            {
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 38,
+                    "deviceType": 1,
+                    "playerIndex": 0
+                  },
+                  {
+                    "code": 87,
+                    "deviceType": 1,
+                    "playerIndex": 0
+                  }
+                ]
+              },
+              "scale": 1.0
+            },
+            {
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 40,
+                    "deviceType": 1,
+                    "playerIndex": 0
+                  },
+                  {
+                    "code": 83,
+                    "deviceType": 1,
+                    "playerIndex": 0
+                  }
+                ]
+              },
+              "scale": -1.0
+            }
+          ],
+          "pad": [
+            {
+              "padState": 1,
+              "scale": 1.0
+            }
+          ]
+        }
+      },
+      {
+        "name": "Horizontal",
+        "value": {
+          "node": [
+            {
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 37,
+                    "deviceType": 1,
+                    "playerIndex": 0
+                  },
+                  {
+                    "code": 65,
+                    "deviceType": 1,
+                    "playerIndex": 0
+                  }
+                ]
+              },
+              "scale": -1.0
+            },
+            {
+              "inputGroup": {
+                "input": [
+                  {
+                    "code": 39,
+                    "deviceType": 1,
+                    "playerIndex": 0
+                  },
+                  {
+                    "code": 68,
+                    "deviceType": 1,
+                    "playerIndex": 0
+                  }
+                ]
+              },
+              "scale": 1.0
+            }
+          ],
+          "pad": [
+            {
+              "padState": 0,
+              "scale": 1.0
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

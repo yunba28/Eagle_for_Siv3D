@@ -5,7 +5,7 @@
 namespace eagle
 {
 	template<class State, class Data>
-	class GameWorld : protected SceneManager<State, Data>
+	class World : protected SceneManager<State, Data>
 	{
 	public:
 

@@ -124,6 +124,57 @@ namespace eagle::backend
 		return mPadList.any(padEq);
 	}
 
+	JSON InputAxisState::toJson() const
+	{
+		JSON res;
+
+		for (auto& node : mNodeList)
+		{
+			JSON in;
+
+			in[U"inputGroup"] = InputGroupToJson(node.input);
+			in[U"scale"] = node.scale;
+
+			res[U"node"].push_back(in);
+		}
+
+		for (auto& pad : mPadList)
+		{
+			JSON in;
+
+			in[U"padState"] = (uint8)pad.state;
+			in[U"scale"] = pad.scale;
+
+			res[U"pad"].push_back(in);
+		}
+
+		return res;
+	}
+
+	void InputAxisState::fromJson(const JSON& _json)
+	{
+		if (_json.hasElement(U"node"))
+		{
+			for (const auto& node : _json[U"node"].arrayView())
+			{
+				InputGroup inputGroup = JsonToInputGroup(node[U"inputGroup"]);
+				double scale = node[U"scale"].get<double>();
+				add(inputGroup, scale);
+			}
+		}
+
+		if (_json.hasElement(U"pad"))
+		{
+			for (const auto& pad : _json[U"pad"].arrayView())
+			{
+				add({
+					(PadState)pad[U"padState"].get<uint8>(),
+					pad[U"scale"].get<double>()
+				});
+			}
+		}
+	}
+
 	double InputAxisDetail::operator()(const String& _axisName, uint8 _playerIndex) const
 	{
 		return mInputStates.at(_axisName).axis(_playerIndex);
@@ -132,5 +183,34 @@ namespace eagle::backend
 	InputAxisState& InputAxisDetail::operator[](const String& _axisName)
 	{
 		return mInputStates[_axisName];
+	}
+
+	JSON InputAxisDetail::toJson() const
+	{
+		JSON res;
+
+		for (const auto& [name, state] : mInputStates)
+		{
+			JSON in;
+
+			in[U"name"] = name;
+			in[U"value"] = state.toJson();
+
+			res[U"InputAxisMap"].push_back(in);
+		}
+
+		return res;
+	}
+
+	void InputAxisDetail::fromJson(const JSON& _json)
+	{
+		if (_json.hasElement(U"InputAxisMap"))
+		{
+			for (const auto& map : _json[U"InputAxisMap"].arrayView())
+			{
+				String name = map[U"name"].getString();
+				mInputStates[name].fromJson(map[U"value"]);
+			}
+		}
 	}
 }

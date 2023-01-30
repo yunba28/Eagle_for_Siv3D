@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <Framework/GameWorld.hpp>
+#include <Framework/World.hpp>
 #include <Framework/Actor.hpp>
 #include <Framework/Behavior.hpp>
 #include <Framework/Renderer2D.hpp>

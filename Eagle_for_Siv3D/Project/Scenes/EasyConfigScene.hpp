@@ -2,15 +2,15 @@
 
 #include "Project.hpp"
 
-class DefaultScene : public GameWorld::Scene
+class EasyConfigScene : public GameWorld::Scene
 {
 public:
 
 	/// @brief シーンのコンストラクタ
-	DefaultScene(const InitData& _init);
+	EasyConfigScene(const InitData& _init);
 
 	/// @brief シーンのデストラクタ
-	virtual ~DefaultScene();
+	virtual ~EasyConfigScene();
 
 	/// @brief 通常時に呼び出される更新処理です
 	virtual void update()override;

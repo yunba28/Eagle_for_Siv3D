@@ -161,8 +161,14 @@
     <Filter Include="Engine\Components">
       <UniqueIdentifier>{12230534-63ec-498d-82d1-198bb23c18c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Components\Camera">
-      <UniqueIdentifier>{90f6a711-181e-4339-b5e1-8d182a846d79}</UniqueIdentifier>
+    <Filter Include="Engine\Components\GUI">
+      <UniqueIdentifier>{2a41717a-677e-4fc2-9b7d-050b454fc34d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components\GUI\Detail">
+      <UniqueIdentifier>{57b40ff1-d875-4046-a8ba-b906560ecee2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components\GUI\Source">
+      <UniqueIdentifier>{ef383b93-5381-4c60-949c-b484b50ecdbe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -238,8 +244,26 @@
     <ClCompile Include="Engine\Common\Source\InputAction.cpp">
       <Filter>Engine\Common\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Components\Camera\FollowingCamera2D.cpp">
-      <Filter>Engine\Components\Camera</Filter>
+    <ClCompile Include="Engine\Common\Source\InputToJson.cpp">
+      <Filter>Engine\Common\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\GUI\Source\Background.cpp">
+      <Filter>Engine\Components\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\GUI\Source\Selectable.cpp">
+      <Filter>Engine\Components\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\GUI\Source\ButtonBase.cpp">
+      <Filter>Engine\Components\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\GUI\Source\FlexibleButton.cpp">
+      <Filter>Engine\Components\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\GUI\Source\Text.cpp">
+      <Filter>Engine\Components\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\GUI\Source\Slider.cpp">
+      <Filter>Engine\Components\GUI\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -954,7 +978,7 @@
     <ClInclude Include="Engine\Eagle.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Framework\GameWorld.hpp">
+    <ClInclude Include="Engine\Framework\World.hpp">
       <Filter>Engine\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Common\InputAxis.hpp">
@@ -963,8 +987,38 @@
     <ClInclude Include="Engine\Common\InputAction.hpp">
       <Filter>Engine\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Components\Camera\FollowingCamera2D.hpp">
-      <Filter>Engine\Components\Camera</Filter>
+    <ClInclude Include="Engine\Common\InputToJson.hpp">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\Scenes\EasyConfigScene.hpp">
+      <Filter>Project\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\GUI\Background.hpp">
+      <Filter>Engine\Components\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\GUI\Detail\GUIRect.hpp">
+      <Filter>Engine\Components\GUI\Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\GUI\Detail\IWidget.hpp">
+      <Filter>Engine\Components\GUI\Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\GUI\Detail\Selectable.hpp">
+      <Filter>Engine\Components\GUI\Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\GUI\ButtonBase.hpp">
+      <Filter>Engine\Components\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\GUI\FlexibleButton.hpp">
+      <Filter>Engine\Components\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\GUI\Text.hpp">
+      <Filter>Engine\Components\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\GUI\Slider.hpp">
+      <Filter>Engine\Components\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\GUI\Detail\SliderHandle.hpp">
+      <Filter>Engine\Components\GUI\Detail</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

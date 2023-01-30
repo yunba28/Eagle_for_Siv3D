@@ -1,19 +1,15 @@
 ﻿#pragma once
 
-#include <Siv3D/InputGroup.hpp>
+#include <Common/InputToJson.hpp>
 #include <Siv3D/HashTable.hpp>
 
 using s3d::Array;
 using s3d::HashTable;
 using s3d::String;
-using s3d::Input;
-using s3d::InputCombination;
-using s3d::InputGroup;
-using s3d::InputDeviceType;
 
 namespace eagle
 {
-	enum class PadState
+	enum class PadState : uint8
 	{
 		LThumbX,
 		LThumbY,
@@ -64,6 +60,10 @@ namespace eagle
 			[[nodiscard]]
 			bool contains(const PadState& _padState)const;
 
+			JSON toJson()const;
+
+			void fromJson(const JSON& _json);
+
 		private:
 
 			Array<Node> mNodeList;
@@ -84,6 +84,10 @@ namespace eagle
 			double operator()(const String& _axisName, uint8 _playerIndex = 0)const;
 
 			InputAxisState& operator[](const String& _axisName);
+
+			JSON toJson()const;
+
+			void fromJson(const JSON& _json);
 
 		private:
 

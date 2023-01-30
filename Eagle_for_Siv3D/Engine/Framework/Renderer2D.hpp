@@ -33,7 +33,7 @@ namespace eagle
 
 		virtual ~Renderer2D();
 
-		void setDrawOrder(size_t _order);
+		virtual void setDrawOrder(size_t _order);
 
 		using Component::setEnable;
 

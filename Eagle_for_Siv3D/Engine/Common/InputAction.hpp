@@ -1,22 +1,18 @@
 ﻿#pragma once
 
-#include <Siv3D/InputGroup.hpp>
+#include <Common/InputToJson.hpp>
 #include <Siv3D/HashTable.hpp>
 
 using s3d::Array;
 using s3d::HashTable;
 using s3d::String;
 using s3d::Duration;
-using s3d::Input;
-using s3d::InputCombination;
-using s3d::InputGroup;
-using s3d::InputDeviceType;
 
 using namespace std::chrono_literals;
 
 namespace eagle
 {
-	enum class InputState
+	enum class InputState : uint8
 	{
 		Down, Pressed, Up
 	};
@@ -57,6 +53,10 @@ namespace eagle
 			[[nodiscard]]
 			bool contains(const InputGroup& _input)const;
 
+			JSON toJson()const;
+
+			void fromJson(const JSON& _json);
+
 		private:
 
 			Array<Node> mNodeList;
@@ -75,6 +75,10 @@ namespace eagle
 			bool operator()(const String& _actionName)const;
 
 			InputActionState& operator[](const String& _actionName);
+
+			JSON toJson()const;
+
+			void fromJson(const JSON& _json);
 
 		private:
 

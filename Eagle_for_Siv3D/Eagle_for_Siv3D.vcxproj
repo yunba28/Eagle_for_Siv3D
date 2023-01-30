@@ -120,7 +120,13 @@
     <ClCompile Include="Engine\Common\Source\FixedUpdate.cpp" />
     <ClCompile Include="Engine\Common\Source\InputAction.cpp" />
     <ClCompile Include="Engine\Common\Source\InputAxis.cpp" />
-    <ClCompile Include="Engine\Components\Camera\FollowingCamera2D.cpp" />
+    <ClCompile Include="Engine\Common\Source\InputToJson.cpp" />
+    <ClCompile Include="Engine\Components\GUI\Source\Background.cpp" />
+    <ClCompile Include="Engine\Components\GUI\Source\ButtonBase.cpp" />
+    <ClCompile Include="Engine\Components\GUI\Source\FlexibleButton.cpp" />
+    <ClCompile Include="Engine\Components\GUI\Source\Selectable.cpp" />
+    <ClCompile Include="Engine\Components\GUI\Source\Slider.cpp" />
+    <ClCompile Include="Engine\Components\GUI\Source\Text.cpp" />
     <ClCompile Include="Engine\Framework\Source\Actor.cpp" />
     <ClCompile Include="Engine\Framework\Source\ActorSystem.cpp" />
     <ClCompile Include="Engine\Framework\Source\CommonTag.cpp" />
@@ -344,8 +350,17 @@
     <ClInclude Include="Engine\Common\FixedUpdate.hpp" />
     <ClInclude Include="Engine\Common\InputAction.hpp" />
     <ClInclude Include="Engine\Common\InputAxis.hpp" />
+    <ClInclude Include="Engine\Common\InputToJson.hpp" />
     <ClInclude Include="Engine\Common\SmartObject.hpp" />
-    <ClInclude Include="Engine\Components\Camera\FollowingCamera2D.hpp" />
+    <ClInclude Include="Engine\Components\GUI\Background.hpp" />
+    <ClInclude Include="Engine\Components\GUI\ButtonBase.hpp" />
+    <ClInclude Include="Engine\Components\GUI\Detail\GUIRect.hpp" />
+    <ClInclude Include="Engine\Components\GUI\Detail\IWidget.hpp" />
+    <ClInclude Include="Engine\Components\GUI\Detail\Selectable.hpp" />
+    <ClInclude Include="Engine\Components\GUI\Detail\SliderHandle.hpp" />
+    <ClInclude Include="Engine\Components\GUI\FlexibleButton.hpp" />
+    <ClInclude Include="Engine\Components\GUI\Slider.hpp" />
+    <ClInclude Include="Engine\Components\GUI\Text.hpp" />
     <ClInclude Include="Engine\Eagle.hpp" />
     <ClInclude Include="Engine\Framework\Actor.hpp" />
     <ClInclude Include="Engine\Framework\BasicScene.hpp" />
@@ -359,7 +374,7 @@
     <ClInclude Include="Engine\Framework\Detail\UniqueTag.hpp" />
     <ClInclude Include="Engine\Framework\ExecutionOrder.hpp" />
     <ClInclude Include="Engine\Framework\FrameworkFwd.hpp" />
-    <ClInclude Include="Engine\Framework\GameWorld.hpp" />
+    <ClInclude Include="Engine\Framework\World.hpp" />
     <ClInclude Include="Engine\Framework\Renderer2D.hpp" />
     <ClInclude Include="Engine\Framework\Renderer3D.hpp" />
     <ClInclude Include="Engine\Framework\SceneObject.hpp" />
@@ -371,6 +386,7 @@
     <ClInclude Include="Engine\_Template\_Scene.hpp" />
     <ClInclude Include="Project\Project.hpp" />
     <ClInclude Include="Project\Scenes\DefaultScene.hpp" />
+    <ClInclude Include="Project\Scenes\EasyConfigScene.hpp" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
