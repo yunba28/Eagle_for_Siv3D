@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include <Framework/Renderer2D.hpp>
 #include <Components/GUI/Detail/Selectable.hpp>
 
 namespace eagle::GUI
@@ -15,6 +14,32 @@ namespace eagle::GUI
 
 	class Slider : public backend::Selectable
 	{
+	public:
+
+		struct ColorPalette
+		{
+			Color neutralEmpty{ 192,192,192,255 };
+			Color hoveredEmpty{ 192,192,192,255 };
+			Color pressedEmpty{ 192,192,192,255 };
+			Color disableEmpty{ 192,192,192,255 };
+			Color neutralFill{ 0,245,0,255 };
+			Color hoveredFill{ 0,255,0,255 };
+			Color pressedFill{ 0,255,0,255 };
+			Color disableFill{ 0,128,0,255 };
+		};
+
+		struct TextureBlock
+		{
+			Texture neutralEmpty{};
+			Texture hoveredEmpty{};
+			Texture pressedEmpty{};
+			Texture disableEmpty{};
+			Texture neutralFill{};
+			Texture hoveredFill{};
+			Texture pressedFill{};
+			Texture disableFill{};
+		};
+
 	public:
 
 		Slider();
@@ -39,17 +64,11 @@ namespace eagle::GUI
 		/// @param _slideDirection どの方向に加算されるか
 		void setLengthAndThickness(double _length, double _thickness, SlideDirection _slideDirection);
 
-		/// @brief スライダーの背景色を設定する
-		void setEmptyColor(const Color& _color)noexcept;
+		/// @brief カラーパレットを設定
+		void setColorPalette(const ColorPalette& _colorPalette)noexcept;
 
-		/// @brief スライダーの埋まっている部分の背景色を設定する
-		void setFillColor(const Color& _color)noexcept;
-
-		/// @brief スライダーの背景画像を設定する
-		void setEmptyTexture(const TextureRegion& _texture)noexcept;
-
-		/// @brief スライダーの埋まっている部分の画像を設定する
-		void setFillTexture(const TextureRegion& _texture)noexcept;
+		/// @brief テクスチャブロックの設定
+		void setTextureBlock(const Optional<TextureBlock>& _textureBlock);
 
 		/// @brief スライダーの値を設定する
 		void setValue(double _value)noexcept;
@@ -101,19 +120,21 @@ namespace eagle::GUI
 
 		double calculateValue(RectF _rect)const noexcept;
 
-	private:
+	protected:
 
 		virtual void awake()override;
 
+		virtual void start()override;
+
 		virtual void update()override;
 
-		virtual void onNeutral()override;
+		virtual void onDisable()override;
 
 		virtual void onHovered()override;
 
-		virtual void onClicked()override;
+		virtual void onUnhovered()override;
 
-		virtual void onPressed()override;
+		virtual void onClicked()override;
 
 		virtual void onReleased()override;
 
@@ -122,6 +143,10 @@ namespace eagle::GUI
 		WeakObject<class Background> mEmptyRect;
 
 		WeakObject<class Background> mFillRect;
+
+		ColorPalette mColorPalette;
+
+		Optional<TextureBlock> mTextureBlock;
 
 		double mValue;
 

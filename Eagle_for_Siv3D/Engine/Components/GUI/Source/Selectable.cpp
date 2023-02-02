@@ -61,8 +61,10 @@ namespace eagle::GUI::backend
 
 		const auto viewRect = mGUIRect.getViewRect(pos, scale);
 
+		const auto onRect = viewRect.contains(Cursor::PosF());
+
 		// Selectableにカーソルが乗っているか
-		if (viewRect.contains(Cursor::PosF()) or mSelected)
+		if (onRect or mSelected)
 		{
 			// Selectableがクリックされているか
 			if (InputAction(U"Clicked"))
@@ -89,34 +91,20 @@ namespace eagle::GUI::backend
 				}
 				else
 				{
-					mState = State::Hover;
+					mState = onRect ? State::Hover : State::Unhover;
 				}
 			}
 		}
 		// 通常時の処理
 		else
 		{
-			if (not InputAction(U"Pressed"))
-			{
-				// ボタンが離された瞬間
-				if (mState == State::Pressed)
-				{
-					mState = State::Released;
-				}
-				// ボタンが話された瞬間（人間の反応速度的に恐らくあり得ない）
-				else if (mState == State::Click) [[unlikely]]
-				{
-					mState = State::Released;
-				}
-				else
-				{
-					mState = State::Neutral;
-				}
-			}
-			// 対応しているボタンを押したまま離れた
-			else
+			if (mState == State::Unhover)
 			{
 				mState = State::Neutral;
+			}
+			else if (mState != State::Neutral)
+			{
+				mState = State::Unhover;
 			}
 		}
 
@@ -126,6 +114,7 @@ namespace eagle::GUI::backend
 		{
 		case State::Neutral: onNeutral(); break;
 		case State::Hover: onHovered(); break;
+		case State::Unhover: onUnhovered(); break;
 		case State::Click: onClicked(); break;
 		case State::Pressed: onPressed(); break;
 		case State::Released: onReleased(); break;

@@ -1,10 +1,10 @@
 ﻿#pragma once
 
-#include <Components/GUI/ButtonBase.hpp>
+#include <Components/GUI/Button.hpp>
 
 namespace eagle::GUI
 {
-	class FlexibleButton : public ButtonBase
+	class FlexibleButton : public Button
 	{
 	public:
 
@@ -12,6 +12,7 @@ namespace eagle::GUI
 		{
 			std::function<void(void)> neutral;
 			std::function<void(void)> hovered;
+			std::function<void(void)> unhovered;
 			std::function<void(void)> clicked;
 			std::function<void(void)> pressed;
 			std::function<void(void)> released;
@@ -32,6 +33,8 @@ namespace eagle::GUI
 		virtual void onNeutral()override;
 
 		virtual void onHovered()override;
+
+		virtual void onUnhovered()override;
 
 		virtual void onClicked()override;
 

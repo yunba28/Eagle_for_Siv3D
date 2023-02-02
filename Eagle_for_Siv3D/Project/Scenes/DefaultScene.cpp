@@ -39,11 +39,73 @@ class MoveComponent : public eagle::Behavior
 
 class CircleComponent : public eagle::Renderer2D
 {
+public:
+
+	void setColor(const Color& _color)
+	{
+		mColor = _color;
+	}
+
+private:
+
+	Color mColor{ 255,0,0 };
+
 	void draw()const override
 	{
 		auto pos = getTransform()->getPos2D();
-		Circle{ pos,20 }.draw(Palette::Red);
+		Circle{ pos,20 }.draw(mColor);
 	}
+};
+
+class DestroyTimer : public eagle::Behavior
+{
+public:
+
+private:
+
+	Stopwatch mStopwatch;
+
+	virtual void start()override
+	{
+		mStopwatch.restart();
+	}
+
+	virtual void update()override
+	{
+		if (mStopwatch > 1.0s)
+		{
+			eagle::Actor::Destroy(*getActor());
+			setEnable(false);
+		}
+	}
+
+};
+
+class CircleSpawnButton : public eagle::GUI::Button
+{
+public:
+
+private:
+
+	virtual void onClicked()override
+	{
+		Button::onClicked();
+
+		auto actor = getActor();
+		auto scene = actor->getSceneObject();
+
+		const auto region = eagle::GUI::Padding{ 20 }.apply(Scene::Rect());
+
+		{
+			auto obj = scene->createActor(U"Circle").lock();
+			auto tf = obj->getTransform();
+			tf->setPos(RandomVec2(region));
+			auto circle = obj->attachComponent<CircleComponent>().lock();
+			circle->setColor(RandomHSV({ 0,360 }, { 0,1 }, { 0,1 }));
+			obj->attachComponent<DestroyTimer>();
+		}
+	}
+
 };
 
 DefaultScene::DefaultScene(const InitData& _init)
@@ -89,18 +151,13 @@ DefaultScene::DefaultScene(const InitData& _init)
 
 		auto actor = createActor().lock();
 
-		auto transform = actor->getTransform();
-		transform->setPos(40, 100);
-
-		auto slider = actor->attachComponent<Slider>().lock();
-		slider->setLengthAndThickness(200, 20, SlideDirection::LeftToRight);
-		slider->setValueMinMax(0.0, 100.0);
-	}
-
-	{
-		auto actor = createActor().lock();
-		actor->attachComponent<MoveComponent>();
-		actor->attachComponent<CircleComponent>();
+		auto button = actor->attachComponent<CircleSpawnButton>().lock();
+		auto text = actor->attachComponent<Text>().lock();
+		text->setGUIRect(button->getGUIRect());
+		text->setText(U"Spawn");
+		text->setFont(Font{ 28,Typeface::Bold });
+		text->setColor(Palette::White);
+		text->setTextAligne(TextAligne::Center);
 	}
 }
 

@@ -9,6 +9,8 @@ namespace eagle::GUI
 	Slider::Slider()
 		: mEmptyRect()
 		, mFillRect()
+		, mColorPalette()
+		, mTextureBlock(unspecified)
 		, mValue(0.0)
 		, mValueMin(0.0)
 		, mValueMax(1.0)
@@ -77,24 +79,14 @@ namespace eagle::GUI
 		}
 	}
 
-	void Slider::setEmptyColor(const Color& _color) noexcept
+	void Slider::setColorPalette(const ColorPalette& _colorPalette) noexcept
 	{
-		mEmptyRect.lock()->setColor(_color);
+		mColorPalette = _colorPalette;
 	}
 
-	void Slider::setFillColor(const Color& _color) noexcept
+	void Slider::setTextureBlock(const Optional<TextureBlock>& _textureBlock)
 	{
-		mFillRect.lock()->setColor(_color);
-	}
-
-	void Slider::setEmptyTexture(const TextureRegion& _texture) noexcept
-	{
-		mEmptyRect.lock()->setTexture(_texture);
-	}
-
-	void Slider::setFillTexture(const TextureRegion& _texture) noexcept
-	{
-		mFillRect.lock()->setTexture(_texture);
+		mTextureBlock = _textureBlock;
 	}
 
 	void Slider::setValue(double _value) noexcept
@@ -254,20 +246,25 @@ namespace eagle::GUI
 		{
 			auto background = mEmptyRect.lock();
 			background->setGUIRect(mGUIRect);
-			background->setColor(Color{ 192,192,192 });
 			background->setDrawOrder(1000);
 		}
 
 		{
 			auto background = mFillRect.lock();
 			background->setGUIRect(mGUIRect);
-			background->setColor(Color{ 0,255,0 });
 			background->setDrawOrder(1100);
+			background->applyClipAndRescale(true);
 		}
+	}
+
+	void Slider::start()
+	{
+		onUnhovered();
 	}
 
 	void Slider::update()
 	{
+
 		if (mGrabbed)
 		{
 			mGrabbed = InputAction(U"Pressed");
@@ -302,22 +299,96 @@ namespace eagle::GUI
 		mFillRect.lock()->setSize(fill.size);
 	}
 
-	void Slider::onNeutral()
+	void Slider::onDisable()
 	{
+		auto empty = mEmptyRect.lock();
+		auto fill = mFillRect.lock();
+
+		empty->setColor(mColorPalette.disableEmpty);
+		fill->setColor(mColorPalette.disableFill);
+
+		if (mTextureBlock)
+		{
+			if (mTextureBlock->disableEmpty)
+			{
+				empty->setTexture(mTextureBlock->disableEmpty);
+			}
+
+			if (mTextureBlock->disableFill)
+			{
+				fill->setTexture(mTextureBlock->disableFill);
+			}
+		}
 	}
 
 	void Slider::onHovered()
 	{
 		onSelect();
+
+		auto empty = mEmptyRect.lock();
+		auto fill = mFillRect.lock();
+
+		empty->setColor(mColorPalette.hoveredEmpty);
+		fill->setColor(mColorPalette.hoveredFill);
+
+		if (mTextureBlock)
+		{
+			if (mTextureBlock->hoveredEmpty)
+			{
+				empty->setTexture(mTextureBlock->hoveredEmpty);
+			}
+
+			if (mTextureBlock->hoveredFill)
+			{
+				fill->setTexture(mTextureBlock->hoveredFill);
+			}
+		}
+	}
+
+	void Slider::onUnhovered()
+	{
+		auto empty = mEmptyRect.lock();
+		auto fill = mFillRect.lock();
+
+		empty->setColor(mColorPalette.neutralEmpty);
+		fill->setColor(mColorPalette.neutralFill);
+
+		if (mTextureBlock)
+		{
+			if (mTextureBlock->neutralEmpty)
+			{
+				empty->setTexture(mTextureBlock->neutralEmpty);
+			}
+
+			if (mTextureBlock->neutralFill)
+			{
+				fill->setTexture(mTextureBlock->neutralFill);
+			}
+		}
 	}
 
 	void Slider::onClicked()
 	{
 		mGrabbed = true;
-	}
 
-	void Slider::onPressed()
-	{
+		auto empty = mEmptyRect.lock();
+		auto fill = mFillRect.lock();
+
+		empty->setColor(mColorPalette.pressedEmpty);
+		fill->setColor(mColorPalette.pressedFill);
+
+		if (mTextureBlock)
+		{
+			if (mTextureBlock->pressedEmpty)
+			{
+				empty->setTexture(mTextureBlock->pressedEmpty);
+			}
+
+			if (mTextureBlock->pressedFill)
+			{
+				fill->setTexture(mTextureBlock->pressedFill);
+			}
+		}
 	}
 
 	void Slider::onReleased()

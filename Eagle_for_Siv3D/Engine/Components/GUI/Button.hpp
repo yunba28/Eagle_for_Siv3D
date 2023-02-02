@@ -4,11 +4,11 @@
 
 namespace eagle::GUI
 {
-	class ButtonBase : public backend::Selectable
+	class Button : public backend::Selectable
 	{
 	public:
 
-		struct ColorPalette
+		struct ColorBlock
 		{
 			Color neutral{ 255,255,255,64 };
 			Color hovered{ 255,255,255,128 };
@@ -16,13 +16,21 @@ namespace eagle::GUI
 			Color disable{ 64,64,64,64 };
 		};
 
-		using Super = ButtonBase;
+		struct TextureBlock
+		{
+			Texture neutral{};
+			Texture hovered{};
+			Texture pressed{};
+			Texture disable{};
+		};
+
+		using Super = Button;
 
 	public:
 
-		ButtonBase();
+		Button();
 
-		virtual ~ButtonBase();
+		virtual ~Button();
 
 		void setDrawOrder(size_t _order);
 
@@ -36,27 +44,31 @@ namespace eagle::GUI
 
 		virtual void setPivot(Vec2 _pivot)override;
 
-		void setColorPallete(const ColorPalette& _colorPalette);
+		void setColorBlock(const ColorBlock& _colorBlock);
+
+		void setTextureBlock(const Optional<TextureBlock>& _textureBlock);
 
 		ObjectHandle<class Background> getBackground()const noexcept;
 
-		const ColorPalette& getColorPalette()const noexcept;
+		const ColorBlock& getColorBlock()const noexcept;
+
+		const Optional<TextureBlock>& getTextureBlock()const noexcept;
 
 	protected:
 
 		virtual void awake()override;
 
+		virtual void start()override;
+
 		virtual void onEnable()override;
 
 		virtual void onDisable()override;
 
-		virtual void onNeutral()override;
-
 		virtual void onHovered()override;
 
-		virtual void onClicked()override;
+		virtual void onUnhovered()override;
 
-		virtual void onPressed()override;
+		virtual void onClicked()override;
 
 		virtual void onReleased()override;
 
@@ -64,7 +76,9 @@ namespace eagle::GUI
 
 		WeakObject<class Background> mBackground;
 
-		ColorPalette mColorPalette;
+		ColorBlock mColorBlock;
+
+		Optional<TextureBlock> mTextureBlock;
 
 	};
 }

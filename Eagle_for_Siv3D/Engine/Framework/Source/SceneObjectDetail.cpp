@@ -18,6 +18,7 @@ namespace eagle::backend
 
 	SceneObjectDetail::~SceneObjectDetail()
 	{
+
 	}
 
 	void SceneObjectDetail::addActor(const SharedObject<Actor>& _actor, const TypeInfo& _type)

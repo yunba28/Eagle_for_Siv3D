@@ -23,7 +23,7 @@ namespace eagle::GUI
 
 	void FlexibleButton::onNeutral()
 	{
-		ButtonBase::onNeutral();
+		Button::onNeutral();
 
 		if (mFunctionBlock and mFunctionBlock->neutral)
 		{
@@ -33,7 +33,7 @@ namespace eagle::GUI
 
 	void FlexibleButton::onHovered()
 	{
-		ButtonBase::onHovered();
+		Button::onHovered();
 
 		if (mFunctionBlock and mFunctionBlock->hovered)
 		{
@@ -41,9 +41,19 @@ namespace eagle::GUI
 		}
 	}
 
+	void FlexibleButton::onUnhovered()
+	{
+		Button::onUnhovered();
+
+		if (mFunctionBlock and mFunctionBlock->unhovered)
+		{
+			mFunctionBlock->unhovered();
+		}
+	}
+
 	void FlexibleButton::onClicked()
 	{
-		ButtonBase::onClicked();
+		Button::onClicked();
 
 		if (mFunctionBlock and mFunctionBlock->clicked)
 		{
@@ -53,7 +63,7 @@ namespace eagle::GUI
 
 	void FlexibleButton::onPressed()
 	{
-		ButtonBase::onPressed();
+		Button::onPressed();
 
 		if (mFunctionBlock and mFunctionBlock->pressed)
 		{
@@ -63,7 +73,7 @@ namespace eagle::GUI
 
 	void FlexibleButton::onReleased()
 	{
-		ButtonBase::onReleased();
+		Button::onReleased();
 
 		if (mFunctionBlock and mFunctionBlock->released)
 		{

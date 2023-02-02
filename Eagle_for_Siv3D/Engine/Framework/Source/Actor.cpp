@@ -16,6 +16,13 @@ namespace eagle
 
 	Actor::~Actor()
 	{
+		for (auto& ref : mAttachedComponent)
+		{
+			if (auto component = ref.lock();component)
+			{
+				Component::Destroy(*component);
+			}
+		}
 	}
 
 	ObjectHandle<backend::SceneObjectDetail> Actor::getSceneObject() const noexcept

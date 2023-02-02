@@ -13,6 +13,7 @@ namespace eagle::GUI::backend
 		{
 			Neutral,
 			Hover,
+			Unhover,
 			Click,
 			Pressed,
 			Released
@@ -41,19 +42,22 @@ namespace eagle::GUI::backend
 	protected:
 
 		/// @brief 通常時のSelectable更新関数
-		virtual void onNeutral() = 0;
+		virtual void onNeutral() {};
 
 		/// @brief カーソルが重なっている間のSelectable更新関数
-		virtual void onHovered() = 0;
+		virtual void onHovered() {};
+
+		/// @brief カーソルがSelectableから離れた瞬間の更新関数
+		virtual void onUnhovered() {};
 
 		/// @brief Selectableがクリックされた瞬間の更新関数
-		virtual void onClicked() = 0;
+		virtual void onClicked() {};
 
 		/// @brief Selectableが押され続けている間の更新関数
-		virtual void onPressed() = 0;
+		virtual void onPressed() {};
 
 		/// @brief Selectableが離された瞬間の更新処理
-		virtual void onReleased() = 0;
+		virtual void onReleased() {};
 
 		virtual void update()override;
 

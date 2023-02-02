@@ -253,7 +253,7 @@
     <ClCompile Include="Engine\Components\GUI\Source\Selectable.cpp">
       <Filter>Engine\Components\GUI\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Components\GUI\Source\ButtonBase.cpp">
+    <ClCompile Include="Engine\Components\GUI\Source\Button.cpp">
       <Filter>Engine\Components\GUI\Source</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Components\GUI\Source\FlexibleButton.cpp">
@@ -263,6 +263,12 @@
       <Filter>Engine\Components\GUI\Source</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Components\GUI\Source\Slider.cpp">
+      <Filter>Engine\Components\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\GUI\Source\Frame.cpp">
+      <Filter>Engine\Components\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\GUI\Source\InputField.cpp">
       <Filter>Engine\Components\GUI\Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1005,7 +1011,7 @@
     <ClInclude Include="Engine\Components\GUI\Detail\Selectable.hpp">
       <Filter>Engine\Components\GUI\Detail</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Components\GUI\ButtonBase.hpp">
+    <ClInclude Include="Engine\Components\GUI\Button.hpp">
       <Filter>Engine\Components\GUI</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Components\GUI\FlexibleButton.hpp">
@@ -1017,8 +1023,11 @@
     <ClInclude Include="Engine\Components\GUI\Slider.hpp">
       <Filter>Engine\Components\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Components\GUI\Detail\SliderHandle.hpp">
-      <Filter>Engine\Components\GUI\Detail</Filter>
+    <ClInclude Include="Engine\Components\GUI\InputField.hpp">
+      <Filter>Engine\Components\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\GUI\Frame.hpp">
+      <Filter>Engine\Components\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
