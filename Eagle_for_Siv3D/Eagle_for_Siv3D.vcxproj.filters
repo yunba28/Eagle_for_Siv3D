@@ -1029,5 +1029,8 @@
     <ClInclude Include="Engine\Components\GUI\Frame.hpp">
       <Filter>Engine\Components\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Components\GUI\MenuList.hpp">
+      <Filter>Engine\Components\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

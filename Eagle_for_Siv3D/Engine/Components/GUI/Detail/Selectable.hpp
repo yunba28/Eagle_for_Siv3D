@@ -35,9 +35,19 @@ namespace eagle::GUI::backend
 
 		virtual void setPivot(Vec2 _pivot)override;
 
-		void onSelect();
+		virtual void onSelect();
 
 		bool isSelected()const noexcept;
+
+	public:
+
+		static void SetClickedAction(const String& actionState);
+
+		static void SetPressedAction(const String& actionState);
+
+		static const String& GetClickedAction();
+
+		static const String& GetPressedAction();
 
 	protected:
 
@@ -66,6 +76,10 @@ namespace eagle::GUI::backend
 		State mState;
 
 		bool mSelected;
+
+		static String sClickedAction;
+
+		static String sPressedAction;
 
 	};
 }

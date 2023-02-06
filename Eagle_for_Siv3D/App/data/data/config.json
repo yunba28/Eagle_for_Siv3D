@@ -1,6 +1,6 @@
 ﻿{
   "InputAction": {
-    "InputActionMap": [
+    "Actions": [
       {
         "name": "Clicked",
         "value": {
@@ -212,7 +212,7 @@
     ]
   },
   "InputAxis": {
-    "InputAxisMap": [
+    "Axes": [
       {
         "name": "Vertical",
         "value": {

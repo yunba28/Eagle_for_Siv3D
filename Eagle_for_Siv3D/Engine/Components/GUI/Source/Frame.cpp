@@ -8,6 +8,7 @@ namespace eagle::GUI
 		: mColor(Palette::White)
 		, mThickness()
 	{
+		setEnable({ false,false,false }, { false,true });
 	}
 
 	Frame::~Frame()

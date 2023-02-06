@@ -127,7 +127,7 @@ namespace eagle::backend
 			in[U"name"] = name;
 			in[U"value"] = state.toJson();
 
-			res[U"InputActionMap"].push_back(in);
+			res[U"Actions"].push_back(in);
 		}
 
 		return res;
@@ -135,9 +135,9 @@ namespace eagle::backend
 
 	void InputActionDetail::fromJson(const JSON& _json)
 	{
-		if (_json.hasElement(U"InputActionMap"))
+		if (_json.hasElement(U"Actions"))
 		{
-			for (const auto& map : _json[U"InputActionMap"].arrayView())
+			for (const auto& map : _json[U"Actions"].arrayView())
 			{
 				String name = map[U"name"].getString();
 				mInputStates[name].fromJson(map[U"value"]);

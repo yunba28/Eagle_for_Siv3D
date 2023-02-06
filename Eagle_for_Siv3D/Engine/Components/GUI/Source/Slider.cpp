@@ -253,7 +253,6 @@ namespace eagle::GUI
 			auto background = mFillRect.lock();
 			background->setGUIRect(mGUIRect);
 			background->setDrawOrder(1100);
-			background->applyClipAndRescale(true);
 		}
 	}
 

@@ -196,7 +196,7 @@ namespace eagle::backend
 			in[U"name"] = name;
 			in[U"value"] = state.toJson();
 
-			res[U"InputAxisMap"].push_back(in);
+			res[U"Axes"].push_back(in);
 		}
 
 		return res;
@@ -204,9 +204,9 @@ namespace eagle::backend
 
 	void InputAxisDetail::fromJson(const JSON& _json)
 	{
-		if (_json.hasElement(U"InputAxisMap"))
+		if (_json.hasElement(U"Axes"))
 		{
-			for (const auto& map : _json[U"InputAxisMap"].arrayView())
+			for (const auto& map : _json[U"Axes"].arrayView())
 			{
 				String name = map[U"name"].getString();
 				mInputStates[name].fromJson(map[U"value"]);

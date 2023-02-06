@@ -5,6 +5,10 @@
 
 namespace eagle::GUI::backend
 {
+	String Selectable::sClickedAction = U"Clicked";
+
+	String Selectable::sPressedAction = U"Pressed";
+
 	Selectable::Selectable()
 		: mState(State::Neutral)
 		, mSelected(false)
@@ -61,18 +65,18 @@ namespace eagle::GUI::backend
 
 		const auto viewRect = mGUIRect.getViewRect(pos, scale);
 
-		const auto onRect = viewRect.contains(Cursor::PosF());
+		const auto onRect = mGUIRect.region.mouseOver() and viewRect.mouseOver();
 
 		// Selectableにカーソルが乗っているか
 		if (onRect or mSelected)
 		{
 			// Selectableがクリックされているか
-			if (InputAction(U"Clicked"))
+			if (InputAction(sClickedAction))
 			{
 				mState = State::Click;
 			}
 			// Selectableが押され続けているかどうか
-			else if (InputAction(U"Pressed"))
+			else if (InputAction(sPressedAction))
 			{
 				mState = State::Pressed;
 			}
@@ -120,5 +124,25 @@ namespace eagle::GUI::backend
 		case State::Released: onReleased(); break;
 		[[unlikely]] default: break;
 		}
+	}
+
+	void Selectable::SetClickedAction(const String& actionState)
+	{
+		sClickedAction = actionState;
+	}
+
+	void Selectable::SetPressedAction(const String& actionState)
+	{
+		sPressedAction = actionState;
+	}
+
+	const String& Selectable::GetClickedAction()
+	{
+		return sClickedAction;
+	}
+
+	const String& Selectable::GetPressedAction()
+	{
+		return sPressedAction;
 	}
 }

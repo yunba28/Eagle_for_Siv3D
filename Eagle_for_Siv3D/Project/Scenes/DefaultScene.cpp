@@ -4,6 +4,7 @@
 #include <Components/GUI/FlexibleButton.hpp>
 #include <Components/GUI/Text.hpp>
 #include <Components/GUI/Slider.hpp>
+#include <Components/GUI/InputField.hpp>
 
 class MoveComponent : public eagle::Behavior
 {
@@ -108,10 +109,44 @@ private:
 
 };
 
+class DrawText : public eagle::Renderer2D
+{
+public:
+
+	DrawText()
+	{
+		setEnable({ true,false,false }, { false,true });
+	}
+
+private:
+
+	eagle::WeakObject<eagle::GUI::InputField> mInputField;
+
+	String mViewText;
+
+	void start()override
+	{
+		mInputField = getActor()->getComponent<eagle::GUI::InputField>();
+	}
+
+	void draw()const override {}
+
+	void drawScreen()const override
+	{
+		if (auto inputField = mInputField.lock(); inputField)
+		{
+			if (auto opt = inputField->getEvalOpt();opt)
+			{
+				Print << *opt;
+			}
+		}
+	}
+};
+
 DefaultScene::DefaultScene(const InitData& _init)
 	: Super(_init)
 {
-	InputAxis[U"Horizontal"]
+	/*InputAxis[U"Horizontal"]
 		.add(KeyA | KeyLeft, -1)
 		.add(KeyD | KeyRight, 1)
 		.add({ PadState::LThumbX });
@@ -139,12 +174,13 @@ DefaultScene::DefaultScene(const InitData& _init)
 	InputAction[U"Cancel"]
 		.add(KeyEscape)
 		.add(MouseR)
-		.add(XInput(0).buttonB);
+		.add(XInput(0).buttonB);*/
 
-	JSON config;
-	config[U"InputAxis"] = InputAxis.toJson();
-	config[U"InputAction"] = InputAction.toJson();
-	config.save(U"config.json");
+	if (JSON config = JSON::Load(U"data/data/config.json"); config)
+	{
+		InputAxis.fromJson(config[U"InputAxis"]);
+		InputAction.fromJson(config[U"InputAction"]);
+	}
 
 	{
 		using namespace eagle::GUI;
@@ -158,6 +194,20 @@ DefaultScene::DefaultScene(const InitData& _init)
 		text->setFont(Font{ 28,Typeface::Bold });
 		text->setColor(Palette::White);
 		text->setTextAligne(TextAligne::Center);
+	}
+
+	{
+		using namespace eagle::GUI;
+
+		auto actor = createActor().lock();
+
+		auto inputField = actor->attachComponent<InputField>().lock();
+		inputField->setSize(SizeF{ 240,40 });
+		inputField->setAnchor(Vec2{ 0.5,0.05 });
+		inputField->setPivot(Vec2{ 0.5,0.0 });
+		inputField->setInputType(InputType::String);
+
+		actor->attachComponent<DrawText>();
 	}
 }
 

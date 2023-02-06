@@ -362,6 +362,7 @@
     <ClInclude Include="Engine\Components\GUI\FlexibleButton.hpp" />
     <ClInclude Include="Engine\Components\GUI\Frame.hpp" />
     <ClInclude Include="Engine\Components\GUI\InputField.hpp" />
+    <ClInclude Include="Engine\Components\GUI\MenuList.hpp" />
     <ClInclude Include="Engine\Components\GUI\Slider.hpp" />
     <ClInclude Include="Engine\Components\GUI\Text.hpp" />
     <ClInclude Include="Engine\Eagle.hpp" />
